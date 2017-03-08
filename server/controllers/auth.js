@@ -1,3 +1,4 @@
+var HTTPStatus =  require('http-status');
 var passport = require('passport');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
@@ -26,7 +27,7 @@ module.exports.register = function(req, res) {
   user.save(function(err) {
     var token;
     token = user.generateJwt();
-    res.status(200);
+    res.status(HTTPStatus.OK);
     res.json({
       "token" : token
     });
@@ -48,20 +49,22 @@ module.exports.login = function(req, res) {
 
     // If Passport throws/catches an error
     if (err) {
-      res.status(404).json(err);
+      res.status(HTTPStatus.NOTFOUND).json(err);
       return;
     }
 
     // If a user is found
     if(user){
       token = user.generateJwt();
-      res.status(200);
+      res.status(HTTPStatus.OK);
       res.json({
-        "token" : token
+        "token" : token,
+        "user": user,
+        "status": 'Registration Successful!'
       });
     } else {
       // If user is not found
-      res.status(401).json(info);
+      res.status(HTTPStatus.UNAUTHORIZED).json(info);
     }
   })(req, res);
 
