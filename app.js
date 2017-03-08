@@ -14,9 +14,9 @@ require('./server/models/db');
 // Bring in the Passport config after model is defined
 require('./server/config/passport');
 
+// Bring in the routes for the API (delete the default routes)
+var routesApi = require('./server/routes/index');
 
-//var index = require('./routes/index');
-//var users = require('./routes/users');
 
 var app = express();
 
@@ -32,8 +32,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//app.use('/', index);
-//app.use('/users', users);
+// Set the app_client folder to serve static resources
+app.use(express.static(path.join(__dirname, 'client')));
+
+// Initialise Passport before using the route middleware
+app.use(passport.initialize());
+
+// Use the API routes when path starts with /api
+app.use('/api', routesApi);
+
+// Otherwise render the index.html page for the Angular SPA
+// This means we don't have to map all of the SPA routes in Express
+app.use(function(req, res) {
+  res.sendFile(path.join(__dirname, 'client', 'index.html'));
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
