@@ -35,8 +35,8 @@ module.exports.register = function(req, res) {
     token = user.generateJwt();
     res.status(HTTPStatus.OK);
     res.json({
-      "token" : token
-    });
+        "status": 'Registration Successful!'
+      });
   });
 
 };
@@ -66,7 +66,7 @@ module.exports.login = function(req, res) {
       res.json({
         "token" : token,
         "user": user,
-        "status": 'Registration Successful!'
+        "status": 'Login Successful!'
       });
     } else {
       // If user is not found

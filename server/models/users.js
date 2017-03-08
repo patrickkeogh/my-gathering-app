@@ -13,7 +13,7 @@ var userSchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    required: true
+    required: 'Please enter your name'
   },
   hash: String,
   salt: String
