@@ -5,19 +5,37 @@ var passportLocalMongoose = require('passport-local-mongoose');
 
 var config = require('../../config');
 
-var userSchema = new mongoose.Schema({
-  username: {
-    type: String,
-    unique: true,
-    required: true,
-    lowercase: true
-  },
-  name: {
-    type: String
-  },
-  password: String,
-  hash: String,
-  salt: String
+var userSchema = new Schema({
+    username: {
+      type: String,
+      required: true,
+      lowercase: true
+    },
+    picture: {
+      type: String,
+      // required: true,
+      match: /^https:\/\//i
+    },
+    name: String,
+    password: String,
+    OauthId: String,
+    OauthToken: String,
+    hasLoggedIn: {
+      type: Boolean,
+      default: false
+    },
+    firstname: {
+      type: String,
+      default: ''
+    },
+    lastname: {
+      type: String,
+      default: ''
+    },
+    admin:   {
+        type: Boolean,
+        default: false
+    }
 });
 
 // userSchema.methods.setPassword = function(password){
