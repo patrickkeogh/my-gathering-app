@@ -51,6 +51,7 @@ module.exports.login = function(req, res) {
   // }
 
   passport.authenticate('local', function(err, user, info){
+
     var token;
 
     // If Passport throws/catches an error
@@ -74,4 +75,11 @@ module.exports.login = function(req, res) {
     }
   })(req, res);
 
+};
+
+module.exports.logout = function(req, res) {
+  req.logout();
+  res.status(HTTPStatus.OK).json({
+    "status": 'Logout Successful!'
+  });
 };

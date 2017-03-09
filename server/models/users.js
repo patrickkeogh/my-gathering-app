@@ -44,16 +44,16 @@ userSchema.path('email')
     });
   }, 'The specified email address is already in use.');
 
-userSchema.methods.generateJwt = function() {
-  var expiry = new Date();
-  expiry.setDate(expiry.getDate() + 7);
+// userSchema.methods.generateJwt = function() {
+//   var expiry = new Date();
+//   expiry.setDate(expiry.getDate() + 7);
 
-  return jwt.sign({
-    _id: this._id,
-    email: this.email,
-    name: this.name,
-    exp: parseInt(expiry.getTime() / 1000),
-  }, config.secretKey); // DO NOT KEEP YOUR SECRET IN THE CODE!
-};
+//   return jwt.sign({
+//     _id: this._id,
+//     email: this.email,
+//     name: this.name,
+//     exp: parseInt(expiry.getTime() / 1000),
+//   }, config.secretKey); // DO NOT KEEP YOUR SECRET IN THE CODE!
+// };
 
 mongoose.model('User', userSchema);
