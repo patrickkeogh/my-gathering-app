@@ -70,6 +70,7 @@ module.exports.login = function(req, res) {
   passport.authenticate('local', function(err, user, info) {
 
     console.log("passport Called on Server");
+    
 
     if (err) {
       return next(err);
