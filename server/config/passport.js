@@ -27,5 +27,3 @@ passport.use(new LocalStrategy({
   }
 ));
 
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());

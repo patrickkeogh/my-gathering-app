@@ -11,8 +11,11 @@ var passport = require('passport');
 
 // Bring in the data model
 require('./server/models/db');
+
+require('./authenticate');
+
 // Bring in the Passport config after model is defined
-require('./server/config/passport');
+//require('./server/config/passport');
 
 // Bring in the routes for the API (delete the default routes)
 var routesApi = require('./server/routes/index');

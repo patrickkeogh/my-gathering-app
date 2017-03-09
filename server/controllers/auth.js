@@ -43,33 +43,31 @@ module.exports.register = function(req, res) {
 
 module.exports.login = function(req, res) {
 
-  // if(!req.body.email || !req.body.password) {
-  //   sendJSONresponse(res, 400, {
-  //     "message": "All fields required"
-  //   });
-  //   return;
-  // }
+  passport.authenticate('local', function(err, user, info) {
 
-  passport.authenticate('local', function(err, user, info){
-
-    var token;
-
-    // If Passport throws/catches an error
     if (err) {
-      res.status(HTTPStatus.NOTFOUND).json(err);
-      return;
+      return next(err);
+    }
+    if (!user) {
+      return res.status(HTTPStatus.UNAUTHORIZED).json({
+        err: info
+      });
     }
 
     req.logIn(user, function(err) {
+
       if (err) {
-        return res.status(HTTPStatus.UNAUTHORIZED).json(err);
+        return res.status(HTTPStatus.INTERNAL_SERVER_ERROR).json({
+          error: err,
+          message: 'Could not log use in'
+        });
       }
         
       var token = Verify.getToken(user);
 
       console.log("UserInfo from loggedin User:" + user);
       
-      res.status(200).json({
+      res.status(HTTPStatus.OK).json({
         status: 'Login successful!',
         success: true,
         token: token,
@@ -77,21 +75,7 @@ module.exports.login = function(req, res) {
         name: user.name
       });
     });
-
-    // // If a user is found
-    // if(user){
-    //   token = user.generateJwt();
-    //   res.status(HTTPStatus.OK);
-    //   res.json({
-    //     "token" : token,
-    //     "user": user,
-    //     "status": 'Login Successful!'
-    //   });
-    // } else {
-    //   // If user is not found
-    //   res.status(HTTPStatus.UNAUTHORIZED).json(info);
-    // }
-  })(req, res);
+  })(req,res,next);
 
 };
 

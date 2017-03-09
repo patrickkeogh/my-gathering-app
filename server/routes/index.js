@@ -3,13 +3,6 @@ var router = express.Router();
 
 var verify = require('../../verify');
 
-var jwt = require('express-jwt');
-
-var auth = jwt({
-  secret: 'MY_SECRET',
-  userProperty: 'payload'
-});
-
 var ctrlProfile = require('../controllers/profile');
 var ctrlAuth = require('../controllers/auth');
 
