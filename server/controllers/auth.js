@@ -49,27 +49,7 @@ module.exports.register = function(req, res) {
           user.save(function(err,user) {
             passport.authenticate('local')(req, res, function () {
 
-              var locals = {name:req.body.name, password:req.body.password};
-              var html   = Jade.renderFile('./views/templates/register.jade', locals);
-
-              var mailOptions = {
-                from: 'info@kantechprogramming.com',
-                to: req.body.username,
-                subject: 'MyGathering.com Registration Confirmation',
-                html: html
-              };
-
-              transporter.sendMail(mailOptions, function(error, info) {
-              if(error){
-                console.log(error);
-                //res.json({yo: 'error'});
-              }else{
-                console.log('message sent:' + info.response);
-                //res.json({yo: info.response});
-              }
-
-
-            });
+              
 
             return res.status(200).json({status: 'Registration Successful!'});
                         
