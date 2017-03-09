@@ -14,29 +14,71 @@ var validationError = function(res, err) {
 
 module.exports.register = function(req, res) {
 
-  // if(!req.body.name || !req.body.email || !req.body.password) {
-  //   sendJSONresponse(res, 400, {
-  //     "message": "All fields required"
-  //   });
-  //   return;
-  // }
+  User.findOne({username: req.body.username}, function (err, user) {
 
-  var user = new User();
+    console.log("REGISTER HAS BEEN CALLED");
 
-  user.name = req.body.name;
-  user.email = req.body.email;
+    if (err) throw err;
 
-  user.setPassword(req.body.password);
+    if(user) {
+      console.log("we have a user with this username");
+      return res.status(500).json({err: 'Username is not Unique!'});
 
-  user.save(function(err) {
-    if (err) return validationError(res, err);
+    }else{
 
-    var token;
-    token = user.generateJwt();
-    res.status(HTTPStatus.OK);
-    res.json({
-        "status": 'Registration Successful!'
+      User.register(new User({ username : req.body.username }),
+        req.body.password, function(err, user) {
+
+
+          if (err) {
+              return res.status(500).json({err: err});
+          }
+
+          if(req.body.name) {
+              user.name = req.body.name;
+          }
+          
+          if(req.body.firstname) {
+              user.firstname = req.body.firstname;
+          }
+
+          if(req.body.lastname) {
+              user.lastname = req.body.lastname;
+          }
+          
+          user.save(function(err,user) {
+            passport.authenticate('local')(req, res, function () {
+
+              var locals = {name:req.body.name, password:req.body.password};
+              var html   = Jade.renderFile('./views/templates/register.jade', locals);
+
+              var mailOptions = {
+                from: 'info@kantechprogramming.com',
+                to: req.body.username,
+                subject: 'MyGathering.com Registration Confirmation',
+                html: html
+              };
+
+              transporter.sendMail(mailOptions, function(error, info) {
+              if(error){
+                console.log(error);
+                //res.json({yo: 'error'});
+              }else{
+                console.log('message sent:' + info.response);
+                //res.json({yo: info.response});
+              }
+
+
+            });
+
+            return res.status(200).json({status: 'Registration Successful!'});
+                        
+          });
+        });
       });
+
+    }
+
   });
 
 };
