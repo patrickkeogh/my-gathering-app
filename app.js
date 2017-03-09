@@ -7,12 +7,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 // Modules add manually using npm install
+var mongoose = require('mongoose');
 var passport = require('passport');
+var authenticate = require('./authenticate');
 
 // Bring in the data model
-require('./server/models/db');
+//require('./server/models/db');
 
-var authenticate = require('./authenticate');
+//var authenticate = require('./authenticate');
 
 // Bring in the Passport config after model is defined
 //require('./server/config/passport');
@@ -20,6 +22,18 @@ var authenticate = require('./authenticate');
 // Bring in the routes for the API (delete the default routes)
 var routesApi = require('./server/routes/index');
 
+// Add the config file 
+var config = require('./config');
+
+// Connect to Mongo DB Server
+mongoose.connect(config.mongoUrlForHeroku);
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+    // we're connected!
+    console.log("Connected correctly to mongo server");
+});
 
 var app = express();
 
