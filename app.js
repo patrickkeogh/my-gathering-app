@@ -25,15 +25,8 @@ var users = require('./routes/route-users');
 // Add the config file 
 var config = require('./config');
 
-// Connect to Mongo DB Server
-mongoose.connect(config.mongoUrlForHeroku);
-
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-    // we're connected!
-    console.log("Connected correctly to mongo server");
-});
+// Bring in the data model
+require('./app_api/models/db');
 
 //CORS middleware
 var allowCrossDomain = function(req, res, next) {
