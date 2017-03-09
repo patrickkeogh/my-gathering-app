@@ -68,25 +68,18 @@ module.exports.login = function(req, res, next) {
   console.log("Login Called on Server");
 
   passport.authenticate('local', function(err, user, info) {
-
-    console.log("passport Called on Server");
-
-
     if (err) {
       return next(err);
     }
     if (!user) {
-      return res.status(HTTPStatus.UNAUTHORIZED).json({
+      return res.status(401).json({
         err: info
       });
     }
-
     req.logIn(user, function(err) {
-
       if (err) {
-        return res.status(HTTPStatus.INTERNAL_SERVER_ERROR).json({
-          error: err,
-          message: 'Could not log use in'
+        return res.status(500).json({
+          err: 'Could not log in user'
         });
       }
         
@@ -94,7 +87,7 @@ module.exports.login = function(req, res, next) {
 
       console.log("UserInfo from loggedin User:" + user);
       
-      res.status(HTTPStatus.OK).json({
+      res.status(200).json({
         status: 'Login successful!',
         success: true,
         token: token,
