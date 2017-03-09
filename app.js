@@ -26,7 +26,7 @@ var users = require('./routes/route-users');
 var config = require('./config');
 
 // Bring in the data model
-require('./app_api/models/db');
+require('./server/models/db');
 
 //CORS middleware
 var allowCrossDomain = function(req, res, next) {
