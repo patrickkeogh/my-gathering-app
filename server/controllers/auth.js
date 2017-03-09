@@ -1,7 +1,7 @@
 var HTTPStatus =  require('http-status');
 var passport = require('passport');
 var mongoose = require('mongoose');
-var User = mongoose.model('User');
+var User = require('../models/users');
 
 var sendJSONresponse = function(res, status, content) {
   res.status(status);
@@ -70,7 +70,7 @@ module.exports.login = function(req, res) {
   passport.authenticate('local', function(err, user, info) {
 
     console.log("passport Called on Server");
-    
+
 
     if (err) {
       return next(err);
