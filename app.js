@@ -14,10 +14,10 @@ var authenticate = require('./authenticate');
 //var flash    = require('connect-flash');
 
 //var routes = require('./routes/index');
-//var users = require('./routes/route-users');
+var users = require('./routes/route-users');
 
 // Bring in the routes for the API (delete the default routes)
-var routesApi = require('./server/routes/index');
+//var routesApi = require('./server/routes/index');
 
 //var gatherings = require('./routes/route-gathering');
 //var categories = require('./routes/route-category');
@@ -80,7 +80,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 
 //app.use('/', routes);
-app.use('/api', routesApi);
+app.use('/api', users);
 //app.use('/gathering', gatherings);
 //app.use('/category', categories);
 
