@@ -10,7 +10,7 @@ var auth = jwt({
   userProperty: 'payload'
 });
 
-//var ctrlProfile = require('../controllers/profile');
+var ctrlProfile = require('../controllers/profile');
 var ctrlAuth = require('../controllers/auth');
 
 // profile
