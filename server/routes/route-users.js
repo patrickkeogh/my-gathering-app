@@ -29,7 +29,7 @@ router.post('/register', function(req, res) {
 
 		if(user) {
 			console.log("we have a user with this username");
-			return res.status(HTTPStatus.INTERNAL_SERVER_ERROR).json({err: 'The supplied email address has already be used to register!'});
+			return res.status(HTTPStatus.BAD_REQUEST).json({err: 'The supplied email address has already be used to register!'});
 
 		}else{
 
