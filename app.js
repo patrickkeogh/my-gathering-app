@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 // Manually installed with npm
 var mongoose = require('mongoose');
 var passport = require('passport');
-var authenticate = require('./authenticate');
+var authenticate = require('./server/config/authenticate');
 //var flash    = require('connect-flash');
 
 //var routes = require('./routes/index');
@@ -23,7 +23,7 @@ var users = require('./server/routes/route-users');
 //var categories = require('./routes/route-category');
 
 // Add the config file 
-var config = require('./config');
+var config = require('./server/config/config');
 
 // Bring in the data model
 require('./server/models/db');
