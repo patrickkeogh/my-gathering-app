@@ -63,7 +63,7 @@ module.exports.register = function(req, res) {
 
 };
 
-module.exports.login = function(req, res) {
+module.exports.login = function(req, res, next) {
 
   console.log("Login Called on Server");
 
