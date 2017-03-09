@@ -16,6 +16,7 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: 'Please enter your name'
   },
+  password: String,
   hash: String,
   salt: String
 });
