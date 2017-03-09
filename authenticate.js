@@ -1,9 +1,6 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-
-var mongoose = require('mongoose');
-var User = mongoose.model('User');
-
+var User = require('./models/users');
 var config = require('./config');
 
 exports.local = passport.use(new LocalStrategy(User.authenticate()));
@@ -11,7 +8,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 var FacebookStrategy = require('passport-facebook').Strategy;
-
 
 exports.facebook = passport.use(new FacebookStrategy({
 	clientID: config.facebook.clientID,
