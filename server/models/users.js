@@ -6,7 +6,7 @@ var passportLocalMongoose = require('passport-local-mongoose');
 var config = require('../../config');
 
 var userSchema = new mongoose.Schema({
-  email: {
+  username: {
     type: String,
     unique: true,
     required: true,
@@ -32,11 +32,11 @@ var userSchema = new mongoose.Schema({
 
 
 
-userSchema.path('email')
+userSchema.path('username')
   .validate(function(value, respond) {
     var self = this;
     this.constructor.findOne({
-      email: value
+      username: value
     }, function(err, user) {
       if (err) throw err;
       if (user) {
