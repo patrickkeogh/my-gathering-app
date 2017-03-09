@@ -1,4 +1,5 @@
-var User = require('./models/model-user');
+//var User = require('./models/users');
+var User = mongoose.model('User');
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var config = require('./config.js');
 
