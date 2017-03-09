@@ -59,6 +59,6 @@ userSchema.path('email')
 //   }, config.secretKey); // DO NOT KEEP YOUR SECRET IN THE CODE!
 // };
 
-User.plugin(passportLocalMongoose);
+userSchema.plugin(passportLocalMongoose);
 
 mongoose.model('User', userSchema);
