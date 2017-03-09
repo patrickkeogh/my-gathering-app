@@ -1,12 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myGathering">
 <head>
-  <title>MyGathering.ca</title>
-  <base href="/">
+  	<title>MEAN stack authentication example</title>
+  	<base href="/">
+ 	<link rel="stylesheet" href="/bower/bootstrap/dist/css/bootstrap.css" />
+  	<link rel="stylesheet" href="/bower/font-awesome/css/font-awesome.css" />
+
+  	<link rel="stylesheet" href="styles/main.css">
+  	<link rel="stylesheet" href="styles/bootstrap_ms.css">
+
+	<link rel="stylesheet" href="styles/styles.media.css">
+	<link rel="stylesheet" href="styles/sb-admin.css">
+	<link rel="stylesheet" href="styles/footer.css">
+	<link href='https://fonts.googleapis.com/css?family=Cookie' rel='stylesheet' type='text/css'>
 </head>
 <body>
-	We Made it
+
+	<div id="wrapper">
+        <div id="feedback">
+          <a href="/feedback_url/">Feedback</a>
+        </div>
 
 
-</body>
+
+    <div ui-view="header"></div>
+    <div ui-view="content"></div>
+    <div ui-view="footer"></div>
+
+    </div>
+    <!-- /#wrapper -->
+
+
+	<script src="/bower/jquery/dist/jquery.js"></script>
+	<script src="/bower/angular/angular.js"></script>
+	<script src="/bower/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="/bower/angular-ui-router/release/angular-ui-router.js"></script>
+	<script src="/bower/angular-cookies/angular-cookies.js"></script>
+
+	<script src="/scripts/main.js"></script>
+	<script src="/scripts/controllers/nav.ctr.js"></script>
+	<script src="/scripts/controllers/main.ctr.js"></script>
+	<script src="/scripts/controllers/auth.ctr.js"></script>
+	<script src="/scripts/config/auth.routes.cfg.js"></script>
+
+	<script src="/scripts/services/authentication.svc.js"></script>
+
+
+
+
+
+</body
 </html>

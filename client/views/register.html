@@ -1,0 +1,67 @@
+<div class="container-main">
+  	<div class="container">   		
+    	<div class="row content-spacer">
+    		<div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 vertical-padding">
+    			<div class="panel panel-primary">
+            		<div class="panel-heading">
+                		<div class="row">
+                    		<div class="text-center">
+		          				<div class="header-register">Sign Up For Free!</div>
+		          			</div>
+                		</div>
+            		</div>
+            		<div class="panel-body">
+                		<div class="row">
+                			<div class="col-xs-12">                    		
+        						<form name="formRegister" ng-submit="vm.onSubmit()" novalidate>
+
+		          					<div class="form-group input-group input-group-lg" ng-class="{ 'has-success': formRegister.name.$valid && submitted,
+                                          'has-error': formRegister.name.$invalid && !formRegister.name.$pristine }">
+
+		            					<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+		            					<input class="form-control form-control-register" ng-model="vm.credentials.name" type="text" name='name' required placeholder="Your Name"/>          
+		          					</div>
+		          					<p ng-show="formRegister.name.$invalid && !formRegister.name.$pristine" class="help-block">Name is a required field.</p>
+
+		          					<!-- EMAIL -->
+									<div class="form-group input-group input-group-lg" 
+										ng-class="{ 'has-error' : formRegister.email.$invalid && !formRegister.email.$pristine }">
+									    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+									    <input type="email" name="email" class="form-control form-control-register" ng-model="vm.credentials.username" placeholder="Your Email" required>
+									    
+									</div>
+									<p ng-show="formRegister.email.$invalid && !formRegister.email.$pristine" class="help-block">Enter a valid email.</p>
+
+					          		<div class="form-group">
+					            		<button type="submit" class="btn btn-def btn-block btn-primary" ng-disabled="formRegister.$invalid">Register</button>
+					          		</div>
+					          		<div class="alert alert-danger alert-dismissible fade in" role="alert" ng-show="vm.errorMessage">
+									  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									    <span aria-hidden="true">&times;</span>
+									  </button>
+									  {{vm.errorMessage}}
+									</div>
+
+			        			</form> 
+     
+			      			</div>			      			
+			            </div>
+			            
+            		</div>
+               		<div class="panel-footer">
+                		<div>
+					        <a class="btn btn-facebook" href="" ng-click="loginOauth('facebook')">
+					          <i class="fa fa-facebook"></i> Connect with Facebook
+					        </a>
+					        <a class="btn btn-twitter" href="" ng-click="loginOauth('twitter')">
+					          <i class="fa fa-twitter"></i> Connect with Twitter
+					        </a>
+					    </div>
+            		</div>
+
+        		</div>      			
+    		</div>    
+  		</div>    
+  	</div>
+</div>
+

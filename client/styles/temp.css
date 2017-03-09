@@ -1,0 +1,172 @@
+body {
+  padding-top: 80px;
+  min-height: 100%;
+
+}
+h3.modal-title {
+  color: #673AB7;
+  font-weight: bolder;
+
+}
+
+.form-item {
+  width: 100%;
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+
+
+.option-box {
+  border-radius: 25px;
+  border: 2px solid #565656;
+  padding-bottom: 40px;
+  display: inline-block;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.83);
+  height: 150px;
+  width: 100%;
+}
+
+.message-box {
+  font-size: 56px;
+  font-family: 'abel', serif;
+  background-color: rgba(255, 128, 171, 0.93);
+  text-align: center;
+
+}
+
+/*.option-text {
+  position: absolute;
+  background-color: rgba(255, 128, 171, 0.93);
+  color: #673AB7;
+  bottom: 0px;
+  text-align: left;
+  padding: 20px 15px 20px 15px;
+  width: 100%;
+  font-size: 18px;
+  font-family: 'abel';
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.option-title {
+  position: absolute;
+  z-index: 15;
+  bottom: 80px;
+  text-align: left;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 20px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  background-color: rgba(194, 0, 0, 0.93);
+  color: #fff;
+  width: 100%;
+
+}*/
+.logo-text {
+  font-family: 'Tangerine', serif;
+  font-size: 36px;
+  font-weight: bolder;
+}
+
+/*body {
+  
+  font-size: 48px;
+}*/
+.navbar-fixed-top {
+     top: 30px;
+}
+#parent-nav {
+  top: 0;
+  position: fixed;;
+  background-color: #673AB7;
+  height: 30px;
+  width: 100%;
+}
+#parent-logo {
+  font-size: 12px;
+  vertical-align: middle;
+  color: white;
+  line-height: 30px;
+  padding: 15px;
+  padding-top: 0px;
+  padding-right: 30px;
+
+}
+
+.navbar-inverse .navbar-brand {
+  font-size: 18px;
+  vertical-align: middle;
+  color: white;  
+}
+.navbar-header {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding-left: 0;
+}
+
+.navbar-inverse {
+     background: #E91E63;
+     
+}
+.navbar .nav > li > a {
+  color: #fffDDD;
+}
+.navbar .nav > li > a:hover {
+  color: #ffffff;
+  background-color: #FF80AB;
+}
+
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+    color: #fff;
+    background: #FF80AB;
+}
+
+.navbar-inverse .navbar-nav > .open > a,
+ .navbar-inverse .navbar-nav > .open > a:hover,
+ .navbar-inverse .navbar-nav > .open > a:focus {
+    color: #fff;
+    background: #FF80AB;
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu> li> a,
+.navbar-inverse .navbar-nav .open .dropdown-menu {
+    background-color: #FF80AB;
+    color:#eeeeee;
+}
+
+.navbar-inverse .navbar-nav .open .dropdown-menu> li> a:hover {
+    color:#000000;
+}
+.top-buffer {
+  margin-top: 80px;
+}
+.row-buffer {
+  margin-top: 20px;
+}
+
+.row-footer {
+  background-color: #673AB7;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+
+}
+.container-main {
+
+  min-height: 700px;
+
+  background-image: url(http://www.publicdomainpictures.net/pictures/60000/velka/road-13813455026q6.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.navbar-default {
+  /*sets background color of thr side menu bar */
+  background-color: #333FFF; 
+}

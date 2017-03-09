@@ -3,7 +3,11 @@ var router = express.Router();
 var passport = require('passport');
 var User = require('../models/users');
 var Verify = require('../config/verify');
-var status = require('http-status');
+var HTTPStatus = require('http-status');
+
+var validationError = function(res, err) {
+  return res.json(422, err);
+};
 
 
 
@@ -21,11 +25,11 @@ router.post('/register', function(req, res) {
 
     console.log("REGISTER HAS BEEN CALLED");
 
-		if (err) throw err;
+		if (err) return validationError(res, err);
 
 		if(user) {
 			console.log("we have a user with this username");
-			return res.status(500).json({err: 'Username is not Unique!'});
+			return res.status(HTTPStatus.INTERNAL_SERVER_ERROR).json({err: 'The supplied email address has already be used to register!'});
 
 		}else{
 
@@ -33,9 +37,7 @@ router.post('/register', function(req, res) {
         req.body.password, function(err, user) {
 
 
-	        if (err) {
-	            return res.status(500).json({err: err});
-	        }
+	        if (err) return validationError(res, err);
 
 	        if(req.body.name) {
 	            user.name = req.body.name;
