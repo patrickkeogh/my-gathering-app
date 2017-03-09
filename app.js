@@ -14,7 +14,7 @@ var authenticate = require('./authenticate');
 //var flash    = require('connect-flash');
 
 //var routes = require('./routes/index');
-var users = require('./routes/route-users');
+var users = require('./server/routes/route-users');
 
 // Bring in the routes for the API (delete the default routes)
 //var routesApi = require('./server/routes/index');
@@ -69,13 +69,22 @@ app.use(cookieParser());
 app.use(allowCrossDomain);
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Set the app_client folder to serve static resources
+app.use(express.static(path.join(__dirname, 'client')));
 
-app.use(express.static(path.join(__dirname, 'bower_components')));
+
+
 
 //app.use('/', routes);
 app.use('/api', users);
 //app.use('/gathering', gatherings);
 //app.use('/category', categories);
+
+// Otherwise render the index.html page for the Angular SPA
+// This means we don't have to map all of the SPA routes in Express
+app.use(function(req, res) {
+  res.sendFile(path.join(__dirname, 'client', 'index.html'));
+});
 
 
 
@@ -90,12 +99,21 @@ app.use(bodyParser.json({ reviver: function(key, value) {
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+	
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handlers
+
+// Catch unauthorised errors
+app.use(function (err, req, res, next) {
+  if (err.name === 'UnauthorizedError') {
+    res.status(401);
+    res.json({"message" : err.name + ": " + err.message});
+  }
+});
 
 // development error handler
 // will print stacktrace
