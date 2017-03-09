@@ -60,19 +60,37 @@ module.exports.login = function(req, res) {
       return;
     }
 
-    // If a user is found
-    if(user){
-      token = user.generateJwt();
-      res.status(HTTPStatus.OK);
-      res.json({
-        "token" : token,
-        "user": user,
-        "status": 'Login Successful!'
+    req.logIn(user, function(err) {
+      if (err) {
+        return res.status(HTTPStatus.UNAUTHORIZED).json(err);
+      }
+        
+      var token = Verify.getToken(user);
+
+      console.log("UserInfo from loggedin User:" + user);
+      
+      res.status(200).json({
+        status: 'Login successful!',
+        success: true,
+        token: token,
+        _id: user._id,
+        name: user.name
       });
-    } else {
-      // If user is not found
-      res.status(HTTPStatus.UNAUTHORIZED).json(info);
-    }
+    });
+
+    // // If a user is found
+    // if(user){
+    //   token = user.generateJwt();
+    //   res.status(HTTPStatus.OK);
+    //   res.json({
+    //     "token" : token,
+    //     "user": user,
+    //     "status": 'Login Successful!'
+    //   });
+    // } else {
+    //   // If user is not found
+    //   res.status(HTTPStatus.UNAUTHORIZED).json(info);
+    // }
   })(req, res);
 
 };
