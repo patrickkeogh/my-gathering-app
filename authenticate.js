@@ -1,11 +1,10 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var User = require('./server/models/users');
+var mongoose = require('mongoose');
+var User = mongoose.model('User');
 var config = require('./config');
 
-exports.local = passport.use(new LocalStrategy({
-    usernameField: 'email'
-  }, User.authenticate()));
+exports.local = passport.use(new LocalStrategy(User.authenticate()));
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
