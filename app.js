@@ -56,10 +56,10 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(require('express-session')({ secret: 'kantechprogrammingisthebest', resave: true, saveUninitialized: true }));
+//app.use(require('express-session')({ secret: 'kantechprogrammingisthebest', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
-app.use(passport.session()); // persist login sessions
-app.use(flash()); // use connect-flash for flash messages stored in session
+//app.use(passport.session()); // persist login sessions
+//app.use(flash()); // use connect-flash for flash messages stored in session
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
