@@ -12,7 +12,7 @@ var passport = require('passport');
 // Bring in the data model
 require('./server/models/db');
 
-require('./authenticate');
+var authenticate = require('./authenticate');
 
 // Bring in the Passport config after model is defined
 //require('./server/config/passport');
