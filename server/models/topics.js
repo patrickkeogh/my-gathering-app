@@ -6,7 +6,7 @@ var gatheringTopicSchema = {
 
 // the schema is useless so far
 // we need to create a model using it
-var Topic = mongoose.model('GatheringTopic', gatheringTopicSchema);
+var Topic = mongoose.model('Topic', gatheringTopicSchema);
 
 // make this available to our Node applications
 module.exports = Topic;

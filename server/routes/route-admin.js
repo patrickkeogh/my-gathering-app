@@ -13,7 +13,7 @@ router.use(bodyParser.json());
 //var RECS_PER_PAGE = 5;
 
 router.route('/create/topic')
-.post(function(req, res, next) {
+.post(Verify.verifyOrdinaryUser, function(req, res, next) {
 
   console.log('entered post new gathering topic:');
 
