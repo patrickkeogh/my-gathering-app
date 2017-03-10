@@ -3,6 +3,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 var Gatherings = require('../models/gatherings');
+var Topic = require('../models/topics');
+var Type = require('../models/types');
 
 var Verify = require('../config/verify');
 
@@ -69,7 +71,7 @@ gatheringRouter.route('/')
 gatheringRouter.route('/type')
 .get(function(req, res, next) {
 
-  GatheringType.find({}, {_id: 1}).sort({_id:1}).exec(function(err, types) {
+  Type.find({}, {_id: 1}).sort({_id:1}).exec(function(err, types) {
         if (err) throw err;
         res.json(types);
 
