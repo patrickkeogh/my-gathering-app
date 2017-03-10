@@ -48,6 +48,10 @@ router.post('/register', function(req, res) {
 	        if(req.body.lastname) {
 	            user.lastname = req.body.lastname;
 	        }
+
+          if(req.body.admin) {
+            user.admin = req.body.admin;
+          }
 	        
           user.save(function(err,user) {
 	          passport.authenticate('local')(req, res, function () {
