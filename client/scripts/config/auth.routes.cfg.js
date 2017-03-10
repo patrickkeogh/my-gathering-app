@@ -18,12 +18,13 @@
                 },
                 'content': {
                     templateUrl: './views/login.html',
-                    controller: 'MainController as vm'
+                    controller: 'AuthController as vm'
                 },
                 'footer': {
                     templateUrl: 'views/footer.html'
                 }
-            }
+            },
+            authenticate: false
         })
         .state('register', {
             url:'/register',
@@ -39,9 +40,8 @@
                 'footer': {
                     templateUrl: 'views/footer.html'
                 }
-
-
-            }
+            },
+            authenticate: false
         });
     }
 

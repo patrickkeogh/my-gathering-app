@@ -9,8 +9,6 @@ var validationError = function(res, err) {
   return res.json(422, err);
 };
 
-
-
 /* GET users listing. */
 router.get('/', Verify.verifyOrdinaryUser, Verify.verifyAdminUser, function(req, res, next) {
    User.find({}, function (err, user) {

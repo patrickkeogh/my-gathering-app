@@ -1,7 +1,7 @@
 <!-- Add your site or application content here -->
 <div id="parent-nav">
     <div id="parent-logo" class="navbar-left"><p>Kan-Tech Programming</p></div>
-    <div id="parent-username" class="navbar-right hidden-xs"><p>{{vm.loggedUserData.username}}</p></div>  
+    <div id="parent-username" class="navbar-right hidden-xs"><p>{{vm.currentUser.username}}</p></div>  
 </div>
 
 
@@ -24,15 +24,13 @@
             </a>
             <ul class="dropdown-menu dropdown-gathering" style="right:auto; left: auto;">
                 <li><a href="#" ui-sref="search"><i class="fa fa-search fa-fw"></i> Search Gatherings</a></li>
-                <li><a href="#" ui-sref="gatherings-created"><i class="fa fa-cubes fa-fw"></i> Manage Gatherings</a></li>
-                
-                
+                <li><a href="#" ui-sref="gatherings-created"><i class="fa fa-cubes fa-fw"></i> Manage Gatherings</a></li>               
             </ul>
             <!-- /.dropdown-user -->
         </li>
         <!-- /.dropdown -->
         
-        <li ui-sref-active="active">
+        <li ng-show="vm.isAuthenticated">
             <a href="#" class="top-nav-links" ui-sref="gathering-create">
                 <i class="fa fa-plus fa-fw"></i><span class="hidden-xs"> Create Gathering </span>
             </a>

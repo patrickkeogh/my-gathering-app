@@ -12,14 +12,41 @@
     .module('myGathering')
     .controller('NavigationController', NavigationController);
         
-    NavigationController.$inject = [];
+    NavigationController.$inject = ['$state', 'Authentication'];
        
-    function NavigationController() {
+    function NavigationController($state, Authentication) {
       var vm = this;
       
-      vm.isAuthenticated = false;
-      
-      vm.message = "Hello";
+      vm.isAuthenticated = Authentication.isLoggedIn();
+
+      if(vm.isAuthenticated) {
+        vm.currentUser = Authentication.getCurrentUser();
+
+      }
+
+      vm.logout = function() {
+          
+          console.log('Logout method called');
+
+          var response = Authentication.logout();
+
+          response.then(function(data) {
+
+            if(data.status === 200) {
+                vm.showMessage = true;
+                console.log("Success:" + data.data.status);
+                vm.message = 'You have successfully logged out.';
+                
+                $state.go('login');
+
+            }
+
+          }, function() {
+
+
+          });
+
+      };
       
     }
 }());

@@ -15,6 +15,7 @@ var authenticate = require('./server/config/authenticate');
 
 //var routes = require('./routes/index');
 var users = require('./server/routes/route-users');
+var admin = require('./server/routes/route-admin');
 
 // Bring in the routes for the API (delete the default routes)
 //var routesApi = require('./server/routes/index');
@@ -72,11 +73,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Set the app_client folder to serve static resources
 app.use(express.static(path.join(__dirname, 'client')));
 
-
-
-
 //app.use('/', routes);
 app.use('/api', users);
+app.use('/admin', admin);
+
 //app.use('/gathering', gatherings);
 //app.use('/category', categories);
 

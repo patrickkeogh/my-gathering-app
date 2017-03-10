@@ -1,0 +1,316 @@
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="col-xs-12">
+            <div class="content-spacer">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header page-header-primary"><i class="fa fa-search" aria-hidden="true"></i> Create A Gathering</h1>
+                        <!-- <pre>{{vm.gatheringAddress|json}}</pre> -->
+                        <!-- <pre>{{createGatheringForm|json}}</pre> -->
+                        <!-- <div my-shared-scope></div> -->
+                    </div>                         
+                </div>
+                <div class="row">
+                    <div class="col-lg-10">
+                        <h5>Supply the basic information below to create a new Gathering.  After a basic Gathering is created, customize your gathering and share it with the world.</h1>
+                        <!-- <pre>{{createGatheringForm|json}}</pre> -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="page-header"><span class="label label-default">1</span> Gathering Details</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+
+                <form name="createGatheringForm" ng-submit="vm.createGathering()" novalidate>
+                <div class="row">
+                    <div class="col-lg-10">
+                        <div class="form-group">
+                            <label for="name" class="control-label">Name</label>
+                            <label for="name" class="control-label pull-right">{{75 - vm.newGathering.name.length}} Chars Left</label>
+                            <input id="name" type="text" 
+                                    ng-model="vm.newGathering.name" 
+                                    class="form-control" ng-required="true" 
+                                    name="name" autocomplete="off" 
+                                    placeholder="Enter a short title for your gathering"
+                                    maxlength="75" />
+
+       
+                        </div>
+                        <div ng-show="createGatheringForm.$submitted || createGatheringForm.name.$touched">
+                            <div class="alert alert-danger" ng-show="createGatheringForm.name.$error.required">
+                              <strong>Error:</strong> Name is a required field.
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-lg-10">
+                        <div class="form-group">
+                            <label for="description" class="control-label">Description</label>
+                            <textarea id="description" name="description" class="form-control" 
+                                    ng-model="vm.newGathering.description" 
+                                    autocomplete="off" 
+                                    rows="10" placeholder="Enter a description for your gathering" required></textarea>
+                        </div>
+                        <div ng-show="createGatheringForm.$submitted || createGatheringForm.description.$touched">
+                            <div class="alert alert-danger" ng-show="createGatheringForm.description.$error.required">
+                              <strong>Error:</strong> Description is a required field.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5 col-lg-4">
+                        <div class="form-group">
+                            <label for="category" class="control-label">Gathering Type</label><br>
+                            <select class="full-width"
+                                    ng-options="option._id for option in vm.types track by option._id"
+                                    ng-model="vm.newGathering.type">
+                                    <option style="display:none" value="">Select A Gathering Type</option>
+                            </select>                                                      
+                        </div>
+                        
+                    </div>
+                    <div class="col-sm-5 col-lg-4">
+                        <div class="form-group">
+                            <label for="category" class="control-label">Gathering Topic</label><br>
+                            <select class="full-width"
+                                    ng-options="option._id for option in vm.topics track by option._id"
+                                    ng-model="vm.newGathering.topic">
+                                    <option style="display:none" value="">Select A Gathering Topic</option>
+                            </select>                                                      
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="page-header"><span class="label label-default">2</span> Gathering Start & End Date</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="name" class="control-label">Start Date and Time</label>
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="button" ng-click="vm.open1()">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </div> 
+
+                            <!--This produces a popup date picker when you click in the input-->
+                            <input  type="text" 
+                                name="startDate"
+                                id="startDate"
+                                class="form-control" 
+                                ng-model="vm.start_date"
+                                uib-datepicker-popup="{{ vm.format }}"
+                                datepicker-options="vm.dateOptions"
+                                is-open="vm.popup1.opened"               
+                                close-text="Close"
+                                ng-required="true" 
+                                readonly="true" />
+       
+                        </div>  
+                        <div class="input-group">
+                            <!--This produces a popup date picker when you click in the input-->
+                            <div uib-timepicker ng-model="vm.start_date" ng-change="vm.change()" hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian"></div>
+                        </div>
+
+                            <div class="alert alert-danger" ng-show="vm.invalid_start_date">
+                              <strong>Error:</strong> {{vm.formErrors.invalidDate}}
+                            </div>
+            
+                    </div>
+                    <div class="col-lg-4">
+                        <label for="name" class="control-label">End Date and Time</label>
+                        <div class="input-group input-group-sm">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="button" ng-click="vm.open2()">
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                </button>
+                            </div> 
+
+                            <!--This produces a popup date picker when you click in the input-->
+                            <input  type="text" 
+                                class="form-control" 
+                                name="endDate"
+                                id="endDate"
+                                ng-model="vm.end_date"
+                                uib-datepicker-popup="{{ vm.format }}"
+                                datepicker-options="vm.dateOptions"
+                                is-open="vm.popup2.opened"               
+                                close-text="Close"
+                                ng-required="true" 
+                                readonly="true" />
+       
+                        </div>  
+                        <div class="input-group">
+                            <!--This produces a popup date picker when you click in the input-->
+                            <div uib-timepicker id="endTime" ng-model="vm.end_date" ng-change="vm.change()" hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian"></div>
+                        </div>
+
+        
+                            <div class="alert alert-danger" ng-show="vm.invalid_end_date">
+                              <strong>Error:</strong> {{vm.formErrors.invalidDate}}
+                            </div>
+                        
+                        
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <div class="row">
+                    <div class="col-lg-10">
+                        <h5 class="">Your Gathering will start {{vm.newGathering.gathering_start_date_time | date:'shortTime'}} {{vm.newGathering.gathering_start_date_time | date:'fullDate'}} and will end {{vm.newGathering.gathering_end_date_time | date:'shortTime'}} {{vm.newGathering.gathering_end_date_time | date:'fullDate'}}</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="page-header"><span class="label label-default">3</span> Gathering Location</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="name" class="control-label">Location</label>                             
+                                        
+                                        <input type="text" id="Autocomplete" class="form-control" 
+                                                name="location"
+                                                ng-autocomplete="vm.selectedAddress" 
+                                                details="vm.address_details" 
+                                                ng-model="searchPlace" 
+                                                required="true"
+                                                options="vm.options1" 
+                                                placeholder="Select a location by address, city, or state ..."/>        
+                       
+                                </div>
+                                <div ng-show="createGatheringForm.$submitted || createGatheringForm.location.$touched">
+                                    <div class="alert alert-danger" ng-show="createGatheringForm.location.$error.required">
+                                        <strong>Error:</strong> Location is a required field
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.col-lg-12 -->
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="name" class="control-label">Name</label>
+                                    <input type="text" class="form-control" ng-model="vm.gatheringAddress.name"
+                                        id="loc_name" name="loc_name" readOnly="true">
+                                </div>
+                            </div>
+                            <!-- /.col-lg-12 -->
+                        </div>  
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="name" class="control-label">City</label>
+                                    <input type="text" class="form-control" ng-model="vm.gatheringAddress.locality"
+                                        id="city" name="city" readOnly="true">
+                                </div>
+                            </div>
+                            <!-- /.col-lg-12 -->
+                        </div>  
+                        <div class="row">
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="name" class="control-label">State/Prov</label>
+                                    <input type="text" class="form-control" ng-model="vm.gatheringAddress.state_prov"
+                                        id="state" name="state" readOnly="true">
+                                </div>
+                            </div>
+                            <div class="col-xs-6">
+                                <div class="form-group">
+                                    <label for="postalcode" class="control-label">Postal/Zip</label>
+                                    <input type="text" class="form-control" ng-model="vm.gatheringAddress.postal_code"
+                                        id="postalcode" name="postalcode" readOnly="true">
+                                </div>
+                            </div>
+                            <!-- /.col-lg-12 -->
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="name" class="control-label">Country</label>
+                                    <input type="text" class="form-control" ng-model="vm.gatheringAddress.country"
+                                        id="country" name="country" readOnly="true">
+                                </div>
+                            </div>
+                            <!-- /.col-lg-12 -->
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="form-group">
+                                    <label for="address" class="control-label">Formatted Address</label>
+                                    <input type="text" class="form-control" ng-model="vm.gatheringAddress.formatted_address"
+                                        id="address" name="address">
+                                </div>
+                            </div>
+                            <!-- /.col-lg-12 -->
+                        </div>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                    <div class="col-lg-4">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <img class="img-responsive pull-left center-block img-border" 
+                                     src="https://maps.googleapis.com/maps/api/staticmap?zoom=8&size=550x475&sensor=false&maptype=roadmap&markers=color:red|{{vm.gatheringAddress.location.coordinates[1]}},{{vm.gatheringAddress.location.coordinates[0]}}&key=AIzaSyAf7uV3v7upRbATDfluOmSaoHMgsgXRkDM">
+                                     <div class="caption"><input id="gathering-show-map" type="checkbox">Show map on details pageTest</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-spacer"></div>
+                <div class="row">
+                    <div class="col-lg-10">
+                        <div class="form-group">
+                            <label for="directions" class="control-label">Special Directions</label>
+                            <textarea id="directions" class="form-control" ng-model="vm.gatheringAddress.notes" rows="5" placeholder="Enter any special directions or additional details"></textarea>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header"></h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <button type="submit" class="btn btn-primary btn-footer">Create Gathering</button>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header"></h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
