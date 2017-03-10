@@ -7,15 +7,16 @@
   DatabaseUtils.$inject = ['$http', 'Authentication', 'Constants'];
 
   function DatabaseUtils ($http, Authentication, Constants) {
+
     var url;
 
     var getTypes = function() {
 
-      url = Constants.HerokuUrl + '/gathering/types';
+      url = Constants.HEROKU_URL + '/gathering/type';
 
       return $http.get(url).then(function(data) {
          
-        console.log("Get Types:" + JSON.stringify(data.data));
+        console.log("Get Types:" + JSON.stringify(data));
 
         return data.data;
       }, function(error) {
@@ -26,11 +27,11 @@
 
     var getTopics = function() {
 
-      url = Constants.HerokuUrl + '/gathering/topics';
+      url = Constants.HEROKU_URL + '/gathering/topic';
 
       return $http.get(url).then(function(data) {
          
-        console.log("Get Topics:" + JSON.stringify(data.data));
+        console.log("Get Topics:" + JSON.stringify(data));
 
         return data.data;
       }, function(error) {

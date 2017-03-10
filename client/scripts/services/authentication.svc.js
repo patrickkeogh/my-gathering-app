@@ -4,11 +4,9 @@
     .module('myGathering')
     .service('Authentication', authentication);
 
-  authentication.$inject = ['$http', '$window'];
+  authentication.$inject = ['$http', '$window', 'Constants'];
 
   function authentication ($http, $window) {
-
-    var herokuUrl = 'https://my-gathering.herokuapp.com';
 
     var saveToken = function (token) {
       $window.localStorage['mygathering-token'] = token;
@@ -29,7 +27,7 @@
         payload = $window.atob(payload);
         payload = JSON.parse(payload);
 
-        console.log('payload exp:' + JSON.stringify(payload._doc));
+        //console.log('payload exp:' + JSON.stringify(payload._doc));
 
         return {
           username : payload._doc.username,
@@ -77,7 +75,7 @@
 
     this.login = function(user) {
 
-      url = herokuUrl + '/api/login';
+      url = Constants.HEROKU_URL + '/api/login';
 
       return $http.post(url, user).
       then(function(data) {
@@ -99,7 +97,7 @@
 
       console.log("LOGOUT CALLED");
 
-      url = herokuUrl + '/api/logout';
+      url = Constants.HEROKU_URL + '/api/logout';
 
       return $http.get(url).
       then(function(data) {
