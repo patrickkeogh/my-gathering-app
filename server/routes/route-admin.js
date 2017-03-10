@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var Topic = require('../models/topics');
 
 
-var Verify = require('../verify');
+var Verify = require('../config/verify');
 
 var router = express.Router();
 router.use(bodyParser.json());
