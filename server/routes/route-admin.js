@@ -10,6 +10,10 @@ var Verify = require('../config/verify');
 var router = express.Router();
 router.use(bodyParser.json());
 
+var validationError = function(res, err) {
+  return res.json(422, err);
+};
+
 //var RECS_PER_PAGE = 5;
 
 router.route('/create/topic')
@@ -21,7 +25,8 @@ router.route('/create/topic')
 
   Topic.create(newTopic, function(err, topic) {
 
-    if (err) throw err;
+    if (err) return validationError(res, err);
+
     console.log('Gathering Topic created!');
     console.log('Gathering Topic:' + JSON.stringify(topic));
 
