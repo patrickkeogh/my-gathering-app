@@ -21,7 +21,7 @@ exports.verifyOrdinaryUser = function (req, res, next) {
             if (err) {
                 err = new Error('You are not authenticated!');
                 err.status = 401;
-                return next(err);
+                return next(err);`
             } else {
                 // if everything is good, save to request for use in other routes
                 req.decoded = decoded;
