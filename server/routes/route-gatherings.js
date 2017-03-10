@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-var Gatherings = require('../models/model-gathering');
+var Gatherings = require('../models/gatherings');
 
 var Verify = require('../config/verify');
 
