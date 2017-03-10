@@ -1,0 +1,73 @@
+var express = require('express');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
+var Gatherings = require('../models/model-gathering');
+
+var Verify = require('../config/verify');
+
+var validationError = function(res, err) {
+  return res.json(422, err);
+};
+
+var gatheringRouter = express.Router();
+gatheringRouter.use(bodyParser.json());
+
+//var RECS_PER_PAGE = 5;
+
+gatheringRouter.route('/')
+.get(function (req, res, next) {
+    Gatherings.find({}, function (err, gathering) {
+        if (err) throw err;
+        res.json(gathering);
+    });
+})
+
+
+.post(Verify.verifyOrdinaryUser, function (req, res, next) {
+    console.log('entered post new gathering:');
+
+    var newGathering = req.body;
+    //newGathering.name = "Steve";
+    //newGathering.description = "Steve";
+    //newGathering.location = "Steve";
+    //newGathering.directions = "Steve";
+    //newGathering.notes = "Steve";
+    //newGathering.owner_id = 1;
+    //newGathering.gathering_date = new Date();    
+    //newGathering.gathering_time = new Date();
+    //newGathering.access = "private";
+    //newGathering.status = "active";
+
+    //newGathering.createDate = new Date();
+    //newGathering.name = "bOB";
+
+    
+
+
+    //console.log("gatheringDateAndTime%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%:" + newGathering.gathering_date_time);
+    //console.log("createdDatAndTime%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%:" + newGathering.createDate);
+
+    //console.log("gatheringinfo on server=" + str);
+
+    Gatherings.create(newGathering, function (err, gathering) {
+        if (err) return validationError(res, err);
+
+        var id = gathering._id;
+
+        res.writeHead(200, {
+            'Content-Type': 'text/plain'
+        });
+
+        //res.send(gathering);
+        res.end(JSON.stringify({
+            id: id
+        }));
+    });
+});
+
+
+
+
+
+module.exports = gatheringRouter;
