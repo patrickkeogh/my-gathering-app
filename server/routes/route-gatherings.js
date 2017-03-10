@@ -66,6 +66,30 @@ gatheringRouter.route('/')
     });
 });
 
+gatheringRouter.route('/type')
+.get(function(req, res, next) {
+
+  GatheringType.find({}, {_id: 1}).sort({_id:1}).exec(function(err, types) {
+        if (err) throw err;
+        res.json(types);
+
+    });
+
+
+});
+
+gatheringRouter.route('/topic')
+.get(function(req, res, next) {
+
+  Topic.find({}, {_id: 1}).sort({_id:1}).exec(function(err, topics) {
+        if (err) throw err;
+        res.json(topics);
+
+    });
+
+
+});
+
 
 
 

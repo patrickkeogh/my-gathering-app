@@ -29,9 +29,12 @@
         payload = $window.atob(payload);
         payload = JSON.parse(payload);
 
+        console.log('payload exp:' + JSON.stringify(payload._doc));
+
         return {
           username : payload._doc.username,
-          name : payload._doc.name
+          name : payload._doc.name,
+          _id: payload._doc._id
         };
       }
     };
@@ -41,7 +44,7 @@
       var payload;
 
       if(token){
-        console.log('We have a token');
+        //console.log('We have a token');
         payload = token.split('.')[1];
         payload = $window.atob(payload);
         payload = JSON.parse(payload);

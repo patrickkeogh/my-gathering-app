@@ -12,6 +12,10 @@ body {
 a[ui-sref],
 a[ng-click]  { cursor:pointer; }
 
+.label-default {
+  font-size: 18px;
+}
+
 .search-control-area {
   float: left;
   width:calc(100% - 35px);
@@ -281,9 +285,10 @@ a[ng-click]  { cursor:pointer; }
 .sub-header {
   color: #000000;
   letter-spacing: 2px;
-  font-size: 24px;
+  font-size: 18px;
   margin-top: 10px;
   border-bottom: 1px solid #eee;
+  font-weight: bold;
 }
 
 .text-primary {
