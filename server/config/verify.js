@@ -31,6 +31,7 @@ exports.verifyOrdinaryUser = function (req, res, next) {
     } else {
         // if there is no token
         // return an error
+        console.log('There is no token');
         var err = new Error('No token provided!');
         err.status = 403;
         return next(err);
