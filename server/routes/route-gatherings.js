@@ -53,7 +53,10 @@ gatheringRouter.route('/')
     //console.log("gatheringinfo on server=" + str);
 
     Gatherings.create(newGathering, function (err, gathering) {
-        if (err) return validationError(res, err);
+        if (err) throw err;
+
+
+        
 
         var id = gathering._id;
 

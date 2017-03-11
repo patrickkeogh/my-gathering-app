@@ -6,7 +6,7 @@
 
   authentication.$inject = ['$http', '$window', 'Constants'];
 
-  function authentication ($http, $window) {
+  function authentication ($http, $window, Constants) {
 
     var saveToken = function (token) {
       $window.localStorage['mygathering-token'] = token;
@@ -16,13 +16,13 @@
       $window.localStorage.removeItem('mygathering-token');
     };
 
-    var getToken = function () {
+    this.getToken = function () {
       return $window.localStorage['mygathering-token'];
     };
 
     this.getCurrentUser = function() {
       if(this.isLoggedIn()){
-        var token = getToken();
+        var token = this.getToken();
         var payload = token.split('.')[1];
         payload = $window.atob(payload);
         payload = JSON.parse(payload);
@@ -38,7 +38,7 @@
     };
 
     this.isLoggedIn = function() {
-      var token = getToken();
+      var token = this.getToken();
       var payload;
 
       if(token){
@@ -80,7 +80,7 @@
       return $http.post(url, user).
       then(function(data) {
 
-        //console.log("ResponseData=" + JSON.stringify(data));
+        console.log("Token Received From Login=" + JSON.stringify(data.data.token));
 
         saveToken(data.data.token);
 

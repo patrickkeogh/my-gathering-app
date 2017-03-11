@@ -16,6 +16,8 @@
 
 
       	var vm = this;
+
+      	var width, height;
       
       	vm.options1 = null;
     	vm.address_details = '';
@@ -66,8 +68,8 @@
 		      	notes: ''
 		    };
 
-		    var width = angular.element(document.getElementById('map-container-width')).prop('offsetWidth');
-		    var height = angular.element(document.getElementById('map-container-height')).prop('offsetHeight') - 120;
+		    width = angular.element(document.getElementById('map-container-width')).prop('offsetWidth');
+		    height = angular.element(document.getElementById('map-container-height')).prop('offsetHeight') - 120;
 		    //var height = 200;
 
 		    console.log('Width:' + width);
@@ -179,20 +181,15 @@
 
 	        	console.log("Post the form to the server");
 
-	        	var response = DatabaseUtils.createGathering(vm.newGathering);
-
-	        	response.then(function(data) {
-
-	            	var str = JSON.stringify(data.data.id);
-	            	console.log("response=" + str);
-	            	console.log("ID=" + data.id);
-
-	            	$state.go('gathering-dashboard', {id: data.data.id});
-
-	          	}, function(error) {
-	          		console.log(error);
-	        	});
-
+	        	gatheringAPI.createGathering()
+			    .then(function(data) {
+			    	console.log("Gathering Added");
+			    	console.log("data=" + JSON.stringify(data));
+			    	$state.go('gathering-dashboard', {id: data.data.id});		        	
+		      	})
+		      	.catch(function(err) {
+		        	console.log('failed to create gathering ' + err);
+		      	});
 	      	}
   		};
 
@@ -223,7 +220,7 @@
 
 	        	vm.gatheringAddress.location.coordinates = [vm.address_details.geometry.location.lng(), vm.address_details.geometry.location.lat()];
 
-	        	constructImageUrl();
+	        	constructImageUrl(width, height);
 
 	        	//console.log("LOC Values:" + vm.gatheringAddress.loc);
 

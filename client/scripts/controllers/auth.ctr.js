@@ -77,8 +77,7 @@
       var response = Authentication.register(vm.credentials);
         response.then(function(data) {
 
-          var str = JSON.stringify(data);
-          console.log("response=" + str);
+          //console.log("response=" + JSON.stringify(data));
 
           if(data.status === 200) {
             $rootScope.justRegistered = true;
