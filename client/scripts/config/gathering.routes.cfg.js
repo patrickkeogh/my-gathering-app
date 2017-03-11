@@ -13,7 +13,7 @@
             url: '/gathering/create',
             views: {
                 'header': {
-                    templateUrl: 'views/nav.header.html',
+                    templateUrl: 'views/nav.header.create.html',
                     controller: 'NavigationController as vm'
                 },
                 'content': {

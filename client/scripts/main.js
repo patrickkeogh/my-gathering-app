@@ -4,7 +4,12 @@
     angular
     .module('myGathering', [
       'ui.router',
-      'ngCookies'
+      'ngCookies',
+      'ngAutocomplete',
+      'angular-momentjs',
+      'ui.bootstrap',
+      'uiGmapgoogle-maps'
+
     ])
     .config(config)
     .constant('Constants', {
@@ -12,13 +17,19 @@
     })
     .run(run);
     
-    config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
+    config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', 'uiGmapGoogleMapApiProvider'];
     run.$inject = ['$rootScope', '$location', 'Authentication'];
     
-    function config($stateProvider, $urlRouterProvider, $locationProvider) {
+    function config($stateProvider, $urlRouterProvider, $locationProvider, uiGmapGoogleMapApiProvider) {
         $urlRouterProvider.otherwise('/');
         $locationProvider.html5Mode(true);
         //$httpProvider.interceptors.push('authInterceptor');
+
+        uiGmapGoogleMapApiProvider.configure({
+            key: 'AIzaSyAf7uV3v7upRbATDfluOmSaoHMgsgXRkDM',
+            v: '3.20', //defaults to latest 3.X anyhow
+            libraries: 'geometry'
+        });
     
         $stateProvider
         .state('main', {

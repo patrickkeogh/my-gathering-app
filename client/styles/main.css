@@ -16,6 +16,11 @@ a[ng-click]  { cursor:pointer; }
   font-size: 18px;
 }
 
+.add-top-margin {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
 .search-control-area {
   float: left;
   width:calc(100% - 35px);

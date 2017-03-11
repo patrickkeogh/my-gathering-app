@@ -67,10 +67,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-5 col-lg-5">
+                    <div class="col-sm-12 col-md-6 col-lg-5">
                         <div class="form-group">
                             <label for="category" class="control-label">Gathering Type</label><br>
-                            <select class="full-width"
+                            <select class="full-width form-control"
                                     ng-options="option._id for option in vm.types track by option._id"
                                     ng-model="vm.newGathering.type">
                                     <option style="display:none" value="">Select A Gathering Type</option>
@@ -78,10 +78,10 @@
                         </div>
                         
                     </div>
-                    <div class="col-sm-5 col-lg-5">
+                    <div class="col-sm-12 col-md-6 col-lg-5">
                         <div class="form-group">
                             <label for="category" class="control-label">Gathering Topic</label><br>
-                            <select class="full-width"
+                            <select class="full-width form-control"
                                     ng-options="option._id for option in vm.topics track by option._id"
                                     ng-model="vm.newGathering.topic">
                                     <option style="display:none" value="">Select A Gathering Topic</option>
@@ -92,13 +92,13 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3 class="page-header"><span class="label label-default">2</span> Gathering Start & End Date</h1>
+                        <h3 class="page-header sub-header"><span class="label label-default">2</span> Gathering Start & End Date</h3>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-sm-12 col-md-6 col-lg-5">
                         <label for="name" class="control-label">Start Date and Time</label>
                         <div class="input-group input-group-sm">
                             <div class="input-group-btn">
@@ -131,7 +131,7 @@
                             </div>
             
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-sm-12 col-md-6 col-lg-5">
                         <label for="name" class="control-label">End Date and Time</label>
                         <div class="input-group input-group-sm">
                             <div class="input-group-btn">
@@ -176,12 +176,12 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <h3 class="page-header"><span class="label label-default">3</span> Gathering Location</h1>
+                        <h3 class="page-header sub-header"><span class="label label-default">3</span> Gathering Location</h3>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" id="map-container-height">
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-group">
@@ -264,12 +264,14 @@
                         </div>
                     </div>
                     <!-- /.col-lg-12 -->
-                    <div class="col-lg-4">
+                    <div class="col-lg-4" id="map-container-width">
                         <div class="row">
                             <div class="col-xs-12">
-                                <img class="img-responsive pull-left center-block img-border" 
-                                     src="https://maps.googleapis.com/maps/api/staticmap?zoom=8&size=550x475&sensor=false&maptype=roadmap&markers=color:red|{{vm.gatheringAddress.location.coordinates[1]}},{{vm.gatheringAddress.location.coordinates[0]}}&key=AIzaSyAf7uV3v7upRbATDfluOmSaoHMgsgXRkDM">
-                                     <div class="caption"><input id="gathering-show-map" type="checkbox">Show map on details pageTest</div>
+                                <div class="row">
+                                    <div class="col-xs-12"><img class="img-responsive pull-left center-block img-border add-top-margin" src="{{vm.imgurl}}"></div>
+
+                                    <div class="col-xs-12"><input id="gathering-show-map" type="checkbox"> Show map on details page</div>
+                                </div>
                             </div>
                         </div>
                     </div>
