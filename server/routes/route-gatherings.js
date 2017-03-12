@@ -28,7 +28,7 @@ gatheringRouter.route('/')
     var query = req.query.query ? req.query.query : "";
     //var queryObj = JSON.parse(query);
 
-    console.log('################################SEARCH_INFO_OBJECT????:' + query);
+    console.log('################################SEARCH_INFO_OBJECT????:' + JSON.stringify(query));
 
     var recsToSkip = ((page - 1) * recsPerPage);
 
@@ -40,7 +40,7 @@ gatheringRouter.route('/')
     });
 
     // Gatherings.find({}, function (err, gatherings) {
-    //     if (err) throw err;
+    //     if (err) throw err;s
     //     res.json(gatherings);
     // });
 })
