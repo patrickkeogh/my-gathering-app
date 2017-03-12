@@ -43,7 +43,7 @@ gatheringRouter.route('/')
 
     // });
 
-    Gatherings.find({}, function (err, gatherings) {
+    Gatherings.find(query, function (err, gatherings) {
         if (err) throw err;
         res.json(gatherings);
     });
