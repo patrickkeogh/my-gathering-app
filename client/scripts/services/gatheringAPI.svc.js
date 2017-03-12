@@ -21,10 +21,10 @@
     var getGatherings = function(page, recsPerPage, query) {
       var queryString = '?page=' + page + '&recsPerPage=' + recsPerPage;
 
-      query ={};
-      query = {
-        "owner.username": "patrickkeogh@kantechprogramming.com"
-      };
+      // query ={};
+      // query = {
+      //   "owner.username": "patrickkeogh@kantechprogramming.com"
+      // };
 
       return $http.get(url + queryString, {
             params: {query}
