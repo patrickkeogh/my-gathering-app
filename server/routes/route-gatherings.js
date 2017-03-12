@@ -29,53 +29,12 @@ gatheringRouter.route('/')
 
     var recsToSkip = ((page - 1) * recsPerPage);
 
-    Gatherings.find({})
-        .exec(function(err, gatherings) {
+    Gatherings.find({}, function (err, gatherings) {
+        if (err) throw err;
+        res.json(gatherings);
+    });
 
-            if (err) throw err;
-
-            var numPages = 0;
-                    
-                // if (count > recsPerPage) {
-                //     numPages = Math.ceil(count / recsPerPage);
-                // }                
-
-                var returnObj = {  
-                    recCount: 1,
-                    pages: 1,
-                    page: 1,
-                    gatherings: gatherings
-                };
-
-                //console.log('COUNT################################:' + count);
-
-                res.json(returnObj);
-
-            // Gatherings.find(queryObj)
-            // .count(function(err, count) {
-            //     if (err) throw err;
-
-            //     var numPages = 0;
-                    
-            //     if (count > recsPerPage) {
-            //         numPages = Math.ceil(count / recsPerPage);
-            //     }                
-
-            //     var returnObj = {  
-            //         recCount: count,
-            //         pages: numPages,
-            //         page: page,
-            //         gatherings: gatherings
-            //     };
-
-            //     //console.log('COUNT################################:' + count);
-
-            //     res.json(returnObj);
-
-            // });
-
-        });
-
+    
 })
 
 
