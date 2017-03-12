@@ -32,7 +32,7 @@ gatheringRouter.route('/')
     console.log('################################QUERY:' + query);
     var queryObj = JSON.parse(query);
 
-    //console.log('################################SEARCH_INFO_OBJECT????:' + queryObj);
+    console.log('################################SEARCH_INFO_OBJECT????:' + queryObj);
 
     var recsToSkip = ((page - 1) * recsPerPage);
 
