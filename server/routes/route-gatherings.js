@@ -29,7 +29,7 @@ gatheringRouter.route('/')
 
     var recsToSkip = ((page - 1) * recsPerPage);
 
-    Gatherings.find(queryObj).sort({"gathering_start_date_time":1}).skip(recsToSkip).limit(recsPerPage)
+    Gatherings.find().sort({"gathering_start_date_time":1}).skip(recsToSkip).limit(recsPerPage)
         .exec(function(err, gatherings) {
 
             if (err) throw err;
