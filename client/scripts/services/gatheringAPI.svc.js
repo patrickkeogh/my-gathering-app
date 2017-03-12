@@ -19,14 +19,14 @@
     };
 
     var getGatherings = function(page, recsPerPage, query) {
-      url += '?page=' + page + '&recsPerPage=' + recsPerPage;
+      var queryString = '?page=' + page + '&recsPerPage=' + recsPerPage;
 
       query ={};
       query = {
         "owner.username": "patrickkeogh@kantechprogramming.com"
       };
 
-      return $http.get(url, {
+      return $http.get(url + queryString, {
             params: {query}
         });
     };

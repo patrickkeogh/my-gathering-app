@@ -18,7 +18,7 @@
                                     <i class="glyphicon glyphicon-calendar"></i> {{rowContent.gathering_start_date_time | date:'mediumDate'}}
                                 </td>
                                 <td colspan=2  class="created-table-details">{{rowContent.location.name}}</td>
-                                <td class="created-table-details">{{rowContent.owner[0].username}}</td>
+                                <td class="created-table-details">{{rowContent.owner.username}}</td>
                             </tr>
                             <tr>
                                 <td class="created-table-details"><i class="glyphicon glyphicon-time"></i> {{rowContent.gathering_start_date_time | date:'shortTime'}}</td>
