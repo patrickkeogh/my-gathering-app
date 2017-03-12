@@ -37,7 +37,7 @@
         var query = {};
         query.owner = {};
 
-        query = {
+        query.query = {
           "owner.username": Authentication.getUsername()
         };
 
