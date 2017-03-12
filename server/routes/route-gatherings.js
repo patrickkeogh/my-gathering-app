@@ -36,17 +36,17 @@ gatheringRouter.route('/')
 
     var recsToSkip = ((page - 1) * recsPerPage);
 
-    Gatherings.find({"owner."}, {_id: 1}).sort({_id:1}).exec(function(err, gatherings) {
+    // Gatherings.find(queryObj}, {_id: 1}).sort({_id:1}).exec(function(err, gatherings) {
 
-        if (err) throw err;
-        res.json(gatherings);
-
-    });
-
-    // Gatherings.find(queryObj, function (err, gatherings) {
     //     if (err) throw err;
     //     res.json(gatherings);
+
     // });
+
+    Gatherings.find(queryObj, function (err, gatherings) {
+        if (err) throw err;
+        res.json(gatherings);
+    });
 })
 
 
