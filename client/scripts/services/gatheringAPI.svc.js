@@ -18,6 +18,14 @@
       return $http.get(url + '/topic');
     };
 
+    var getGatherings = function(page, recsPerPage, query) {
+      url += '?page=' + page + '&recsPerPage=' + recsPerPage;
+
+      return $http.get(url, {
+        params: query        
+      });
+    };
+
     var createGathering = function(gathering) {
       return $http.post(url, gathering, {
         headers: {

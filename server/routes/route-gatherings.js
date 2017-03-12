@@ -19,9 +19,9 @@ gatheringRouter.use(bodyParser.json());
 
 gatheringRouter.route('/')
 .get(function (req, res, next) {
-    Gatherings.find({}, function (err, gathering) {
+    Gatherings.find({}, function (err, gatherings) {
         if (err) throw err;
-        res.json(gathering);
+        res.json(gatherings);
     });
 })
 

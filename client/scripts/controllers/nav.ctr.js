@@ -12,40 +12,62 @@
     .module('myGathering')
     .controller('NavigationController', NavigationController);
         
-    NavigationController.$inject = ['$state', 'Authentication'];
+    NavigationController.$inject = ['$state', '$location', 'Authentication'];
        
-    function NavigationController($state, Authentication) {
+    function NavigationController($state, $location, Authentication) {
       var vm = this;
       
-      vm.isAuthenticated = Authentication.isLoggedIn();
+      vm.isLoggedIn = Authentication.isLoggedIn();
+      vm.currentUser = Authentication.getCurrentUser();
 
-      if(vm.isAuthenticated) {
-        vm.currentUser = Authentication.getCurrentUser();
+      console.log('isLoggedIn:' + vm.isLoggedIn);
+      console.log('getCurrentUser:' + vm.currentUser);
 
+      vm.state = $state.current.name;
+
+      getSideBar();
+
+      //console.log('location:' + $location.path());
+      console.log('state:' + $state.current.name);
+
+      function getSideBar() {
+
+        switch(vm.state) {
+          case 'gathering-new':
+          case 'gathering-created':
+          case 'gathering-joined':
+            vm.showSidebar = true;
+            vm.src = 'views/includes/sidebar.manage.html';
+            break;
+          case 'gathering-dashboard':  
+          case 'gathering-info': 
+          case 'gathering-chat':             
+            vm.showSidebar = true;
+            vm.src = 'views/includes/sidebar.dashboard.html';
+            break;
+          default:
+            // No side bar needed
+            vm.showSidebar = false;
+            vm.src = 'views/includes/sidebar.dashboard.html';
+        }
       }
 
       vm.logout = function() {
           
-          console.log('Logout method called');
+        console.log('Logout method called');
 
-          var response = Authentication.logout();
+        var response = Authentication.logout();
 
-          response.then(function(data) {
+        response.then(function(data) {
 
-            if(data.status === 200) {
-                vm.showMessage = true;
-                console.log("Success:" + data.data.status);
-                vm.message = 'You have successfully logged out.';
-                
-                $state.go('login');
-
-            }
-
-          }, function() {
-
-
-          });
-
+          if(data.status === 200) {
+            vm.showMessage = true;
+            console.log("Success:" + data.data.status);
+            vm.message = 'You have successfully logged out.';
+            
+            $state.go('login');
+          }
+        });
       };
       
     }

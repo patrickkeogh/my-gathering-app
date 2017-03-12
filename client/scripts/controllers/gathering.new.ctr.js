@@ -2,24 +2,17 @@
   'use strict';
   angular
     .module('myGathering')
-    .controller('CreateGatheringController', CreateGatheringController);
+    .controller('NewGatheringController', CreateGatheringController);
         
-    CreateGatheringController.$inject = ['$scope', '$moment', 'Authentication', 'gatheringAPI'];
-
-
+    CreateGatheringController.$inject = ['$state','$scope', '$moment', 'Authentication', 'gatheringAPI'];
        
-    function CreateGatheringController($scope, $moment, Authentication, gatheringAPI) {
+    function CreateGatheringController($state, $scope, $moment, Authentication, gatheringAPI) {
 
-    	// Perform JQuery operations
-		$(".angular-google-map-container").css({'height':($("#panel-info").height() - 91 + 'px')});
+      var vm = this;
 
-
-
-      	var vm = this;
-
-      	var width, height;
+      var width, height;
       
-      	vm.options1 = null;
+      vm.options1 = null;
     	vm.address_details = '';
 
     	vm.isFormValid = true;
@@ -31,7 +24,7 @@
       		invalidDate: "The End Date cannot be before the Start Date"
     	};
 
-      	vm.newGathering = {
+      vm.newGathering = {
     		//id: 1,
 	    	name:"", 
 	    	description: "",
@@ -45,10 +38,6 @@
 	    	notes: "",
 	    	status: "Not Published"
 	   	};
-
-	   	
-
-
 
       	angular.element(document).ready(function() {
 
@@ -79,21 +68,21 @@
 
     		gatheringAPI.getTypes()
 		    .then(function(data) {
-	        	console.log(data);
-	        	vm.types = data.data;
-	      	})
-	      	.catch(function(err) {
-	        	console.log('failed to get gathering types ' + err);
-	      	});
+        	console.log(data);
+        	vm.types = data.data;
+      	})
+      	.catch(function(err) {
+        	console.log('failed to get gathering types ' + err);
+      	});
 
-	      	gatheringAPI.getTopics()
+	      gatheringAPI.getTopics()
 		    .then(function(data) {
-	        	console.log(data);
-	        	vm.topics = data.data;
-	      	})
-	      	.catch(function(err) {
-	        	console.log('failed to get gathering topics ' + err);
-	      	});
+        	console.log(data);
+        	vm.topics = data.data;
+      	})
+      	.catch(function(err) {
+        	console.log('failed to get gathering topics ' + err);
+      	});
 
 	        vm.currentUser = Authentication.getCurrentUser();
 
@@ -173,18 +162,14 @@
 
       		vm.newGathering.location = vm.gatheringAddress;
 
-      		//var str = JSON.stringify(vm.newGathering);
-
-      		//console.log("NewGatheringAdded=" + str);
-
 	      	if(vm.isFormValid) {
 
 	        	console.log("Post the form to the server");
 
-	        	gatheringAPI.createGathering()
+	        	gatheringAPI.createGathering(vm.newGathering)
 			    .then(function(data) {
 			    	console.log("Gathering Added");
-			    	console.log("data=" + JSON.stringify(data));
+			    	//console.log("data=" + JSON.stringify(data));
 			    	$state.go('gathering-dashboard', {id: data.data.id});		        	
 		      	})
 		      	.catch(function(err) {
@@ -192,7 +177,6 @@
 		      	});
 	      	}
   		};
-
 
   		$scope.$watch("vm.address_details", function(data) {
       

@@ -1,0 +1,32 @@
+<!-- Add your site or application content here -->
+<div id="parent-nav">
+    <div id="parent-logo" class="navbar-left"><p>Kan-Tech Programming</p></div>
+    <div id="parent-username" class="navbar-right hidden-xs"  ng-show="vm.isLoggedIn"><p>{{vm.currentUser.username}}</p></div>  
+</div>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>        
+            <div class="navbar-brand"><span class="logo-text">MyGathering.com</span></div>
+        </div>
+        <!-- /.navbar-header -->
+
+        <ng-include src="'views/includes/navbar.toplinks.html'"></ng-include>
+        
+    </div>
+    
+
+    <ng-include src="vm.src" ng-show='vm.showSidebar'></ng-include>
+
+
+
+    
+    <!-- /.navbar-static-side -->
+</nav>

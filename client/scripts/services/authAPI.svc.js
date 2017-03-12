@@ -8,16 +8,19 @@
 
   function authentication ($http, $window, Constants) {
 
+    var url = Constants.HEROKU_URL + '/api';
+    var token_id = Constants.TOKEN_ID;
+
     var saveToken = function (token) {
-      $window.localStorage['mygathering-token'] = token;
+      $window.localStorage[token_id] = token;
     };
 
     var removeToken = function (token) {
-      $window.localStorage.removeItem('mygathering-token');
+      $window.localStorage.removeItem(token_id);
     };
 
     this.getToken = function () {
-      return $window.localStorage['mygathering-token'];
+      return $window.localStorage[token_id];
     };
 
     this.getCurrentUser = function() {
@@ -56,60 +59,35 @@
     };
 
     this.register = function(user) {
-
-        url = herokuUrl + '/api/register';
-
-        //http://localhost:3000/authenticate/register
-
-        console.log("Register Url:" + url);
-
-        return $http.post(url, user).
-        then(function(data) {
-
-            return data;
-        }, function(response) {
-            return response;
-            //alert("Error registering:" + response);
-        });
+      return $http.post(url + '/register', user).
+      then(function(data) {
+          return data;
+      }, function(error) {
+          console.log("Login Error=" + JSON.stringify(error));
+          return error;
+      });
     };
 
     this.login = function(user) {
-
-      url = Constants.HEROKU_URL + '/api/login';
-
-      return $http.post(url, user).
+      return $http.post(url + '/login', user).
       then(function(data) {
-
-        console.log("Token Received From Login=" + JSON.stringify(data.data.token));
-
         saveToken(data.data.token);
-
-        return data;
-      
-      }, function(response) {
-           console.log("Login Error=" + JSON.stringify(response));
-          return response;
+        return data;      
+      }, function(error) {
+        console.log("Login Error=" + JSON.stringify(error));
+        return error;
       });
-
     };
 
     this.logout = function() {
-
-      console.log("LOGOUT CALLED");
-
-      url = Constants.HEROKU_URL + '/api/logout';
-
-      return $http.get(url).
+      return $http.get(url + '/logout').
       then(function(data) {
-
         removeToken();
-
         return data;
-      }, function(err) {
-        console.log(err);
-        return err;
-      });        
-
+      }, function(error) {
+        console.log(error);
+        return error;
+      });
     };
   }
 

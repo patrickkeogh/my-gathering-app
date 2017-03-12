@@ -13,7 +13,8 @@
     ])
     .config(config)
     .constant('Constants', {
-        HEROKU_URL: 'https://my-gathering.herokuapp.com'
+        HEROKU_URL: 'https://my-gathering.herokuapp.com',
+        TOKEN_ID: 'myGathering-token'
     })
     .run(run);
     
@@ -22,7 +23,7 @@
     
     function config($stateProvider, $urlRouterProvider, $locationProvider, uiGmapGoogleMapApiProvider) {
         $urlRouterProvider.otherwise('/');
-        $locationProvider.html5Mode(true);
+        //$locationProvider.html5Mode(true);
         //$httpProvider.interceptors.push('authInterceptor');
 
         uiGmapGoogleMapApiProvider.configure({
@@ -54,12 +55,12 @@
     function run($rootScope, $location, Authentication) {
         // Redirect to login if route requires auth and you're not logged in
         $rootScope.$on('$stateChangeStart', function(event, next) {
-            console.log("We have a state change");
+            //console.log("We have a state change");
           
             if (next.authenticate) {
-                console.log("Authentication is required");
+                //console.log("Authentication is required");
                 if(!Authentication.isLoggedIn()) {
-                    console.log("User is not Authenticated");
+                    //console.log("User is not Authenticated");
                     $location.path('/login');
                 }
             }
