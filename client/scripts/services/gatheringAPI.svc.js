@@ -22,7 +22,9 @@
       url += '?page=' + page + '&recsPerPage=' + recsPerPage;
 
       var inquery ={};
-      inquery.query.owner = "patrickkeogh@kantechprogramming.com";
+      inquery.query = {
+        owner: "patrickkeogh@kantechprogramming.com"
+      };
 
       return $http.get(url, {
             params: {inquery}
