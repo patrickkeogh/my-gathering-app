@@ -37,7 +37,7 @@
         var query = {};
 
         query = {
-          "owner.username": Authentication.getUsername()
+          "owner": Authentication.getUsername()
         };
 
          getGatherings(query);

@@ -20,14 +20,14 @@ gatheringRouter.use(bodyParser.json());
 gatheringRouter.route('/')
 .get(function (req, res, next) {
 
-    //console.log('req.query################################:' + JSON.stringify(req));
+    //1console.log('req.query################################:' + JSON.stringify(req));
 
     var page = req.query.page ? parseInt(req.query.page) : 1;
     
     var recsPerPage = req.query.recsPerPage ? parseInt(req.query.recsPerPage) : 5;
     console.log('recsPerPage################################:' + recsPerPage);
 
-    var query = req.query.query ? req.query.query : "";
+    var query = req.query.owner ? req.query.owner : "";
 
     console.log('################################QUERY:' + query);
     //var queryObj = JSON.parse(query);
