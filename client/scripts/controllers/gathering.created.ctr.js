@@ -35,7 +35,6 @@
         console.log("init called in Gathering");
 
         var query = {};
-        query.owner = {};
 
         query.query = {
           "owner.username": Authentication.getUsername()

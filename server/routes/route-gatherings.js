@@ -26,7 +26,7 @@ gatheringRouter.route('/')
     console.log('recsPerPage################################:' + recsPerPage);
 
     var query = req.query.query ? req.query.query : "";
-    console.log('################################QUERY:' + JSON.stringify(query));
+    console.log('################################QUERY:' + query);
     var queryObj = JSON.parse(query);
 
     console.log('################################SEARCH_INFO_OBJECT????:' + queryObj);
