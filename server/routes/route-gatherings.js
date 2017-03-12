@@ -36,7 +36,7 @@ gatheringRouter.route('/')
 
     // });
 
-    Gatherings.find(queryObj, function (err, gatherings) {
+    Gatherings.find({}, function (err, gatherings) {
         if (err) throw err;
         res.json(gatherings);
     });
