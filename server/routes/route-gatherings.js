@@ -20,14 +20,14 @@ gatheringRouter.use(bodyParser.json());
 gatheringRouter.route('/')
 .get(function (req, res, next) {
 
-    var page = req.query.page ? parseInt(req.query.page) : 1;
-    var recsPerPage = req.query.recsPerPage ? parseInt(req.query.recsPerPage) : 5;
-    var query = req.query.query ? req.query.query : "";
-    var queryObj = JSON.parse(query);
+    // var page = req.query.page ? parseInt(req.query.page) : 1;
+    // var recsPerPage = req.query.recsPerPage ? parseInt(req.query.recsPerPage) : 5;
+    // var query = req.query.query ? req.query.query : "";
+    // var queryObj = JSON.parse(query);
 
-    console.log('################################SEARCH_INFO_OBJECT????:' + queryObj);
+    // console.log('################################SEARCH_INFO_OBJECT????:' + queryObj);
 
-    var recsToSkip = ((page - 1) * recsPerPage);
+    // var recsToSkip = ((page - 1) * recsPerPage);
 
     Gatherings.find({}, function (err, gatherings) {
         if (err) throw err;
