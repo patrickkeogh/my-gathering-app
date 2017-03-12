@@ -25,14 +25,14 @@ gatheringRouter.route('/')
     var recsPerPage = req.query.recsPerPage ? parseInt(req.query.recsPerPage) : 5;
     console.log('recsPerPage################################:' + recsPerPage);
 
-    var query = req.body ? req.body : "";
-    //var queryObj = JSON.parse(query);
+    var query = req.query.query ? req.query.query : "";
+    var queryObj = JSON.parse(query);
 
     console.log('################################SEARCH_INFO_OBJECT????:' + JSON.stringify(query));
 
     var recsToSkip = ((page - 1) * recsPerPage);
 
-    Gatherings.find(query, {_id: 1}).sort({_id:1}).exec(function(err, gatherings) {
+    Gatherings.find({}, {_id: 1}).sort({_id:1}).exec(function(err, gatherings) {
 
         if (err) throw err;
         res.json(gatherings);
