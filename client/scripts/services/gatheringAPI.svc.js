@@ -19,9 +19,9 @@
     };
 
     var getGatherings = function(page, recsPerPage, query) {
-      url += '?page=' + page + '&recsPerPage=' + recsPerPage + '&query=' + query;
+      url += '?page=' + page + '&recsPerPage=' + recsPerPage;
 
-      return $http.get(url);
+      return $http.get(url, query);
     };
 
     var createGathering = function(gathering) {
