@@ -30,7 +30,7 @@ gatheringRouter.route('/')
     var query = req.query.query ? req.query.query : "";
 
     console.log('################################QUERY:' + query);
-    //var queryObj = JSON.parse(query);
+    var queryObj = JSON.parse(query);
 
     //console.log('################################SEARCH_INFO_OBJECT????:' + queryObj);
 
