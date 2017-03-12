@@ -28,11 +28,11 @@ gatheringRouter.route('/')
     var query = req.query.query ? req.query.query : "";
     var queryObj = JSON.parse(query);
 
-    console.log('################################SEARCH_INFO_OBJECT????:' + query);
+    console.log('################################SEARCH_INFO_OBJECT????:' + queryObj);
 
     var recsToSkip = ((page - 1) * recsPerPage);
 
-    Gatherings.find(queryObj, {_id: 1}).sort({_id:1}).exec(function(err, gatherings) {
+    Gatherings.find({}, {_id: 1}).sort({_id:1}).exec(function(err, gatherings) {
 
         if (err) throw err;
         res.json(gatherings);
