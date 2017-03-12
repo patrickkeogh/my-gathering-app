@@ -21,11 +21,12 @@
     var getGatherings = function(page, recsPerPage, query) {
       url += '?page=' + page + '&recsPerPage=' + recsPerPage;
 
+      query ={};
+      query['owner.username'] = "patrickkeogh@kantechprogramming.com";
+
       return $http.get(url, {
         headers : {'Accept' : 'application/json'},
-        params: {
-          "owner.username": "patrickkeogh@kantechprogramming.com"
-        }        
+        params: query
       });
     };
 
