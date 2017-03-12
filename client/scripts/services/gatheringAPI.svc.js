@@ -19,7 +19,7 @@
     };
 
     var getGatherings = function(page, recsPerPage, query) {
-      //url += '?page=' + page + '&recsPerPage=' + recsPerPage;
+      url += '?page=' + page;
 
       return $http.get(url, {
         params: query        

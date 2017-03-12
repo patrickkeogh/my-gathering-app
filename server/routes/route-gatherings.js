@@ -20,9 +20,9 @@ gatheringRouter.use(bodyParser.json());
 gatheringRouter.route('/')
 .get(function (req, res, next) {
 
-    // var page = req.query.page ? parseInt(req.query.page) : 1;
+    var page = req.query.page ? parseInt(req.query.page) : 1;
     // var recsPerPage = req.query.recsPerPage ? parseInt(req.query.recsPerPage) : 5;
-    // var query = req.query.query ? req.query.query : "";
+    var query = req.query.query ? req.query.query : "";
     // var queryObj = JSON.parse(query);
 
     // console.log('################################SEARCH_INFO_OBJECT????:' + queryObj);
@@ -34,7 +34,7 @@ gatheringRouter.route('/')
         res.json(gatherings);
     });
 
-    
+
 })
 
 
