@@ -26,7 +26,7 @@
 
       return $http.get(url, {
             params: {
-              "owner.username": "patrickkeogh@kantechprogramming.com" 
+              "owner": "patrickkeogh@kantechprogramming.com" 
             }
         });
     };
