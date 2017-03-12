@@ -29,10 +29,17 @@ gatheringRouter.route('/')
 
     // var recsToSkip = ((page - 1) * recsPerPage);
 
-    Gatherings.find({}, function (err, gatherings) {
+    gatherings.find({}, {_id: 1}).sort({_id:1}).exec(function(err, gatherings) {
+        
         if (err) throw err;
         res.json(gatherings);
+
     });
+
+    // Gatherings.find({}, function (err, gatherings) {
+    //     if (err) throw err;
+    //     res.json(gatherings);
+    // });
 
 
 })
