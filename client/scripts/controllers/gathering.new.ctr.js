@@ -29,14 +29,15 @@
 	    	name:"", 
 	    	description: "",
 	    	location: {}, 
-	      	type: "",    
-	      	topic: "", 
+	      type: "",    
+	      topic: "", 
 	    	gathering_start_date_time: "",
-	      	gathering_end_date_time: "",
+	      gathering_end_date_time: "",
 	    	directions: "",
 	    	access: "Public",
 	    	notes: "",
-	    	status: "Not Published"
+	    	status: "Not Published",
+        owner: {}
 	   	};
 
       	angular.element(document).ready(function() {
