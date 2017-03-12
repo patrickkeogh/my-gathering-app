@@ -22,7 +22,7 @@
       url += '?page=' + page + '&recsPerPage=' + recsPerPage;
 
       var inquery ={};
-      inquery.query = {
+      inquery = {
         owner: "patrickkeogh@kantechprogramming.com"
       };
 
