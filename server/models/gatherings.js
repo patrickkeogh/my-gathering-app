@@ -3,22 +3,6 @@ var Schema = mongoose.Schema;
 
 //var Category = require('./model-category');
 
-var ownerSchema = new Schema({
-    ownerId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    username: {
-        type: String,
-        required: true
-    },
-    name: {
-        type: String,
-        required: true
-    }
-
-});
-
 var eventTypeSchema = new Schema({
     _id: { type: String }
 });
@@ -110,10 +94,21 @@ var gatheringSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    owner:[ownerSchema]
-    }, {
-    
-    
+    owner: {
+        ownerId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+        },
+        username: {
+            type: String,
+            required: true
+        },
+        name: {
+            type: String,
+            required: true
+        }
+    }
+      
     
 });
 
