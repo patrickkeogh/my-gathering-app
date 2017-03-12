@@ -18,7 +18,7 @@
                 },
                 'content': {
                     templateUrl: 'views/gathering.new.html',
-                    controller: 'CreateGatheringController as vm'
+                    controller: 'NewGatheringController as vm'
                 },
                 'footer': {
                     templateUrl: 'views/footer.html'
@@ -36,7 +36,7 @@
                 },
                 'content': {
                     templateUrl: 'views/gathering.created.html',
-                    controller: 'CreateGatheringController as vm'
+                    controller: 'GatheringsCreatedController as vm'
                 },
                 'footer': {
                     templateUrl: 'views/footer.html'

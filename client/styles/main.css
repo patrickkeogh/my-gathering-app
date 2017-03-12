@@ -16,6 +16,14 @@ a[ng-click]  { cursor:pointer; }
   font-size: 18px;
 }
 
+.created-table-title {
+  font-size: 10px;
+  font-weight: bold;
+}
+.created-table-details {
+  font-size: 10px;
+}
+
 .add-top-margin {
   margin-top: 20px;
   margin-bottom: 10px;

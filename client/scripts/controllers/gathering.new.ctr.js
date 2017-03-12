@@ -84,12 +84,12 @@
         	console.log('failed to get gathering topics ' + err);
       	});
 
-	        vm.currentUser = Authentication.getCurrentUser();
+	      vm.currentUser = Authentication.getCurrentUser();
 
-	        vm.newGathering.owner = {
-				ownerId: vm.currentUser._id,
-				username: vm.currentUser.username,
-				name: vm.currentUser.name
+	      vm.newGathering.owner = {
+				  ownerId: vm.currentUser._id,
+				  username: vm.currentUser.username,
+				  name: vm.currentUser.name
     		};
         
   		});

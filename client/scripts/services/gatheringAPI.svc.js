@@ -37,6 +37,7 @@
     return {
       getTypes: getTypes,
       getTopics: getTopics,
+      getGatherings: getGatherings,
       createGathering: createGathering
     };
   }

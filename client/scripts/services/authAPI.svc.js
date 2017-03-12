@@ -23,6 +23,18 @@
       return $window.localStorage[token_id];
     };
 
+    this.getUsername = function () {
+      if(this.isLoggedIn()){
+        var token = this.getToken();
+        var payload = token.split('.')[1];
+        payload = $window.atob(payload);
+        payload = JSON.parse(payload);
+
+        return payload._doc.username;
+      }
+
+    };
+
     this.getCurrentUser = function() {
       if(this.isLoggedIn()){
         var token = this.getToken();

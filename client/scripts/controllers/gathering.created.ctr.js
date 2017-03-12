@@ -2,23 +2,47 @@
   'use strict';
   angular
     .module('myGathering')
-    .controller('GatheringsCreated', GatheringsCreated);
+    .controller('GatheringsCreatedController', GatheringsCreated);
         
-    GatheringsCreated.$inject = ['gatheringAPI'];
+    GatheringsCreated.$inject = ['gatheringAPI', 'Authentication'];
        
-    function GatheringsCreated(gatheringAPI) {
+    function GatheringsCreated(gatheringAPI, Authentication) {
       var vm = this;
+
+      vm.currentPage = 1;      
+      vm.recsPerPage = 10;
+      
+      vm.maxSize = 5;
+      vm.gatherings = [];
 
       vm.message = "Hello";
 
-      gatheringAPI.getGatherings()
+      
+
+      function getGatherings(query) {
+        gatheringAPI.getGatherings(vm.currentPage, vm.recsPerPage, query)
         .then(function(data) {
-          console.log(data);
-          vm.types = data.data;
+          console.log(data.data);
+          vm.gatherings = data.data;
         })
         .catch(function(err) {
           console.log('failed to get gathering types ' + err);
         });
+      }
+
+      angular.element(document).ready(function() {
+
+        console.log("init called in Gathering");
+
+        var query = {};
+        query.owner = {};
+
+        query = {
+          "owner.username": Authentication.getUsername()
+        };
+
+         getGatherings(query);
+      });
       
     }
 }());

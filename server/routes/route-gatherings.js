@@ -19,10 +19,46 @@ gatheringRouter.use(bodyParser.json());
 
 gatheringRouter.route('/')
 .get(function (req, res, next) {
-    Gatherings.find({}, function (err, gatherings) {
-        if (err) throw err;
-        res.json(gatherings);
-    });
+
+    var page = req.query.page ? parseInt(req.query.page) : 1;
+    var recsPerPage = req.query.recsPerPage ? parseInt(req.query.recsPerPage) : 5;
+    var query = req.query.query ? req.query.query : "";
+    var queryObj = JSON.parse(query);
+
+    console.log('################################SEARCH_INFO_OBJECT????:' + queryObj);
+
+    var recsToSkip = ((page - 1) * recsPerPage);
+
+    Gatherings.find(queryObj).sort({"gathering_start_date_time":1}).skip(recsToSkip).limit(recsPerPage)
+        .exec(function(err, gatherings) {
+
+            if (err) throw err;
+
+            Gatherings.find(queryObj)
+            .count(function(err, count) {
+                if (err) throw err;
+
+                var numPages = 0;
+                    
+                if (count > recsPerPage) {
+                    numPages = Math.ceil(count / recsPerPage);
+                }                
+
+                var returnObj = {  
+                    recCount: count,
+                    pages: numPages,
+                    page: page,
+                    gatherings: gatherings
+                };
+
+                //console.log('COUNT################################:' + count);
+
+                res.json(returnObj);
+
+            });
+
+        });
+
 })
 
 
