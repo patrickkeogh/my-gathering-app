@@ -23,7 +23,7 @@
 
       query ={};
       query = {
-        owner: "patrickkeogh@kantechprogramming.com"
+        "owner.username": "patrickkeogh@kantechprogramming.com"
       };
 
       return $http.get(url, {
