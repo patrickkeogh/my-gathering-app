@@ -13,7 +13,12 @@ if (process.env.NODE_ENV === 'production') {
   dbURI = config.mongoUrlForHeroku;
 }
 
-mongoose.connect(dbURI);
+// Just some options for the db connection
+var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }, 
+                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } }; 
+
+
+mongoose.connect(dbURI, options);
 
 // CONNECTION EVENTS
 mongoose.connection.on('connected', function() {

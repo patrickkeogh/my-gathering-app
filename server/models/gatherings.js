@@ -79,6 +79,7 @@ var gatheringSchema = new Schema({
     status: {
         type: String
     },
+    banner: {type: Schema.Types.Mixed},
     gathering_start_date_time: {
         type: Date,
         required: true
@@ -90,7 +91,7 @@ var gatheringSchema = new Schema({
         type: String,
         default: 'public'
     },
-    created_date: {
+    createdAt: {
         type: Date,
         default: Date.now
     },
@@ -110,6 +111,15 @@ var gatheringSchema = new Schema({
     }
       
     
+});
+
+// Sets the createdAt parameter equal to the current time
+gatheringSchema.pre('save', function(next){
+    now = new Date();
+    if (!this.createdAt) {
+        this.createdAt = now;
+    }
+    next();
 });
 
 

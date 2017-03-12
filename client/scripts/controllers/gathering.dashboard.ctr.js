@@ -10,7 +10,7 @@
       var vm = this;
 
       vm.selectedGatheringId = $stateParams.id;
-      
+            
       vm.message = "Hello";
       
     }

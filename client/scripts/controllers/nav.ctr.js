@@ -12,23 +12,25 @@
     .module('myGathering')
     .controller('NavigationController', NavigationController);
         
-    NavigationController.$inject = ['$state', '$location', 'Authentication'];
+    NavigationController.$inject = ['$state', '$stateParams', '$location', 'Authentication'];
        
-    function NavigationController($state, $location, Authentication) {
+    function NavigationController($state, $stateParams, $location, Authentication) {
       var vm = this;
-      
+
       vm.isLoggedIn = Authentication.isLoggedIn();
       vm.currentUser = Authentication.getCurrentUser();
 
-      console.log('isLoggedIn:' + vm.isLoggedIn);
-      console.log('getCurrentUser:' + vm.currentUser);
+      //console.log('isLoggedIn:' + vm.isLoggedIn);
+      //console.log('getCurrentUser:' + vm.currentUser);
+
+      vm.selectedGatheringId = $stateParams.id;
 
       vm.state = $state.current.name;
 
       getSideBar();
 
       //console.log('location:' + $location.path());
-      console.log('state:' + $state.current.name);
+      //console.log('state:' + $state.current.name);
 
       function getSideBar() {
 
@@ -41,7 +43,8 @@
             break;
           case 'gathering-dashboard':  
           case 'gathering-info': 
-          case 'gathering-chat':             
+          case 'gathering-chat': 
+          case 'gathering-manage-banner':           
             vm.showSidebar = true;
             vm.src = 'views/includes/sidebar.dashboard.html';
             break;

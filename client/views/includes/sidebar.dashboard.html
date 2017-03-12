@@ -1,18 +1,49 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/metisMenu/1.1.0/metisMenu.js"></script>
+
+<script>$(function() {
+    $('#side-menu').metisMenu();
+});</script>
+
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
             <li ui-sref-active="active">
                 <a ui-sref-active="active" ui-sref="gathering-dashboard({id:vm.selectedGatheringId})"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-            </li>            
+            </li>
+
             <li>
                 <a ui-sref-active="active" ui-sref="gathering-chat({id:vm.selectedGatheringId})"><i class="fa fa-comments fa-fw"></i> Message Board</a>
             </li>
+
             <li>
                 <a ui-sref-active="active" ui-sref="gathering-info({id:vm.selectedGatheringId})"><i class="fa fa-info-circle fa-fw"></i> Information</a>
             </li>
-<!--             <li>
-                <a ui-sref-active="active" ui-sref="gathering-location({id:vm.selectedGatheringId})"><i class="fa fa-map fa-fw"></i> Location</a>
-            </li> -->
+
+            <li>
+                <a href="#"><i class="fa fa-wrench fa-fw"></i> Options<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a ui-sref-active="active" ui-sref="gathering-info({id:vm.selectedGatheringId})"><i class="fa fa-info-circle fa-fw"></i> Upload Promotion</a>
+                    </li>
+                    <li>
+                        <a ui-sref-active="active" ui-sref="gathering-manage-banner({id:vm.selectedGatheringId})">
+                            <i class="fa fa-ticket fa-fw" aria-hidden="true"></i> Upload Banner</a>
+                    </li>
+                    <li>
+                        <a href="notifications.html">Notifications</a>
+                    </li>
+                    <li>
+                        <a href="typography.html">Typography</a>
+                    </li>
+                    <li>
+                        <a href="icons.html"> Icons</a>
+                    </li>
+                    <li>
+                        <a href="grid.html">Grid</a>
+                    </li>
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
 
         </ul>
     </div>
