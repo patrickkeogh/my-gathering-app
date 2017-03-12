@@ -27,7 +27,7 @@ gatheringRouter.route('/')
     var recsPerPage = req.query.recsPerPage ? parseInt(req.query.recsPerPage) : 5;
     console.log('recsPerPage################################:' + recsPerPage);
 
-    var query = req.query.owner ? req.query.owner : "";
+    var query = req.query.query ? req.query.query : "";
 
     console.log('################################QUERY:' + query);
     //var queryObj = JSON.parse(query);
