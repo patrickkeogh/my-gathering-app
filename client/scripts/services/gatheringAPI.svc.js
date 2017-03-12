@@ -22,7 +22,9 @@
       url += '?page=' + page + '&recsPerPage=' + recsPerPage;
 
       return $http.get(url, {
-        params: query        
+        params: {
+          "owner.username": "patrickkeogh@kantechprogramming.com"
+        }        
       });
     };
 

@@ -26,9 +26,10 @@ gatheringRouter.route('/')
     console.log('recsPerPage################################:' + recsPerPage);
 
     var query = req.query.query ? req.query.query : "";
+    console.log('################################QUERY:' + JSON.stringify(query));
     var queryObj = JSON.parse(query);
 
-    console.log('################################SEARCH_INFO_OBJECT????:' + JSON.stringify(query));
+    console.log('################################SEARCH_INFO_OBJECT????:' + queryObj);
 
     var recsToSkip = ((page - 1) * recsPerPage);
 
