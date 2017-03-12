@@ -22,6 +22,7 @@
       url += '?page=' + page + '&recsPerPage=' + recsPerPage;
 
       return $http.get(url, {
+        headers : {'Accept' : 'application/json'},
         params: {
           "owner.username": "patrickkeogh@kantechprogramming.com"
         }        
