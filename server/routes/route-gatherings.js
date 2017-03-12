@@ -20,7 +20,7 @@ gatheringRouter.use(bodyParser.json());
 gatheringRouter.route('/')
 .get(function (req, res, next) {
 
-    console.log('req.query################################:' + JSON.stringify(req));
+    console.log('req.query################################:' + req);
 
     var page = req.query.page ? parseInt(req.query.page) : 1;
     
