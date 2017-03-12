@@ -25,9 +25,10 @@
       query['owner.username'] = "patrickkeogh@kantechprogramming.com";
 
       return $http.get(url, {
-        headers : {'Accept' : 'application/json'},
-        params: query
-      });
+            params: {
+              "owner.username": "patrickkeogh@kantechprogramming.com" 
+            }
+        });
     };
 
     var createGathering = function(gathering) {
