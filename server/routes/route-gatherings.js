@@ -34,20 +34,16 @@ gatheringRouter.route('/')
 
             if (err) throw err;
 
-            Gatherings.find(queryObj)
-            .count(function(err, count) {
-                if (err) throw err;
-
-                var numPages = 0;
+            var numPages = 0;
                     
-                if (count > recsPerPage) {
-                    numPages = Math.ceil(count / recsPerPage);
-                }                
+                // if (count > recsPerPage) {
+                //     numPages = Math.ceil(count / recsPerPage);
+                // }                
 
                 var returnObj = {  
-                    recCount: count,
-                    pages: numPages,
-                    page: page,
+                    recCount: 1,
+                    pages: 1,
+                    page: 1,
                     gatherings: gatherings
                 };
 
@@ -55,7 +51,28 @@ gatheringRouter.route('/')
 
                 res.json(returnObj);
 
-            });
+            // Gatherings.find(queryObj)
+            // .count(function(err, count) {
+            //     if (err) throw err;
+
+            //     var numPages = 0;
+                    
+            //     if (count > recsPerPage) {
+            //         numPages = Math.ceil(count / recsPerPage);
+            //     }                
+
+            //     var returnObj = {  
+            //         recCount: count,
+            //         pages: numPages,
+            //         page: page,
+            //         gatherings: gatherings
+            //     };
+
+            //     //console.log('COUNT################################:' + count);
+
+            //     res.json(returnObj);
+
+            // });
 
         });
 
