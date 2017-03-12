@@ -23,25 +23,23 @@ gatheringRouter.route('/')
     var page = req.query.page ? parseInt(req.query.page) : 1;
     // var recsPerPage = req.query.recsPerPage ? parseInt(req.query.recsPerPage) : 5;
     var query = req.query.query ? req.query.query : "";
-    // var queryObj = JSON.parse(query);
+    var queryObj = JSON.parse(query);
 
     // console.log('################################SEARCH_INFO_OBJECT????:' + queryObj);
 
     // var recsToSkip = ((page - 1) * recsPerPage);
 
-    gatherings.find({}, {_id: 1}).sort({_id:1}).exec(function(err, gatherings) {
-        
-        if (err) throw err;
-        res.json(gatherings);
+    // gatherings.find({}, {_id: 1}).sort({_id:1}).exec(function(err, gatherings) {
 
-    });
-
-    // Gatherings.find({}, function (err, gatherings) {
     //     if (err) throw err;
     //     res.json(gatherings);
+
     // });
 
-
+    Gatherings.find(queryObj, function (err, gatherings) {
+        if (err) throw err;
+        res.json(gatherings);
+    });
 })
 
 
