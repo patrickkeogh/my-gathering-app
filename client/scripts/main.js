@@ -8,7 +8,9 @@
       'ngAutocomplete',
       'angular-momentjs',
       'ui.bootstrap',
-      'uiGmapgoogle-maps'
+      'uiGmapgoogle-maps',
+      'angular-filepicker',
+      'angular-img-cropper'
 
     ])
     .config(config)
@@ -18,13 +20,14 @@
     })
     .run(run);
     
-    config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', 'uiGmapGoogleMapApiProvider'];
+    config.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider', 'uiGmapGoogleMapApiProvider', 'filepickerProvider'];
     run.$inject = ['$rootScope', '$location', 'Authentication'];
     
-    function config($stateProvider, $urlRouterProvider, $locationProvider, uiGmapGoogleMapApiProvider) {
+    function config($stateProvider, $urlRouterProvider, $locationProvider, uiGmapGoogleMapApiProvider, filepickerProvider) {
         $urlRouterProvider.otherwise('/');
         //$locationProvider.html5Mode(true);
         //$httpProvider.interceptors.push('authInterceptor');
+        filepickerProvider.setKey('ANNrSlVqZSbCvpZVLcwspz');
 
         uiGmapGoogleMapApiProvider.configure({
             key: 'AIzaSyAf7uV3v7upRbATDfluOmSaoHMgsgXRkDM',

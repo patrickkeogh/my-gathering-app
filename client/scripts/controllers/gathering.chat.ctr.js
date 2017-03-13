@@ -2,7 +2,7 @@
   'use strict';
   angular
     .module('myGathering')
-    .controller('GatheringChat', GatheringChat);
+    .controller('GatheringChatController', GatheringChat);
         
     GatheringChat.$inject = ['$stateParams'];
        

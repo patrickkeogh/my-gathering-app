@@ -39,11 +39,20 @@
       });
     };
 
+    var saveBanner = function(id, banner) {
+      return $http.post(url + '/banner/' + id, banner, {
+        headers: {
+            'x-access-token': Authentication.getToken
+        }
+      });
+    };
+
     return {
       getTypes: getTypes,
       getTopics: getTopics,
       getGatherings: getGatherings,
-      createGathering: createGathering
+      createGathering: createGathering,
+      saveBanner: saveBanner
     };
   }
 

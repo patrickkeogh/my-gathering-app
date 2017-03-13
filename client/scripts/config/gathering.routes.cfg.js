@@ -72,7 +72,7 @@
                 },
                 'content': {
                     templateUrl: 'views/gathering.dashboard.html',
-                    controller: 'GatheringDashboard as vm'
+                    controller: 'GatheringDashboardController as vm'
                 },
                 'footer': {
                     templateUrl: 'views/footer.html'
@@ -90,7 +90,7 @@
                 },
                 'content': {
                     templateUrl: 'views/gathering.info.html',
-                    controller: 'GatheringInfo as vm'
+                    controller: 'GatheringInfoController as vm'
                 },
                 'footer': {
                     templateUrl: 'views/footer.html'
@@ -108,7 +108,7 @@
                 },
                 'content': {
                     templateUrl: 'views/gathering.chat.html',
-                    controller: 'GatheringChat as vm'
+                    controller: 'GatheringChatController as vm'
                 },
                 'footer': {
                     templateUrl: 'views/footer.html'

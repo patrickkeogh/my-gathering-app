@@ -2,7 +2,7 @@
   'use strict';
   angular
     .module('myGathering')
-    .controller('GatheringDashboard', GatheringDashboard);
+    .controller('GatheringDashboardController', GatheringDashboard);
         
     GatheringDashboard.$inject = ['$stateParams'];
        

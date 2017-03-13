@@ -70,7 +70,17 @@
 
 	}
 	.content-spacer {
-	  	padding-top: 100px;
+	  	padding-top: 140px;
+	}
+	.page-header-primary {
+	  color: #673AB7;
+	  font-weight: bold;
+	  margin-top: 20px;
+	  font-size: 18px;
+	}
+
+	.container-fluid {
+		padding: 0px !important;
 	}
 }
 
@@ -111,7 +121,7 @@
 	  	padding-bottom: 20px;
 	}
 	.content-spacer {
-	  	padding-top: 60px;
+	  	padding-top: 100px;
 	}
 	.message-box {
 	  font-size: 34px;

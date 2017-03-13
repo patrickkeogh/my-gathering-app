@@ -2,7 +2,7 @@
   'use strict';
   angular
     .module('myGathering')
-    .controller('GatheringInfo', GatheringInfo);
+    .controller('GatheringInfoController', GatheringInfo);
         
     GatheringInfo.$inject = ['$stateParams'];
        

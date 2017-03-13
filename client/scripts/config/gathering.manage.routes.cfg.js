@@ -18,7 +18,7 @@
                 },
                 'content': {
                     templateUrl: 'views/gathering.manage.banner.html',
-                    controller: 'GatheringChat as vm'
+                    controller: 'ManageGatheringController as vm'
                 },
                 'footer': {
                     templateUrl: 'views/footer.html'

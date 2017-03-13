@@ -8,6 +8,41 @@ body {
   height: 100%;
 }
 
+.image-holder-blank {
+  background-color: #673AB7;
+  height: 150px;
+  color: #EEEEEE;
+  padding-top: 10px;
+  border: 2px dashed #000000;
+}
+
+.image-holder-blank:hover {
+  background-color: #EEEEEE;
+  height: 150px;
+  color: #673AB7;
+  padding-top: 10px;
+  border: 2px dashed #000000;
+}
+
+.image-holder-image {
+  
+
+}
+
+.img-fill {
+  width: 300px;
+  height: 150px;
+}
+
+
+a.image_upload_link:hover {
+  text-decoration: none;
+}
+
+.sidebar {
+  z-index: 1001;
+}
+
 /* make sure that our a tags have the cursor */
 a[ui-sref],
 a[ng-click]  { cursor:pointer; }
@@ -518,6 +553,7 @@ table.table-no-margin {
 .navbar-fixed-top {
      top: 30px;
 }
+
 #parent-nav {
   top: 0;
   position: fixed;;
@@ -525,6 +561,9 @@ table.table-no-margin {
   height: 30px;
   width: 100%;
   z-index: 1000;
+}
+#navbar-top {
+  z-index: 999;
 }
 #parent-logo {
   font-size: 12px;
