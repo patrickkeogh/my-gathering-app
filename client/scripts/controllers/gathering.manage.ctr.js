@@ -15,7 +15,8 @@
       		picture: ''
       	};    	
 
-      	function saveBanner(banner) {
+      	vm.saveBanner = function() {
+      		console.log('Save Banner called');
 			gatheringAPI.saveBanner(vm.selectedGatheringId, vm.gathering.picture)
 			.then(function(data) {
 	        	console.log(data);
@@ -25,7 +26,7 @@
 	        	console.log('failed to upload banner ' + err);
 	      	});
 
-      	}
+      	};
 
       	//Single file upload, you can take a look at the options
 	    vm.upload = function(){
@@ -49,6 +50,16 @@
 	            }
 	        );
 	    };
+
+	    vm.removeBanner = function() {
+
+	    	console.log('Remove image called');
+
+	    	vm.gathering.picture = null;
+	    	//$scope.$apply();
+
+	    };
+
       
     }
 }());

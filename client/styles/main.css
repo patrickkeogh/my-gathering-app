@@ -9,20 +9,21 @@ body {
 }
 
 .image-holder-blank {
-  background-color: #673AB7;
-  height: 150px;
-  color: #EEEEEE;
-  padding-top: 10px;
-  border: 2px dashed #000000;
-}
-
-.image-holder-blank:hover {
   background-color: #EEEEEE;
   height: 150px;
   color: #673AB7;
   padding-top: 10px;
   border: 2px dashed #000000;
 }
+
+.image-holder-blank:hover {
+  background-color: #E0E0E0;
+  height: 150px;
+  color: #673AB7;
+  padding-top: 10px;
+  border: 2px dashed #000000;
+}
+
 
 .image-holder-image {
   

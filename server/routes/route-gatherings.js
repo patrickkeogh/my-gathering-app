@@ -119,6 +119,26 @@ gatheringRouter.route('/topic')
 
 });
 
+gatheringRouter.route('/:id')
+.get(function(req, res, next) {
+
+    Gatherings.findById(id, function(err, gathering) {
+
+        if (err) throw err;
+
+        // console.log('Gathering banner updated!');
+        // str = JSON.stringify(gathering);
+        // console.log('Gathering After Picture Added:' + str);
+
+
+        res.json(gathering);
+
+
+    });
+
+
+});
+
 gatheringRouter.route('/banner/:id')
 .post(function (req, res, next) {
 

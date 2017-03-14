@@ -18,6 +18,10 @@
       return $http.get(url + '/topic');
     };
 
+    var getGathering = function (id) {
+      return $http.get(url + '/' + id);
+    }
+
     var getGatherings = function(page, recsPerPage, query) {
       var queryString = '?page=' + page + '&recsPerPage=' + recsPerPage;
 
@@ -50,6 +54,7 @@
     return {
       getTypes: getTypes,
       getTopics: getTopics,
+      getGathering: getGathering,
       getGatherings: getGatherings,
       createGathering: createGathering,
       saveBanner: saveBanner
