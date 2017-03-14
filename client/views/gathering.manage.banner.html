@@ -8,6 +8,12 @@
                     </div>                         
                 </div>
 
+                <div class="row" ng-show="vm.gathering.banner">
+                    <div class="col-xs-push-6 col-xs-6 col-lg-6">
+                        <img class=" img-responsive" ng-src="{{vm.gathering.banner.url}}"> 
+                    </div>                         
+                </div>
+
                 <div class="row" ng-show="!vm.gathering.banner">
                     <div class="col-xs-push-6 col-xs-6 col-lg-6">
                         <img class="img-responsive" src="/images/blank.png"> 

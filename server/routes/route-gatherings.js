@@ -166,11 +166,11 @@ gatheringRouter.route('/banner/:id')
         console.log('Gathering After Picture Added:' + str);
 
 
-        var id = gathering._id;
+        //var id = gathering._id;
 
-        res.writeHead(200, {
-            'Content-Type': 'text/plain'
-        });
+        // res.writeHead(200, {
+        //     'Content-Type': 'text/plain'
+        // });
         // res.end('Updated the banner for the gathering with id: ' + id);
 
         res.json(gathering);
