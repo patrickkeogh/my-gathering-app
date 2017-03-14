@@ -9,18 +9,34 @@
     function Controller($scope, $stateParams, filepickerService, gatheringAPI) {
       	var vm = this;
 
-      	vm.selectedGatheringId = $stateParams.id;
+      	vm.id = $stateParams.id;
 
       	vm.gathering = {
       		picture: ''
-      	};    	
+      	};   
+
+      	angular.element(document).ready(function() {
+
+	        console.log("init called in Gathering Info");
+
+	        gatheringAPI.getGathering(vm.id)
+	        .then(function(data) {
+	          console.log(data.data);
+	          vm.gathering = data.data[0];
+	        })
+	        .catch(function(err) {
+	          console.log('failed to get gathering ' + err);
+	        });
+
+	       
+	    }); 	
 
       	vm.saveBanner = function() {
       		console.log('Save Banner called');
-			gatheringAPI.saveBanner(vm.selectedGatheringId, vm.gathering.picture)
+			gatheringAPI.saveBanner(vm.id, vm.gathering.picture)
 			.then(function(data) {
-	        	console.log(data);
-	        	//vm.types = data.data;
+	        	console.log('Banner has been updated');
+	        	vm.gathering = data.data;
 	      	})
 	      	.catch(function(err) {
 	        	console.log('failed to upload banner ' + err);

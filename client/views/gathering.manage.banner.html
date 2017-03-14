@@ -7,12 +7,15 @@
                         <h1 class="page-header page-header-primary"><i class="fa fa-search" aria-hidden="true"></i> Upload Banner</h1>
                     </div>                         
                 </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div>
-                            <h6 class="text-center">We recommend using at least a 2160x1080px (2:1 ratio) image that's no larger than 10MB.</h6>
-                        </div>
-                    </div>                            
+
+                <div class="row" ng-show="!vm.gathering.banner">
+                    <div class="col-xs-push-6 col-xs-6 col-lg-6">
+                        <img class="img-responsive" src="/images/blank.png"> 
+                    </div>                         
+                </div>
+
+                <div class="row row-spacer">
+                    <div></div>                                               
                 </div>
 
                 <div class="row">
@@ -33,6 +36,13 @@
                 </div>
                 <div class="row row-spacer">
                     <div></div>                                               
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div>
+                            <h6 class="text-center">We recommend using at least a 2160x1080px (2:1 ratio) image that's no larger than 10MB.</h6>
+                        </div>
+                    </div>                            
                 </div>
 
                 <div class="row">

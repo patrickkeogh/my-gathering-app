@@ -171,7 +171,9 @@ gatheringRouter.route('/banner/:id')
         res.writeHead(200, {
             'Content-Type': 'text/plain'
         });
-        res.end('Updated the banner for the gathering with id: ' + id);
+        // res.end('Updated the banner for the gathering with id: ' + id);
+
+        res.json(gathering);
 
 
     });
