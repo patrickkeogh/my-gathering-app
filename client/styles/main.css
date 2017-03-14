@@ -8,6 +8,16 @@ body {
   height: 100%;
 }
 
+.my-brand {
+  
+
+  font: 400 32px/0.8 'Cookie', Helvetica, sans-serif;
+  color: #fff;
+  padding-left: 15px;
+  padding-top: 8px;
+}
+
+
 .image-holder-blank {
   background-color: #EEEEEE;
   height: 150px;
@@ -517,13 +527,8 @@ h3.modal-title {
   margin-top: 20px;
 }
 
-.navbar-brand {
-
-  font: 400 36px/0.8 'Cookie', Helvetica, sans-serif;
-  color: #fff;
-
-
-  padding-top: 8px;
+.add-padding-30 {
+  padding-left: 30px;
 }
 
 .logo-text {
