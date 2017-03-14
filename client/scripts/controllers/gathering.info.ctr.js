@@ -4,9 +4,9 @@
     .module('myGathering')
     .controller('GatheringInfoController', GatheringInfo);
         
-    GatheringInfo.$inject = ['$stateParams'];
+    GatheringInfo.$inject = ['$stateParams', 'gatheringAPI'];
        
-    function GatheringInfo($stateParams) {
+    function GatheringInfo($stateParams, gatheringAPI) {
       var vm = this;
 
       vm.selectedGatheringId = $stateParams.id;

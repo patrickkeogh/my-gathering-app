@@ -122,9 +122,12 @@ gatheringRouter.route('/topic')
 gatheringRouter.route('/:id')
 .get(function(req, res, next) {
 
-    Gatherings.findById(id, function(err, gathering) {
+    Gatherings.find({_id:id}, function(err, gathering) {
 
-        if (err) throw err;
+        if (err) {
+            console.log('Error:' + err);
+            throw err;
+        } 
 
         // console.log('Gathering banner updated!');
         // str = JSON.stringify(gathering);
