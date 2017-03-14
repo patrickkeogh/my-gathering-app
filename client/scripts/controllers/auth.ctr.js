@@ -53,7 +53,6 @@
 
           }else{
             vm.showMessage = true;
-            console.log("status:" + str);
             vm.message = data.data.err.message;
           }
 
