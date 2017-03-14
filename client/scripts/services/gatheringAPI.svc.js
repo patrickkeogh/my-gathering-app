@@ -8,19 +8,19 @@
 
   function gatheringAPI ($http, Authentication, Constants) {
 
-    var url = Constants.HEROKU_URL + '/gathering';
+    var url = Constants.HEROKU_URL + 'api//gathering';
 
     var getTypes = function() {
-      return $http.get(url + '/type');
+      return $http.get(url + '/types');
     };
 
     var getTopics = function() {
-      return $http.get(url + '/topic');
+      return $http.get(url + '/topics');
     };
 
     var getGathering = function (id) {
       return $http.get(url + '/' + id);
-    }
+    };
 
     var getGatherings = function(page, recsPerPage, query) {
       var queryString = '?page=' + page + '&recsPerPage=' + recsPerPage;
