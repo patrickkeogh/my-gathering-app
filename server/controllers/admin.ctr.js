@@ -23,20 +23,22 @@ module.exports.createTopic = function(req, res) {
 
     	if (err) return validationError(res, err);
 
-    	//res.json(gathering);
-    	var id = topic._id;
-
     	sendJSONresponse(res, HTTPStatus.OK, topic);
 
-    	// res.writeHead(, {
-     //  	'Content-Type': 'text/plain'
-    	// });
+  	});
+};
 
-    	// res.end(JSON.stringify({
-     //    	topic: topic
-    	// }));
+module.exports.createType = function(req, res) {
+
+	console.log('entered post new gathering type:');
+
+  	var newType = req.body;
+
+  	Topic.create(newType, function(err, type) {
+
+    	if (err) return validationError(res, err);
+
+    	sendJSONresponse(res, HTTPStatus.OK, type);
 
   	});
-
-
 };
