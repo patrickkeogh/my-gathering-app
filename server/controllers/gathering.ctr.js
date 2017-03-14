@@ -61,9 +61,9 @@ module.exports.getGatherings = function(req, res) {
   // });
 
   Gatherings.find(queryObj, function (err, gatherings) {
-        if (err) throw err;
-        res.json(gatherings);
-    });
+      if (err) throw err;
+      sendJSONresponse(res, HTTPStatus.OK, gatherings);
+  });
 
 };
 
