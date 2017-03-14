@@ -15,7 +15,7 @@ router.post('/register', ctrlAuth.register);
 router.post('/login', ctrlAuth.login);
 router.get('/logout', ctrlAuth.logout);
 
-router.post('/admin/topic', Verify.verifyOrdinaryUser, ctrlAdmin.createTopic);
+router.post('/admin/topic', Verify.verifyOrdinaryUser, Verify.verifyAdminUser, ctrlAdmin.createTopic);
 
 
 module.exports = router;
