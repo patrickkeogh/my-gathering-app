@@ -23,7 +23,7 @@
         gatheringAPI.getGatherings(vm.currentPage, vm.recsPerPage, query)
         .then(function(data) {
           console.log(data);
-          vm.gatherings = data;
+          vm.gatherings = data.data;
         })
         .catch(function(err) {
           console.log('failed to get gathering types ' + err);
