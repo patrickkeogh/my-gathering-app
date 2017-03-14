@@ -67,3 +67,63 @@ module.exports.getGatherings = function(req, res) {
 
 };
 
+module.exports.getGathering = function(req, res) {
+
+  console.log('Route Found');
+  var id = req.params.id;
+
+  Gatherings.find({_id:id}, function(err, gathering) {
+
+    if (err) {
+        console.log('Error:' + err);
+        throw err;
+    } 
+
+    res.json(gathering);
+    sendJSONresponse(res, HTTPStatus.OK, gathering);
+
+
+  });
+
+};
+
+module.exports.createGathering = function(req, res) {
+  console.log('entered post new gathering:');
+
+  var newGathering = req.body;
+  //newGathering.name = "Steve";
+  //newGathering.description = "Steve";
+  //newGathering.location = "Steve";
+  //newGathering.directions = "Steve";
+  //newGathering.notes = "Steve";
+  //newGathering.owner_id = 1;
+  //newGathering.gathering_date = new Date();    
+  //newGathering.gathering_time = new Date();
+  //newGathering.access = "private";
+  //newGathering.status = "active";
+
+  //newGathering.createDate = new Date();
+  //newGathering.name = "bOB";
+
+  
+
+
+  //console.log("gatheringDateAndTime%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%:" + newGathering.gathering_date_time);
+  //console.log("createdDatAndTime%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%:" + newGathering.createDate);
+
+  //console.log("gatheringinfo on server=" + str);
+
+  Gatherings.create(newGathering, function (err, gathering) {
+
+    if (err) {
+      console.log('Error:' + err);
+      throw err;
+    } 
+
+    res.json(gathering);
+    sendJSONresponse(res, HTTPStatus.OK, gathering);
+  });
+
+
+};
+

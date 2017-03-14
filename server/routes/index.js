@@ -23,7 +23,9 @@ router.get('/gathering/topics', ctrlGatherings.getTopics);
 router.get('/gathering/types', ctrlGatherings.getTypes);
 
 router.get('/gathering', ctrlGatherings.getGatherings);
+router.get('/gathering/:id', ctrlGatherings.getGathering);
 
+router.post('/gathering', ctrlGatherings.createGathering);
 
 
 
