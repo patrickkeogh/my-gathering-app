@@ -7,10 +7,63 @@
                         <h1 class="page-header page-header-primary"><i class="fa fa-search" aria-hidden="true"></i> Information</h1>
                     </div>                         
                 </div>
+
                 <div class="row">
                     <div class="col-lg-12">
-                        {{vm.gathering | json : spacing}}
+                        <img class=" img-responsive" ng-src="{{vm.gathering.banner.url}}"> 
                     </div>                         
+                </div>
+
+                <div class="row row-spacer">
+                    <div></div>                                               
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h5>{{vm.gathering.gathering_start_date_time | date: 'EEEE, MMMM d, y'}}</h5>
+                        <h5>{{vm.gathering.gathering_start_date_time | date: 'h:mm a'}}</h5>
+                    </div>                         
+                </div>
+
+                <div class="row row-spacer">
+                    <div></div>                                               
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h5>{{vm.gathering.gathering_start_date_time | date: 'EEEE, MMMM d, y'}}</h5>
+                        <h5>{{vm.gathering.gathering_start_date_time | date: 'h:mm a'}}</h5>
+                    </div>                         
+                </div>
+
+                <div class="row row-spacer">
+                    <div></div>                                               
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h5>{{vm.gathering.location.name}}</h5>
+                        <h5>{{vm.gathering.location.locality + ','}} {{vm.gathering.location.state_prov}}</h5>
+                        <h5>{{vm.gathering.location.country}}</h5>
+                    </div>                         
+                </div>
+
+
+                <div class="row row-spacer"> 
+                    <div></div>                                               
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h5>{{vm.gathering.description}}</h5>
+                    </div>                         
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        {{vm.gathering | json}}
+                    </div> 
+
+                    Banner:{{vm.gathering.banner}}
+                     
                 </div>
             </div>
         </div>

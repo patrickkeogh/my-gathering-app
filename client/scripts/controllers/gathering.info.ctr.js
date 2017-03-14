@@ -19,8 +19,8 @@
 
         gatheringAPI.getGathering(vm.selectedGatheringId)
         .then(function(data) {
-          console.log(data);
-          vm.gathering = data.data;
+          console.log(data.data);
+          vm.gathering = data.data[0];
         })
         .catch(function(err) {
           console.log('failed to get gathering ' + err);
