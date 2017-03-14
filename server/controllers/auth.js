@@ -2,7 +2,7 @@
 //var router = express.Router();
 var passport = require('passport');
 var User = require('../models/users');
-//var Verify = require('../config/verify');
+var Verify = require('../config/verify');
 var HTTPStatus = require('http-status');
 
 var sendJSONresponse = function(res, status, content) {
