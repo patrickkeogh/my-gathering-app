@@ -22,5 +22,9 @@ router.post('/admin/type', Verify.verifyOrdinaryUser, Verify.verifyAdminUser, ct
 router.get('/gathering/topics', ctrlGatherings.getTopics);
 router.get('/gathering/types', ctrlGatherings.getTypes);
 
+router.get('/gatherings', ctrlGatherings.getGatherings);
+
+
+
 
 module.exports = router;

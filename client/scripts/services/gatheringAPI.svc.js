@@ -8,7 +8,7 @@
 
   function gatheringAPI ($http, Authentication, Constants) {
 
-    var url = Constants.HEROKU_URL + 'api//gathering';
+    var url = Constants.HEROKU_URL + '/api/gathering';
 
     var getTypes = function() {
       return $http.get(url + '/types');
