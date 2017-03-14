@@ -11,9 +11,7 @@
 
       	vm.id = $stateParams.id;
 
-      	vm.gathering = {
-      		picture: ''
-      	};   
+      	vm.uploadedPicture = null;
 
       	angular.element(document).ready(function() {
 
@@ -33,10 +31,11 @@
 
       	vm.saveBanner = function() {
       		console.log('Save Banner called');
-			gatheringAPI.saveBanner(vm.id, vm.gathering.picture)
+			gatheringAPI.saveBanner(vm.id, vm.uploadedPicture)
 			.then(function(data) {
-	        	console.log('Banner has been updated');
-	        	vm.gathering = data.data;
+	        	console.log('DataReturned' + JSON.stringify(data.data));
+	        	vm.gathering.banner = vm.uploadedPicture;
+	        	vm.uploadedPicture = null;
 	      	})
 	      	.catch(function(err) {
 	        	console.log('failed to upload banner ' + err);
@@ -61,7 +60,7 @@
 	            },
 	            function(Blob){
 	                console.log(JSON.stringify(Blob));
-	                vm.gathering.picture = Blob;
+	                vm.uploadedPicture = Blob;
 	                $scope.$apply();
 	            }
 	        );
@@ -71,7 +70,7 @@
 
 	    	console.log('Remove image called');
 
-	    	vm.gathering.picture = null;
+	    	vm.uploadedPicture = null;
 	    	//$scope.$apply();
 
 	    };

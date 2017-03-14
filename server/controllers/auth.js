@@ -1,7 +1,9 @@
-var HTTPStatus =  require('http-status');
+//var express = require('express');
+//var router = express.Router();
 var passport = require('passport');
-var mongoose = require('mongoose');
 var User = require('../models/users');
+//var Verify = require('../config/verify');
+var HTTPStatus = require('http-status');
 
 var sendJSONresponse = function(res, status, content) {
   res.status(status);
@@ -18,11 +20,11 @@ module.exports.register = function(req, res) {
 
     console.log("REGISTER HAS BEEN CALLED");
 
-    if (err) throw err;
+    if (err) return validationError(res, err);
 
     if(user) {
       console.log("we have a user with this username");
-      return res.status(500).json({err: 'Username is not Unique!'});
+      return res.status(HTTPStatus.BAD_REQUEST).json({err: 'The supplied email address has already be used to register!'});
 
     }else{
 
@@ -30,9 +32,7 @@ module.exports.register = function(req, res) {
         req.body.password, function(err, user) {
 
 
-          if (err) {
-              return res.status(500).json({err: err});
-          }
+          if (err) return validationError(res, err);
 
           if(req.body.name) {
               user.name = req.body.name;
@@ -45,11 +45,13 @@ module.exports.register = function(req, res) {
           if(req.body.lastname) {
               user.lastname = req.body.lastname;
           }
+
+          if(req.body.admin) {
+            user.admin = req.body.admin;
+          }
           
           user.save(function(err,user) {
             passport.authenticate('local')(req, res, function () {
-
-              
 
             return res.status(200).json({status: 'Registration Successful!'});
                         
@@ -64,8 +66,6 @@ module.exports.register = function(req, res) {
 };
 
 module.exports.login = function(req, res, next) {
-
-  console.log("Login Called on Server");
 
   passport.authenticate('local', function(err, user, info) {
     if (err) {
@@ -101,7 +101,7 @@ module.exports.login = function(req, res, next) {
 
 module.exports.logout = function(req, res) {
   req.logout();
-  res.status(HTTPStatus.OK).json({
-    "status": 'Logout Successful!'
+  res.status(200).json({
+    status: 'Bye!'
   });
 };
