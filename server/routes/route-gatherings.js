@@ -122,6 +122,9 @@ gatheringRouter.route('/topic')
 gatheringRouter.route('/:id')
 .get(function(req, res, next) {
 
+    console.log('Route Found');
+    var id = req.params.id;
+
     Gatherings.find({_id:id}, function(err, gathering) {
 
         if (err) {
