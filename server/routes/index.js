@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var verify = require('../config/verify');
+var Verify = require('../config/verify');
 
 //var ctrlProfile = require('../controllers/profile');
 var ctrlAuth = require('../controllers/user.ctr');
