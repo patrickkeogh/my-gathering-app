@@ -8,6 +8,20 @@ body {
   height: 100%;
 }
 
+.container,
+.container-fluid {
+  > .navbar-header,
+  > .navbar-collapse {
+    margin-right: 0 !important;
+      margin-left:  0 !important;
+
+    @media (min-width: @grid-float-breakpoint) {
+      margin-right: 0;
+      margin-left:  0;
+    }
+  }
+}
+
 .my-brand {
   
 
