@@ -4,3 +4,41 @@
 	width: 100%;
 
 }
+
+.gathering-panel-main {
+	height: 200px;
+	width: 100%;
+}
+
+.topics-bar-main {
+
+	background-color: #676767;
+	width: 100%;
+	padding: 10px;
+
+}
+
+.img-topics-bar {
+	/*width: calc(100vh / 6);*/
+	width: 100%;
+
+}
+
+
+h3 {
+  display: inline-block;
+  padding: 10px;
+  background: #B9121B;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.full-screen {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.my-carousel {
+	height: 200px;
+}
