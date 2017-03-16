@@ -44,7 +44,7 @@
     };
 
     var saveBanner = function(id, banner) {
-      return $http.post(url + '/banner/' + id, banner, {
+      return $http.post(url + '/' + id + '/banner', banner, {
         headers: {
             'x-access-token': Authentication.getToken
         }

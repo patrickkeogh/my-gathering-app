@@ -81,7 +81,7 @@ app.use(express.static(path.join(__dirname, 'client')));
 //app.use('/', routes);
 app.use('/api', routesApi);
 //app.use('/admin', admin);
-app.use('/gathering', gatherings);
+//app.use('/gathering', gatherings);
 
 //app.use('/gathering', gatherings);
 //app.use('/category', categories);

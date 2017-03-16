@@ -508,13 +508,13 @@ h3.modal-title {
 .container-main {
   min-height: calc(100vh);
   
-  background-color: #443434;
+  /*//background-color: #443434;*/
 
-  background-image: url(https://www.publicdomainpictures.net/pictures/60000/velka/road-13813455026q6.jpg);
+/*  background-image: url(https://www.publicdomainpictures.net/pictures/60000/velka/road-13813455026q6.jpg);
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
-  background-size: cover;
+  background-size: cover;*/
 }
 
 .option-box {

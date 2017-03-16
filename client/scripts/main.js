@@ -10,13 +10,15 @@
       'ui.bootstrap',
       'uiGmapgoogle-maps',
       'angular-filepicker',
-      'angular-img-cropper'
+      'angular-img-cropper',
+      'underscore'
 
     ])
     .config(config)
     .constant('Constants', {
         HEROKU_URL: 'https://my-gathering.herokuapp.com',
-        TOKEN_ID: 'myGathering-token'
+        TOKEN_ID: 'myGathering-token',
+        LOCATION_ID: 'myGathering-locations'
     })
     .run(run);
     

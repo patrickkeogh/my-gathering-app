@@ -148,10 +148,6 @@ gatheringRouter.route('/:id')
 gatheringRouter.route('/banner/:id')
 .post(function (req, res, next) {
 
-    str = JSON.stringify(req.body);
-
-    console.log('Location Info:' + str);
-
     var banner = {
         banner: req.body
     };

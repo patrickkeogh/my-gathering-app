@@ -27,6 +27,8 @@ router.get('/gathering/:id', ctrlGatherings.getGathering);
 
 router.post('/gathering', ctrlGatherings.createGathering);
 
+router.post('/gathering/:id/banner', ctrlGatherings.addbanner);
+
 
 
 module.exports = router;
