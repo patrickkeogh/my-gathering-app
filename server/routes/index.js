@@ -27,7 +27,7 @@ router.get('/gathering/:id', ctrlGatherings.getGathering);
 
 router.post('/gathering', ctrlGatherings.createGathering);
 
-router.post('/gathering/:id/banner', ctrlGatherings.addbanner);
+router.post('/gathering/:id/banner', ctrlGatherings.addBanner);
 
 
 
