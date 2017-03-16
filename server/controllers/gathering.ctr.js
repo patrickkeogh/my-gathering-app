@@ -79,7 +79,6 @@ module.exports.getGathering = function(req, res) {
         throw err;
     } 
 
-    res.json(gathering);
     sendJSONresponse(res, HTTPStatus.OK, gathering);
 
 
