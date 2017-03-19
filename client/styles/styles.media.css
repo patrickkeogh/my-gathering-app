@@ -89,6 +89,10 @@
 /* Custom, iPhone Retina */ 
 @media only screen and (min-width : 320px) {
 
+	.my-brand {
+	  	padding-left: 30px !important;
+	}
+
 
 	.navbar-brand {
 
@@ -152,6 +156,12 @@
 	  font-size: 10px;
 	}
 
+	.my-brand {
+
+  padding-left: 30px !important;
+
+}
+
 }
 
 /* Small Devices, Tablets */
@@ -171,6 +181,10 @@
 	}
 	.table {
 	  font-size: 12px;
+	}
+	.my-brand {
+	  padding-left: 15px !important;
+
 	}
 
 }

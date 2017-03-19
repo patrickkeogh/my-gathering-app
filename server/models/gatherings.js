@@ -45,6 +45,9 @@ var gatheringSchema = new Schema({
         country: {
             type: String
         },
+        country_short: {
+            type: String
+        },
         formatted_address: {
             type: String
         },

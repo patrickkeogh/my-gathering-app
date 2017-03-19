@@ -50,6 +50,7 @@
 		        	"coordinates": [-79.3790818,43.64352050000001]
 		      	},
 		      	country: '',
+            country_short: '',
 		      	formatted_address: '',
 		      	locality: '',
 		      	postal_code: '',
@@ -227,6 +228,7 @@
 	              		case 'country':
 	                		//console.log('Country:' + types.long_name);
 	                		vm.gatheringAddress.country = types.long_name;
+                      vm.gatheringAddress.country_short = types.short_name;
 	                		break;
 		              	case 'locality':                
 		                	//console.log('Locality:' + types.long_name);

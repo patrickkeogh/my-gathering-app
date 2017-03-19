@@ -4,14 +4,50 @@
     .module('myGathering')
     .controller('MainController', MainController);
         
-    MainController.$inject = ['$scope', 'geocode', 'gatheringAPI'];
+    MainController.$inject = ['$scope', 'geocode', 'gatheringAPI', 'localData'];
        
-    function MainController($scope, geocode, gatheringAPI) {
+    function MainController($scope, geocode, gatheringAPI, localData) {
       	var vm = this;
 
       	vm.distance = 10000;
 
       	vm.gatherings = [];
+
+      	vm.selected_address = '';
+      	vm.details = '';
+
+      	vm.countries = localData.getCountries();    	
+
+      	function findWithAttr(array, attr, value) {
+		    for(var i = 0; i < array.length; i += 1) {
+		        if(array[i][attr] === value) {
+		            return i;
+		        }
+		    }
+		    return -1;
+		}
+
+		var id = findWithAttr(vm.countries, 'code', 'VI'); // returns 0
+
+      	console.log("id=" + id);
+
+      	vm.selected = vm.countries[id];
+
+      	vm.options = {};
+
+      	vm.options.country = vm.selected.code;
+
+	// 	vm.optionns = { 
+ //      		type: '(cities)',
+ //      		county: 'ca'
+ //      	};
+
+ //      	vm.options = {
+ //  type: ['(cities)'],
+ //  componentRestrictions: {country: "us"}
+ // };
+
+
 
       	vm.search_address = {
 	      	location: {
@@ -33,7 +69,7 @@
 
      		geocode.getLocation().then(function(result){
      			console.log("We have a result:");
-     			vm.search_address = result;
+     			vm.selected_address = result;
 
      			// use the location data to get gatherings in the area
 
@@ -49,13 +85,7 @@
 		          	}
         		};
 
-
          		getGatherings(query);
-
-
-
-
-
 
 		    });
 
@@ -65,6 +95,7 @@
 	        gatheringAPI.getGatherings(1, 10, query)
 	        .then(function(data) {
 	          console.log(data);
+
 	          vm.gatherings = data.data;
 	        })
 	        .catch(function(err) {
@@ -72,7 +103,21 @@
 	        });
 	    }
 
+	    $scope.$watch("vm.selected", function(data) {
+      
+	      	console.log("Address Changed");
 
+	      	vm.options = {};
+
+      		vm.options.country = vm.selected.code;
+
+
+	    }, true);
+
+
+
+
+  
       	
       
     }

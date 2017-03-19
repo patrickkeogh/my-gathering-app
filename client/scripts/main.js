@@ -11,7 +11,8 @@
       'uiGmapgoogle-maps',
       'angular-filepicker',
       'angular-img-cropper',
-      'underscore'
+      'underscore',
+      'angucomplete-alt'
 
     ])
     .config(config)

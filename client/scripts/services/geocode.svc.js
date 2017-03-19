@@ -22,6 +22,7 @@
             "coordinates": []
           },
           country: '',
+          country_short: '',
           formatted_address: '',
           locality: '',
           postal_code: '',
@@ -38,6 +39,8 @@
 
       var parseLocation = function (location) {
 
+          console.log("Data:" + JSON.stringify(location));
+
         var location_obj = address;
 
         location_obj.location.coordinates = [location.geometry.location.lng(), location.geometry.location.lat()];
@@ -53,6 +56,7 @@
             case 'country':
               //console.log('Country:' + types.long_name);
               location_obj.country = types.long_name;
+              location_obj.country_short = types.short_name;
               break;
             case 'locality':                
               //console.log('Locality:' + types.long_name);
@@ -63,7 +67,7 @@
               location_obj.locality = types.long_name;
               break;
             case 'administrative_area_level_1':                
-              //console.log('State:' + types.long_name);
+              //console.log('State:' + types.long_name);short
               location_obj.state_prov = types.long_name;
               break;
             case 'postal_code':                

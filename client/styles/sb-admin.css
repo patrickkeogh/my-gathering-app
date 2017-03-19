@@ -3,14 +3,12 @@
  * Copyright 2013-2016 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
-body {
-  background-color: #f8f8f8;
-}
 #wrapper {
   width: 100%;
   min-height: 100%;
   height: auto !important;
   position: relative;
+
 }
 #page-wrapper {
   padding: 0 15px;
@@ -34,7 +32,7 @@ body {
   display: inline-block;
 }
 .navbar-top-links li:last-child {
-  margin-right: 15px;
+  margin-right: 5px;
 }
 .navbar-top-links li a {
   padding: 15px;
