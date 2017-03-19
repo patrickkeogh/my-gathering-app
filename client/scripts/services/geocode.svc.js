@@ -30,6 +30,42 @@
           name: ''
       };
 
+      var test_coords = [{
+        coords: {
+          latitude: 31.503629,
+          longitude: 52.523435,
+        }
+      }, {
+        coords: {
+          latitude: 44.399,
+          longitude: -79.727,
+        }      
+      },
+      {
+        coords: {
+          latitude: 22.396428,
+          longitude: 114.109497,
+        }      
+      },
+      {
+        coords: {
+          latitude: 29.412087,
+          longitude: -98.499573,
+        }      
+      },
+      {
+        coords: {
+          latitude: 51.507351,
+          longitude: -0.127758,
+        }      
+      },
+      {
+        coords: { //Montreal
+          latitude: 45.501689,
+          longitude: -73.567256,
+        }      
+      }];
+
       
 
       var saveLocations = function (locations) {
@@ -93,6 +129,15 @@
 
           navigator.geolocation.getCurrentPosition(function(pos){
             latlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+            console.log('latlngs:' + latlng);
+
+            if(Constants.ENV) {
+              var temp = test_coords[Math.floor((Math.random() * test_coords.length) + 1) - 1].coords;
+              latlng = new google.maps.LatLng(temp.latitude, temp.longitude);
+              console.log('coords:xx' + JSON.stringify(latlng));
+              //Math.floor((Math.random() * test_coords.length) + 1) - 1
+
+            }
             defer.resolve(latlng);
           }, function(error) {
             console.log('The navigator is turned off, create latlng from default coords');

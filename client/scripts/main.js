@@ -19,7 +19,8 @@
     .constant('Constants', {
         HEROKU_URL: 'https://my-gathering.herokuapp.com',
         TOKEN_ID: 'myGathering-token',
-        LOCATION_ID: 'myGathering-locations'
+        LOCATION_ID: 'myGathering-locations',
+        ENV: 'true'
     })
     .run(run);
     

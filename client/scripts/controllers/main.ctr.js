@@ -9,12 +9,18 @@
     function MainController($scope, geocode, gatheringAPI, localData) {
       	var vm = this;
 
-      	vm.distance = 10000;
-
       	vm.gatherings = [];
 
+      	vm.distance = 10000;
+
       	vm.selected_address = '';
+
+      	vm.selected = {
+      		code: ''
+      	};
+
       	vm.details = '';
+      	vm.address_text = '';
 
       	vm.countries = localData.getCountries();    	
 
@@ -26,28 +32,6 @@
 		    }
 		    return -1;
 		}
-
-		var id = findWithAttr(vm.countries, 'code', 'VI'); // returns 0
-
-      	console.log("id=" + id);
-
-      	vm.selected = vm.countries[id];
-
-      	vm.options = {};
-
-      	vm.options.country = vm.selected.code;
-
-	// 	vm.optionns = { 
- //      		type: '(cities)',
- //      		county: 'ca'
- //      	};
-
- //      	vm.options = {
- //  type: ['(cities)'],
- //  componentRestrictions: {country: "us"}
- // };
-
-
 
       	vm.search_address = {
 	      	location: {
@@ -63,17 +47,61 @@
 	      	notes: ''
 	    };
 
+	    vm.distanceOptions = [
+	    	{
+	    		name: 'Within 1km',
+	    		value: 1000
+	    	},
+	    	{
+	    		name: 'Within 10km',
+	    		value: 10000
+	    	},
+	    	{
+	    		name: 'Within 100km',
+	    		value: 100000
+	    	}
+	    ];
+
       	angular.element(document).ready(function() {
 
         	console.log("init called in Main Controller");
 
      		geocode.getLocation().then(function(result){
      			console.log("We have a result:");
-     			vm.selected_address = result;
+     			vm.search_address = result;
+
+     			var id = findWithAttr(vm.countries, 'code', vm.search_address.country_short); // returns 0
+
+		      	console.log("id=" + id);
+
+		      	vm.selected = vm.countries[id];
+
+		      	vm.selectedDistance = vm.distanceOptions[1];
+
+		      	console.log('Selected:' + JSON.stringify(vm.search_address));
+
+
+		      	//vm.address_text = vm.search_address.locality + ', ' + vm.search_address.country;
+
+		      	if(vm.search_address.locality !== '') {
+		      		vm.address_text += vm.search_address.locality + ', ';
+		      	}
+
+		      	if(vm.search_address.state_prov !== '') {
+		      		vm.address_text += vm.search_address.state_prov;
+		      	}
+
+		      	console.log('text:' + vm.address_text);
+
+		      	vm.options = {};
+
+		      	vm.options.country = vm.selected.code;
 
      			// use the location data to get gatherings in the area
 
      			var query = {};
+
+     			console.log('distance:' + vm.selectedDistance.value);
 
      			// create a query object
      			query['location.location'] = {
@@ -103,16 +131,30 @@
 	        });
 	    }
 
-	    $scope.$watch("vm.selected", function(data) {
-      
-	      	console.log("Address Changed");
 
-	      	vm.options = {};
+	    $scope.$watch('vm.selected', function(newValue, oldValue) {
+		  if (newValue !== oldValue) {
+		    vm.options = {};
 
       		vm.options.country = vm.selected.code;
 
+      		console.log('Country changed');
+		  }
+		}. true);
 
-	    }, true);
+		$scope.$watch('vm.address_text', function(newValue, oldValue) {
+		  if (newValue !== oldValue) {
+
+		  }
+		}. true);
+
+		// $scope.$watch('vm.selected_address', function(newValue, oldValue) {
+		//   if (newValue !== oldValue) {
+		//     vm.options = {};
+
+  //     		vm.options.country = vm.selected.code;
+		//   }
+		// }. true);
 
 
 
