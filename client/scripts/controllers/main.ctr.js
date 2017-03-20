@@ -15,7 +15,7 @@
 
       	vm.selected_address = '';
 
-      	
+
 
       	vm.selected = {
       		code: ''
@@ -51,28 +51,28 @@
 
 	    vm.distanceOptions = [
 	    	{
-	    		name: 'Within 1 km',
+	    		name: 'Within 1 km of',
 	    		value: 1000
 	    	},
 	    	{
-	    		name: 'Within 5 km',
+	    		name: 'Within 5 km of',
 	    		value: 5000
 
 	    	},
 	    	{
-	    		name: 'Within 10 km',
+	    		name: 'Within 10 km of',
 	    		value: 1000
 	    	},
 	    	{
-	    		name: 'Within 25 km',
+	    		name: 'Within 25 km of',
 	    		value: 25000
 	    	},
 	    	{
-	    		name: 'Within 50 km',
+	    		name: 'Within 50 km of',
 	    		value: 50000
 	    	},
 	    	{
-	    		name: 'Within 100 km',
+	    		name: 'Within 100 km of',
 	    		value: 100000
 	    	}
 	    ];
@@ -82,18 +82,16 @@
         	console.log("init called in Main Controller");
 
      		geocode.getLocation().then(function(result){
-     			console.log("We have a result:");
+     			//console.log("We have a result:");
      			vm.search_address = result;
 
      			var id = findWithAttr(vm.countries, 'code', vm.search_address.country_short); // returns 0
-
-		      	console.log("id=" + id);
 
 		      	vm.selected = vm.countries[id];
 
 		      	vm.selectedDistance = vm.distanceOptions[1];
 
-		      	console.log('Selected:' + JSON.stringify(vm.search_address));
+		      	//console.log('Selected:' + JSON.stringify(vm.search_address));
 
 
 		      	//vm.address_text = vm.search_address.locality + ', ' + vm.search_address.country;
@@ -146,8 +144,25 @@
 	        });
 	    }
 
+	    vm.updateCountry = function() {
+	    	console.log('Country changed');
+		    //console.log($scope.item.code, $scope.item.name)
+
+		    vm.options = {};
+
+      		vm.options.country = vm.selected.code;
+
+      		console.log('Country changed to:' + vm.selected.code);
+
+      		vm.address_text = '';
+
+
+		};
+
 
 	    $scope.$watch('vm.selected', function(newValue, oldValue) {
+
+	    	console.log('Country changed');
 		  if (newValue !== oldValue) {
 		    vm.options = {};
 

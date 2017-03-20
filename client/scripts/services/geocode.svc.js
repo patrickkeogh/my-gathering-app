@@ -36,25 +36,25 @@
           longitude: 52.523435,
         }
       }, {
-        coords: {
+        coords: { //Barrie
           latitude: 44.399,
           longitude: -79.727,
         }      
       },
       {
-        coords: {
-          latitude: 22.396428,
-          longitude: 114.109497,
+        coords: { // New York
+          latitude: 40.712784,
+          longitude: -74.005941,
         }      
       },
       {
-        coords: {
+        coords: { //San Antonia
           latitude: 29.412087,
           longitude: -98.499573,
         }      
       },
       {
-        coords: {
+        coords: { //London
           latitude: 51.507351,
           longitude: -0.127758,
         }      
@@ -75,7 +75,7 @@
 
       var parseLocation = function (location) {
 
-          console.log("Data:" + JSON.stringify(location));
+        //console.log("Data:" + JSON.stringify(location));
 
         var location_obj = address;
 
@@ -124,29 +124,26 @@
         var defer = $q.defer();
 
         if (navigator.geolocation) {
-          console.log('We have a navigator');
-          console.log('Try to use navigator to get GPO coords');
+          //console.log('We have a navigator');
+          //console.log('Try to use navigator to get GPO coords');
 
           navigator.geolocation.getCurrentPosition(function(pos){
             latlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
-            console.log('latlngs:' + latlng);
+            //console.log('latlngs:' + latlng);
 
             if(Constants.ENV) {
               var temp = test_coords[Math.floor((Math.random() * test_coords.length) + 1) - 1].coords;
               latlng = new google.maps.LatLng(temp.latitude, temp.longitude);
-              console.log('coords:xx' + JSON.stringify(latlng));
-              //Math.floor((Math.random() * test_coords.length) + 1) - 1
-
             }
             defer.resolve(latlng);
           }, function(error) {
-            console.log('The navigator is turned off, create latlng from default coords');
+            //console.log('The navigator is turned off, create latlng from default coords');
             latlng = new google.maps.LatLng(default_lat, default_lng);
             defer.resolve(latlng);
           });
           
         } else {
-          console.log('We have NO navigator, use default coords');
+          //console.log('We have NO navigator, use default coords');
           latlng = new google.maps.LatLng(default_lat, default_lng);
           defer.resolve(latlng);
         }
@@ -161,20 +158,20 @@
         getCoords().then(function(coords){
 
           if(coords){
-            console.log("get Coords result:" + JSON.stringify(coords));
+            //console.log("get Coords result:" + JSON.stringify(coords));
 
             if (_.has(locations, coords)) {
-              console.log('Location found in storage');
+              //console.log('Location found in storage');
               defer.resolve(locations[coords]);
             } else {
-              console.log('Location Not found in storage');
-              console.log('Get location info from server');
+              //console.log('Location Not found in storage');
+              //console.log('Get location info from server');
 
               var geocoder = new google.maps.Geocoder();
 
               geocoder.geocode({ 'latLng': coords }, function (results, status) {
 
-                console.log('Status:' + status);
+                //console.log('Status:' + status);
                 //console.log('Result:' + JSON.stringify(results[1]));
 
                 if (status === google.maps.GeocoderStatus.OK) {
