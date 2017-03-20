@@ -15,6 +15,8 @@
 
       	vm.selected_address = '';
 
+      	
+
       	vm.selected = {
       		code: ''
       	};
@@ -49,15 +51,28 @@
 
 	    vm.distanceOptions = [
 	    	{
-	    		name: 'Within 1km',
+	    		name: 'Within 1 km',
 	    		value: 1000
 	    	},
 	    	{
-	    		name: 'Within 10km',
-	    		value: 10000
+	    		name: 'Within 5 km',
+	    		value: 5000
+
 	    	},
 	    	{
-	    		name: 'Within 100km',
+	    		name: 'Within 10 km',
+	    		value: 1000
+	    	},
+	    	{
+	    		name: 'Within 25 km',
+	    		value: 25000
+	    	},
+	    	{
+	    		name: 'Within 50 km',
+	    		value: 50000
+	    	},
+	    	{
+	    		name: 'Within 100 km',
 	    		value: 100000
 	    	}
 	    ];
@@ -108,7 +123,7 @@
 		          	$near: {
 		            	$geometry: { type: "Point",  coordinates: vm.search_address.location.coordinates },
 		            	$minDistance: 0.01,
-		            	$maxDistance: vm.distance
+		            	$maxDistance: vm.selectedDistance.value
 
 		          	}
         		};

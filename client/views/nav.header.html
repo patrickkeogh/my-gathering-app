@@ -13,4 +13,46 @@
     </div>
     <!-- /.navbar-header -->
     <ng-include src="'views/includes/navbar.toplinks.html'"></ng-include>
+    
 </nav>
+
+<div class="container-fluid">
+
+    <div class="jumbotron" ng-show="vm.showJumbo">
+		<!--begin bg-carousel-->
+		<div id="bg-fade-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+		<!-- Wrapper for slides -->
+		    <div class="carousel-inner">
+		        <div class="item active">
+		            <div class="slide1"></div>
+		        </div>
+		        <div class="item">
+		            <div class="slide2"></div>
+		        </div>
+		        <div class="item">
+		            <div class="slide3"></div>
+		        </div>
+		    </div><!-- .carousel-inner --> 
+		    <div class="container carousel-overlay text-center">
+		        <h1>Get Kittens Free All Week Long</h1>
+		        <p class="lead">Special orders also available upon request.  Check out our pricing.</p>
+		        <a class="btn btn-lg btn-primary fp-buttons" href="#">
+		            <span class="fa fa-dollar"></span> Get Pricing
+		        </a>
+		        <a class="btn btn-lg btn-primary fp-buttons" href="#">
+		            <span class="fa fa-check"></span> Sign Up
+		        </a>
+		    </div>
+		</div><!-- .carousel --> 
+		<!--end bg-carousel-->
+	</div>
+
+</div> <!-- /container -->
+
+
+
+
+
+
+
+

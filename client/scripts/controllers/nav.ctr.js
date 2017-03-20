@@ -29,8 +29,15 @@
 
       getSideBar();
 
+      getJumbo();
+
+      
       //console.log('location:' + $location.path());
-      //console.log('state:' + $state.current.name);
+      console.log('state:' + vm.state);
+
+      function getJumbo() {
+        return vm.state === 'main' ? vm.showJumbo = true : vm.showJumbo = false;
+      }
 
       function getSideBar() {
 

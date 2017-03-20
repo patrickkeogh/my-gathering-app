@@ -1,47 +1,140 @@
-
-
 <div class="container-fluid container-main">
-    <div class="top-buffer"></div>
+  <div class="search-bar-main">
+      <div class="col-lg-2 visible-lg">
+      </div>
+      <div class="col-xs-12 col-sm-4 col-lg-3 no-padding">
+        <select id="countries" class="main-control"
+          ng-options="country.name for country in vm.countries track by country.code"
+          ng-model="vm.selected">
+        </select>
+      </div>
 
-    <div class="search-bar-main">
-      <form name="createGatheringForm" ng-submit="vm.createGathering()" novalidate>
-        <div>
-  
-        <!--   <pre>{{ vm.selected}}</pre> -->
+      <div class="col-xs-12 col-sm-4 col-lg-2 no-padding">
 
-          <select class="full-width form-control"
-                  ng-options="country.name for country in vm.countries track by country.code"
-                  ng-model="vm.selected">
-
-
-                                    
-
-    
-
+        <select id="distance" class="main-control"
+                ng-options="distance.name for distance in vm.distanceOptions track by distance.value"
+                ng-model="vm.selectedDistance"> 
+                </select> 
 
       </div>
-      <div>
-       <input type="text" id="Autocomplete" class="form-control" 
+
+      <div class="col-xs-12 col-sm-4 col-lg-3 no-padding">
+
+        <input type="text" id="Autocomplete" class="main-control" 
               name="location"
               ng-autocomplete
               details="vm.address_details" 
               ng-model="vm.address_text" 
               options="vm.options" 
-              placeholder="Select a location by address, city, or state ..."/>  
-
+              placeholder="Select a location by address, city, or state ..."/>
 
       </div>
-      <div>
-      <select class="full-width form-control"
-                  ng-options="distance.name for distance in vm.distanceOptions track by distance.value"
-                  ng-model="vm.selectedDistance">
-                </div>
-    </form>
+
+  </div>   
+
+</div>
+
+  <!-- <div class="topics-bar-main">
+    <div class="col-xs-6 col-sm-4 col-lg-1">
+      <img src="../images/sports2.jpg" class="img-responsive img-topics-bar">
     </div>
+    <div class="col-xs-6 col-sm-4 col-lg-1">
+      <img src="../images/sports2.jpg" class="img-responsive img-topics-bar">
+    </div>
+    <div class="col-xs-6 col-sm-4 col-lg-1">
+      <img src="../images/sports2.jpg" class="img-responsive img-topics-bar">
+    </div>
+    <div class="col-xs-6 col-sm-4 col-lg-1">
+      <img src="../images/sports2.jpg" class="img-responsive img-topics-bar">
+    </div>
+
+  </div>  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container-fluid container-main">
+
+
+
+
+
+
+  <div class="search-bar-main">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-xs-12 add-border">
+          <select id="countries" class="main-control"
+                  ng-options="country.name for country in vm.countries track by country.code"
+                  ng-model="vm.selected">
+
+          <input type="text" id="Autocomplete" class="main-control" 
+                name="location"
+                ng-autocomplete
+                details="vm.address_details" 
+                ng-model="vm.address_text" 
+                options="vm.options" 
+                placeholder="Select a location by address, city, or state ..."/>  
+
+          <select id="distance" class="main-control"
+                  ng-options="distance.name for distance in vm.distanceOptions track by distance.value"
+                  ng-model="vm.selectedDistance">  
+        </div>
+
+
+      </div> -->
+
+
+      
+    
+<!-- 
+                      
+
+
+             
+          
+
+          <select id="countries" class="main-control"
+                  ng-options="country.name for country in vm.countries track by country.code"
+                  ng-model="vm.selected"> -->
+                    
+
+
+
+<!-- 
+    </div>
+    
+  </div>
+
+
+</div>
+
+
+
+
+     -->
+    
+
+<!-- <div class="container-fluid container-main">
+
+    
     <div class="gathering-panel-main">
       
       
-    </div>
+    </div> -->
 
 
 
@@ -64,29 +157,4 @@
 
     
 
-
-</div>
-
-    <div class="row row-content top-buffer">
-
-      
-
-
-      <div class="col-xs-12 col-md-12">
-        <div class="row content-spacer">
-          <div class="col-xs-12 col-md-12">
-            <div class="message-box">Start a Gathering today! </div>
-            <div>City:{{vm.search_address.locality}}</div>
-            <div>Country:{{vm.search_address.country}}</div>
-            <div>Address Text:{{vm.address_text}}</div>
-          </div>
-        </div>
-        
-      </div>
-    </div>    
-  </div>
-
-
-
-  
-</div>
+ 
