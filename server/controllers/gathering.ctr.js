@@ -137,7 +137,6 @@ module.exports.createGathering = function(req, res) {
       throw err;
     } 
 
-    res.json(gathering);
     sendJSONresponse(res, HTTPStatus.OK, gathering);
   });
 

@@ -131,7 +131,7 @@
             latlng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
             //console.log('latlngs:' + latlng);
 
-            if(Constants.ENV) {
+            if(Constants.ENV === 'true') {
               var temp = test_coords[Math.floor((Math.random() * test_coords.length) + 1) - 1].coords;
               latlng = new google.maps.LatLng(temp.latitude, temp.longitude);
             }
