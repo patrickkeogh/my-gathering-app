@@ -1,58 +1,126 @@
 <div class="container-fluid container-main">
   <div class="search-bar-main">
-      <div class="col-lg-1 visible-lg">
-      </div>
-      
-      <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 no-padding">
-        <select id="countries" class="main-control"
-          ng-options="country.name for country in vm.countries track by country.code"
-          ng-model="vm.selected" ng-change="vm.updateCountry()">
-        </select>
-      </div>
+    <div class="col-lg-1 visible-lg">
+    </div>
+    
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 no-padding">
+      <select id="countries" class="main-control"
+        ng-options="country.name for country in vm.countries track by country.code"
+        ng-model="vm.selected" ng-change="vm.updateCountry()">
+      </select>
+    </div>
 
-      <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 no-padding">
+    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 no-padding">
 
-        <select id="distance" class="main-control"
-                ng-options="distance.name for distance in vm.distanceOptions track by distance.value"
-                ng-model="vm.selectedDistance"> 
-                </select> 
+      <select id="distance" class="main-control"
+              ng-options="distance.name for distance in vm.distanceOptions track by distance.value"
+              ng-model="vm.selectedDistance"  ng-change="vm.updateDistance()"> 
+              </select> 
 
-      </div>
+    </div>
 
-      <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding">
+    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding">
 
-        <input type="text" id="Autocomplete" class="main-control" 
-              name="location"
-              ng-autocomplete
-              details="vm.address_details" 
-              ng-model="vm.address_text" 
-              options="vm.options" 
-              placeholder="Select a location by address, city, or state ..."/>
+      <input type="text" id="Autocomplete" class="main-control" 
+            name="location"
+            ng-autocomplete
+            details="vm.address_details" 
+            ng-model="vm.address_text" 
+            options="vm.options" 
+            placeholder="Select a location by address, city, or state ..."/>
 
-      </div>
+    </div>
 
-  </div>   
+  </div> 
 
-  <div class="gathering-panel-main">
 
-    <div ng-repeat="rowContent in vm.gatherings">
 
-      <div class="row" ng-if="$even">
-        <div class="col-xs-12 col-lg-6">{{rowContent[$index].name}}
+    <!-- <custom-carousel action="vm.clicked()" data="vm.gatherings"></custom-carousel> -->
+
+   <!--  <div class="col-xs-12">
+<div class="carousel slide" id="myCarousel">
+  <div class="carousel-inner">
+
+    <div class="item active">
+      <div class="col-xs-3">
+        <div class="list-panel">Default
         </div>
-        <div class="col-xs-12 col-lg-6">{{rowContent[$index + 1].name}}
-        </div>
-          
       </div>
+    </div>
+
+    <div class="item" ng-repeat="rowContent in vm.gatherings">
+      <div class="col-xs-3">
+        <div class="list-panel">{{rowContent.name}}
+        </div>
+      </div>
+    </div>
+
+   
+
+    
+  </div>
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+</div>
+    
 
   </div>
 
+</div> -->
 
 
+
+
+
+
+
+  <div class="gathering-panel-main">
+    
+
+    <div class="col-xs-12">
+<h3>Gatherings in your area</h3>
+    </div>
+
+
+    <div class="col-xs-12 col-md-6 col-lg-4"  ng-repeat="rowContent in vm.gatherings">
+
+      <div class="list-panel">
+        <div class="list-panel-top">
+          <div class="panel-banner-wrapper">
+              <div class="panel-banner">
+                  <img class="no-resize img-responsive" ng-src="{{rowContent.banner.url}}">
+              </div>
+              <div class="panel-cost">FREE</div>                                    
+          </div>
+          
+          <div class="panel-details-wrapper">
+            <div class="panel-details-date">{{rowContent.gathering_start_date_time | date:'MMM d, y, h:mm a'}}</div>
+            <div class="panel-details-name"><strong>{{rowContent.name}}</strong></div>
+            <div class="panel-details-location">
+                <div class="details-location">{{rowContent.location.name}}</div>
+                <div class="details-location">{{rowContent.location.locality}}, {{rowContent.location.state_prov}}</div>
+                <div class="details-location">{{rowContent.location.country}}</div>
+            </div>
+          </div>
+          <div class="list-panel-bottom">
+            <div class="panel-bottom-status">{{rowContent.type[0]._id}} - {{rowContent.topic[0]._id}}</div>
+            <div class="panel-bottom-options pull-right">
+              <a class="bottom-options" href="#" 
+                      ui-sref="gathering-dashboard({id: rowContent._id})"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+
+              <a class="bottom-options" ng-click="showDetails = ! showDetails"><i class="fa fa-sort-desc" aria-hidden="true"></i></a>
+            </div>
+            
+          </div>
+       
+        </div>
+      </div>
+    </div>
+  </div>   
+      
 </div>
 
-<!-- <div class="col col-50">{{numbers[$index]}}</div>
-          <div class="col col-50">{{numbers[$index + 1]}}</div> -->
+
 
   <!-- <div class="topics-bar-main">
     <div class="col-xs-6 col-sm-4 col-lg-1">
@@ -121,6 +189,32 @@
       
     
 <!-- 
+
+  <div class="col-xs-12">
+<div class="carousel slide" id="myCarousel">
+  <div class="carousel-inner">
+
+    <div class="item active">
+      <div class="col-xs-3">
+        <div class="list-panel">Default
+        </div>
+      </div>
+    </div>
+
+    <div class="item" ng-repeat="rowContent in vm.gatherings">
+      <div class="col-xs-3">
+        <div class="list-panel">{{rowContent.name}}
+        </div>
+      </div>
+    </div>
+
+   
+
+    
+  </div>
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
+</div>
                       
 
 
@@ -177,50 +271,4 @@
 
     
 
- <div class="col-xs-12 col-lg-4">
-
-      <div class="list-panel" ng-repeat="rowContent in vm.gatherings">
-                            <div class="list-panel-top">
-                                <div class="panel-banner-wrapper">
-                                    <div class="panel-banner">
-                                        <img class="no-resize" src="http://lorempixel.com/200/100/?random=123">
-                                    </div>
-                                    <div class="panel-cost">FREE</div>                                    
-                                </div>
-                                
-                                <div class="panel-details-wrapper">
-
-                                    <div class="panel-details-date">{{rowContent.gathering_start_date_time | date:'MMM d, y, h:mm a'}}
-
-                                    </div>
-
-                                    <div class="panel-details-name"><strong>{{rowContent.name}}</strong></div>
-
-                                    <div class="panel-details-location">
-                                        <div class="details-location">{{rowContent.location.name}}</div>
-                                        <div class="details-location">{{rowContent.location.locality}}, {{rowContent.location.state_prov}}</div>
-                                        <div class="details-location">{{rowContent.location.country}}</div>
-                                    </div>
-                                    <div class="panel-details-bottom">
-
-                                    </div>
-
-                               
-                                    
-                                </div>
-                            </div>
-                            <div class="list-panel-bottom">
-                                <div class="panel-bottom-status">{{rowContent.type[0]._id}} - {{rowContent.topic[0]._id}}</div>
-                                <div class="panel-bottom-options pull-right">
-                                    <a class="bottom-options" href="#" 
-                                            ui-sref="gathering-dashboard({id: rowContent._id})"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
-
-                                    <a class="bottom-options" ng-click="showDetails = ! showDetails"><i class="fa fa-sort-desc" aria-hidden="true"></i></a>
-                                </div>
-                            </div>
-                            <div class="list-panel-footer" ng-class="{ 'hidden': ! showDetails }">
-                                <div class="panel-footer" style="white-space:pre-wrap;" >{{rowContent.description}}</div>
-                            </div>
-                        </div>
-        
-    </div>
+ 

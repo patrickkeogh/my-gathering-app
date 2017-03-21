@@ -151,7 +151,63 @@
         return defer.promise;
       };
 
-      this.getLocation = function () {
+      this.getLocation = function (lat, lng) {
+
+        var defer = $q.defer();
+
+        coords = new google.maps.LatLng(lat, lng);
+
+        console.log('LatLng:' + coords);
+
+        if (_.has(locations, coords)) {
+          console.log('Location found in storage');
+          defer.resolve(locations[coords]);
+        } else {
+          console.log('Location Not found in storage');
+          console.log('Get location info from server');
+
+          var geocoder = new google.maps.Geocoder();
+
+          geocoder.geocode({ 'latLng': coords }, function (results, status) {
+
+            console.log('Status:' + status);
+            console.log('Result in Sevice:' + JSON.stringify(results[1]));
+
+            if (status === google.maps.GeocoderStatus.OK) {
+
+              var parsedAddress = parseLocation(results[1]);         
+
+              locations[coords] = parsedAddress;
+
+              saveLocations(JSON.stringify(locations));  
+
+              defer.resolve(parsedAddress);
+
+            } else {
+
+              suc = false;
+              defer.reject({
+                type: status,
+                message: 'Zero results for geocoding your cooords'
+              });
+
+            }                 
+
+          }, function(error){
+            console.log('Error with geocoder:' + JSON.stringify(error));
+              suc = false;
+              defer.reject(suc);
+          },{
+              timeout: 12000
+          });
+        } //locations = coords
+
+        return defer.promise;
+
+
+      };
+
+      this.getCurrentLocation = function () {
 
         var defer = $q.defer();
 
@@ -201,9 +257,6 @@
               },{
                   timeout: 12000
               });
-
-
-
             } //locations = coords
 
           }else{

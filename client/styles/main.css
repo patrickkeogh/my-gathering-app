@@ -15,11 +15,15 @@ body {
     width: 100%;
     color: white;
     text-shadow: black 0.3em 0.3em 0.3em;
-/*    background: transparent;*/
+    background-image: url(../images/waterfall2.jpg);
     background-color: #454545;
     margin-top: 50px;
     padding: 0px !important;
     z-index: 200;
+
+    min-height: 350px;
+    background-size: cover;
+    background-position: center center;
 
 /*  background-image: url(https://www.publicdomainpictures.net/pictures/60000/velka/road-13813455026q6.jpg);
   background-repeat: no-repeat;
@@ -382,7 +386,6 @@ a[ng-click]  { cursor:pointer; }
 }
 
 .sub-header {
-  color: #000000;
   letter-spacing: 2px;
   font-size: 18px;
   margin-top: 10px;
@@ -898,15 +901,13 @@ table.table-no-margin {
   padding-left: 10px;
 }
 
-.carousel {
-
-/*  background-color: #454545;
-  margin-top: 50px;
-  height: 350px;*/
-}
 
 
-.slide1, .slide2, .slide3 {
+
+
+
+
+/*.slide1, .slide2, .slide3 {
     min-height: 350px;
     background-size: cover;
     background-position: center center;
@@ -920,7 +921,6 @@ table.table-no-margin {
 .slide3 {
     background-image: url(../images/waterfall2.jpg);
 }
-/* Carousel Fade Effect */
 .carousel.carousel-fade .item {
     -webkit-transition: opacity 1s linear;
     -moz-transition: opacity 1s linear;
@@ -957,6 +957,8 @@ table.table-no-margin {
     margin: 0 auto;
     width: 80%;
 }
+*/
+
 
 
 

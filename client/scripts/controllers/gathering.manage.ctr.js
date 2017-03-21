@@ -33,7 +33,7 @@
       		console.log('Save Banner called');
 			gatheringAPI.saveBanner(vm.id, vm.uploadedPicture)
 			.then(function(data) {
-	        	console.log('DataReturned' + JSON.stringify(data.data));
+	        	//console.log('DataReturned' + JSON.stringify(data.data));
 	        	vm.gathering.banner = vm.uploadedPicture;
 	        	vm.uploadedPicture = null;
 	      	})

@@ -15,6 +15,9 @@
 
       	vm.selected_address = '';
 
+      	vm.myInterval = 5000;
+  		vm.noWrapSlides = false;
+
 
 
       	vm.selected = {
@@ -81,7 +84,7 @@
 
         	console.log("init called in Main Controller");
 
-     		geocode.getLocation().then(function(result){
+     		geocode.getCurrentLocation().then(function(result){
      			//console.log("We have a result:");
      			vm.search_address = result;
 
@@ -133,16 +136,47 @@
 		});
 
 		function getGatherings(query) {
+			console.log("Query Used:" + JSON.stringify(query));
 	        gatheringAPI.getGatherings(1, 10, query)
 	        .then(function(data) {
 	          console.log(data);
 
 	          vm.gatherings = data.data;
-	        })
+
+		    })
 	        .catch(function(err) {
 	          console.log('failed to get gathering types ' + err);
 	        });
 	    }
+
+	    vm.clicked = function() {
+	    	console.log("clicked called from inside directive");
+
+	    };
+
+	    vm.updateDistance = function () {
+
+	    	console.log('Distance changed');
+
+      		var query = {};
+
+ 			console.log('new distance:' + vm.selectedDistance.value);
+
+ 			// create a query object
+ 			query['location.location'] = {
+	          	$near: {
+	            	$geometry: { type: "Point",  coordinates: vm.search_address.location.coordinates },
+	            	$minDistance: 0.01,
+	            	$maxDistance: vm.selectedDistance.value
+
+	          	}
+    		};
+
+     		getGatherings(query);
+
+
+
+	    };
 
 	    vm.updateCountry = function() {
 	    	console.log('Country changed');
@@ -156,27 +190,49 @@
 
       		vm.address_text = '';
 
-
+      		vm.gatherings = '';
 		};
 
 
-	    $scope.$watch('vm.selected', function(newValue, oldValue) {
+		$scope.$watch('vm.address_details', function(newValue, oldValue) {
 
-	    	console.log('Country changed');
-		  if (newValue !== oldValue) {
-		    vm.options = {};
+	      	if (newValue !== oldValue) {
 
-      		vm.options.country = vm.selected.code;
+	        	console.log("Address Changed:" + JSON.stringify(vm.address_details.geometry.location));
 
-      		console.log('Country changed');
-		  }
-		}. true);
+	        	geocode.getLocation(vm.address_details.geometry.location.lat(), vm.address_details.geometry.location.lng())
+	        	.then(function(result) {
 
-		$scope.$watch('vm.address_text', function(newValue, oldValue) {
-		  if (newValue !== oldValue) {
+					console.log("We have a result:");
+					vm.search_address = result;
 
-		  }
-		}. true);
+					console.log('Result:' + JSON.stringify(result));
+
+					// use the location data to get gatherings in the area
+
+
+
+					var query = {};
+
+					
+
+					// create a query object
+					query['location.location'] = {
+			      	$near: {
+			        	$geometry: { type: "Point",  coordinates: vm.search_address.location.coordinates },
+			        	$minDistance: 0.01,
+			        	$maxDistance: vm.distance
+
+			      	}
+				};
+
+					getGatherings(query);
+
+			    });
+
+
+	      }
+	    }, true);
 
 		// $scope.$watch('vm.selected_address', function(newValue, oldValue) {
 		//   if (newValue !== oldValue) {
@@ -185,7 +241,6 @@
   //     		vm.options.country = vm.selected.code;
 		//   }
 		// }. true);
-
 
 
 
