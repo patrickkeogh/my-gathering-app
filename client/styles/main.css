@@ -257,11 +257,6 @@ a[ng-click]  { cursor:pointer; }
 }
 
 
-.panel-banner {
-  width: 100%;
-  height: 100%;
-
-}
 
 .img-border {
   border: 2px solid #767676;
@@ -760,6 +755,14 @@ table.table-no-margin {
   box-shadow: 5px 5px 5px #aaaaaa;
 }
 
+.list-panel-mobile {
+  border: 1px solid #000000;
+  margin-bottom: 10px;
+  box-shadow: 5px 5px 5px #aaaaaa;
+  width: 100%;
+  min-height: 200px;
+}
+
 .list-panel-top {
   min-height: 130px;
 }
@@ -767,7 +770,7 @@ table.table-no-margin {
 .list-panel-bottom {
   height: 30px;
   width: 100%;
-  /*background-color: #987654;*/
+  background-color: #987654;*/
 }
 
 .panel-bottom-status {
@@ -837,15 +840,37 @@ table.table-no-margin {
   float: left;
 }
 
+.panel-banner-wrapper-mobile {
+  width: 100%;
+  background-color: #673AB7;
+}
+
 .panel-banner {
   height: 100px;
   width: 200px;
   background-color: #123456;
 
 }
+
+.panel-banner-mobile {
+  width: 100%;
+  height: 100%;
+
+}
+
 .panel-cost {
   height: 30px;
   width: 200px;
+  background-color: #D1C4E9;
+  padding-left: 10px;
+  vertical-align: middle;
+  line-height: 30px;
+
+}
+
+.panel-cost-mobile {
+  height: 30px;
+  width: 100%;
   background-color: #D1C4E9;
   padding-left: 10px;
   vertical-align: middle;
@@ -858,6 +883,12 @@ table.table-no-margin {
   overflow: hidden;
   min-height: 130px;
   border-left: 1px solid #000000;
+}
+
+.panel-details-wrapper-mobile {
+  overflow: hidden;
+  width: 100%;
+
 }
 
 

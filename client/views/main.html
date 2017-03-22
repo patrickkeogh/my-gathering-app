@@ -78,11 +78,45 @@
     
 
     <div class="col-xs-12">
-<h3>Gatherings in your area</h3>
+      <h3>Gatherings in your area</h3>
+    </div>
+
+    <div class="col-xs-12 visible-xs"  ng-repeat="row in vm.gatherings">
+      <div class="list-panel-mobile">
+        <div class="panel-banner-wrapper-mobile">
+          <div class="panel-banner-mobile">
+            <img class="img-mobile img-responsive" ng-src="{{row.banner.url}}">                  
+          </div>
+          <div class="panel-cost-mobile">FREE</div>                                    
+        </div>
+        <div class="panel-details-wrapper-mobile">
+          <div class="panel-details-date">{{row.gathering_start_date_time | date:'MMM d, y, h:mm a'}}</div>
+          <div class="panel-details-name"><strong>{{row.name}}</strong></div>
+          <div class="panel-details-location">
+            <div class="details-location">{{row.location.name}}</div>
+            <div class="details-location">{{row.location.locality}}, {{rowContent.location.state_prov}}</div>
+            <div class="details-location">{{row.location.country}}</div>
+          </div>
+        </div>
+        <div class="list-panel-bottom">
+          <div class="panel-bottom-status">{{row.type[0]._id}} - {{row.topic[0]._id}}</div>
+          <div class="panel-bottom-options pull-right">
+              <a class="bottom-options" href="#" 
+                      ui-sref="gathering-dashboard({id: row._id})"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+
+              <a class="bottom-options" ng-click="showDetails = ! showDetails"><i class="fa fa-sort-desc" aria-hidden="true"></i></a>
+            </div>
+
+
+        </div>
+        <div class="list-panel-footer" ng-class="{ 'hidden': ! showDetails }">
+              <div class="panel-footer" style="white-space:pre-wrap;" >{{row.description}}</div>
+          </div>
+      </div>
     </div>
 
 
-    <div class="col-xs-12 col-md-6 col-lg-4"  ng-repeat="rowContent in vm.gatherings">
+    <div class="col-md-6 col-lg-4 hidden-xs"  ng-repeat="rowContent in vm.gatherings">
 
       <div class="list-panel">
         <div class="list-panel-top">
@@ -111,6 +145,9 @@
               <a class="bottom-options" ng-click="showDetails = ! showDetails"><i class="fa fa-sort-desc" aria-hidden="true"></i></a>
             </div>
             
+          </div>
+          <div class="list-panel-footer" ng-class="{ 'hidden': ! showDetails }">
+              <div class="panel-footer" style="white-space:pre-wrap;" >{{rowContent.description}}</div>
           </div>
        
         </div>
