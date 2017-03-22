@@ -9,6 +9,7 @@ body {
   background-color: #e8e8e8;
 }
 
+
 .jumbotron {
     margin-bottom: 0px;
     height: 350px;
@@ -20,6 +21,7 @@ body {
     margin-top: 50px;
     padding: 0px !important;
     z-index: 200;
+    border-radius: 0px !important;
 
     min-height: 350px;
     background-size: cover;
@@ -932,13 +934,7 @@ table.table-no-margin {
   padding-left: 10px;
 }
 
-
-
-
-
-
-
-/*.slide1, .slide2, .slide3 {
+.slide1, .slide2, .slide3 {
     min-height: 350px;
     background-size: cover;
     background-position: center center;
@@ -988,7 +984,7 @@ table.table-no-margin {
     margin: 0 auto;
     width: 80%;
 }
-*/
+
 
 
 

@@ -64,7 +64,7 @@
 	    	},
 	    	{
 	    		name: 'Within 10 km of',
-	    		value: 1000
+	    		value: 10000
 	    	},
 	    	{
 	    		name: 'Within 25 km of',
