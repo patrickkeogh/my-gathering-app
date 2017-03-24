@@ -1037,14 +1037,6 @@ a {
     }
 
 
-/* Container */
-.container {
-    background: #FFFFFF;
-    margin: 40px auto;
-    padding: 20px 40px 50px;
-    max-width: 960px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-}
 
 
 
@@ -1080,23 +1072,23 @@ ul.thumbnails {
 ------------------------------------------------ */
 .control-box {
   width: 100%;
-  height: 100px;
+  height: 100%;
 }
 
-    .carousel-control{
+      .carousel-control{
         background: #000000 !important;
         border: 0px;
         border-radius: 0px;
         display: inline-block;
-        font-size: 34px;
+        font-size: 100px;
         font-weight: 200;
-        line-height: 18px;
+        line-height: 50px;
         opacity: 0.5;
         padding: 4px 10px;
-        margin: 30px -20px 0;
+        margin: 50px 50px 0;
         height: 30px;
         width: 30px;
-        }
+      }
 
 
 
