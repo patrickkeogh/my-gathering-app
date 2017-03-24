@@ -82,6 +82,9 @@
 	.container-fluid {
 		padding: 0px !important;
 	}
+	.my-brand {
+	  	padding-left: 15px !important;
+	}
 }
 
 
@@ -90,7 +93,7 @@
 @media only screen and (min-width : 320px) {
 
 	.my-brand {
-	  	padding-left: 30px !important;
+	  	padding-left: 15px !important;
 	}
 
 
@@ -158,9 +161,9 @@
 
 	.my-brand {
 
-  padding-left: 30px !important;
+	  padding-left: 15px !important;
 
-}
+	}
 
 }
 

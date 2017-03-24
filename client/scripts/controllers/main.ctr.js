@@ -11,14 +11,12 @@
 
       	vm.gatherings = [];
 
+      	vm.carouselChunks = [];
+
       	vm.distance = 10000;
+      	vm.itemsPerChunk = 1;
 
       	vm.selected_address = '';
-
-      	vm.myInterval = 5000;
-  		vm.noWrapSlides = false;
-
-
 
       	vm.selected = {
       		code: ''
@@ -135,13 +133,30 @@
 
 		});
 
+		function getNewChunks() {
+
+			var tempArray = [];
+	          
+			for (var i = 0, j = vm.gatherings.length; i < j; i += vm.itemsPerChunk) {
+		    	tempArray = vm.gatherings.slice(i, i + vm.itemsPerChunk);	
+
+		    	vm.carouselChunks.push(tempArray);
+			}
+
+			console.log('Chuinks in Array:' + vm.carouselChunks.length);
+
+		}
+
 		function getGatherings(query) {
 			console.log("Query Used:" + JSON.stringify(query));
 	        gatheringAPI.getGatherings(1, 10, query)
 	        .then(function(data) {
-	          console.log(data);
+	          	console.log(data);
 
-	          vm.gatherings = data.data;
+	          	vm.gatherings = data.data;
+
+	          	getNewChunks();
+	         	
 
 		    })
 	        .catch(function(err) {
@@ -172,6 +187,9 @@
 	          	}
     		};
 
+    		vm.gatherings = [];
+      		vm.carouselChunks = [];
+
      		getGatherings(query);
 
 
@@ -190,8 +208,48 @@
 
       		vm.address_text = '';
 
-      		vm.gatherings = '';
+      		vm.gatherings = [];
+      		vm.carouselChunks = [];
 		};
+
+		$scope.$on('windowResize', function(event, currentBreakpoint, previousBreakpoint) {
+
+          	//console.log(currentBreakpoint, previousBreakpoint);
+
+          	var tmpItemsPerChunk = 1;
+
+          	switch(currentBreakpoint) {
+          		case 'extra small':
+          			tmpItemsPerChunk = 1;
+          			break;
+          		case 'small':
+          			tmpItemsPerChunk = 2;
+          			break;
+      			case 'medium':
+	      			tmpItemsPerChunk = 3;
+	      			break;
+      			case 'large':
+	      			tmpItemsPerChunk = 3;
+	      			break;
+	      		default:
+          			tmpItemsPerChunk = 3;
+          			break;
+
+          	}
+
+          	if(tmpItemsPerChunk !== vm.itemsPerChunk) {
+
+          		console.log('change items per chunk too:' + tmpItemsPerChunk);
+          		vm.itemsPerChunk = tmpItemsPerChunk;
+          		vm.carouselChunks = [];
+
+          		getNewChunks();
+          		$scope.$apply();
+          	}
+
+
+
+      	});
 
 
 		$scope.$watch('vm.address_details', function(newValue, oldValue) {
@@ -226,6 +284,9 @@
 			      	}
 				};
 
+					vm.gatherings = [];
+	      			vm.carouselChunks = [];
+
 					getGatherings(query);
 
 			    });
@@ -242,7 +303,9 @@
 		//   }
 		// }. true);
 
+	
 
+	
 
   
       	

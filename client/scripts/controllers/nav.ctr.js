@@ -31,6 +31,12 @@
 
       getJumbo();
 
+      vm.closeAlert = function(index) {
+
+        console.log('Close alert');
+    
+  };
+
       
       //console.log('location:' + $location.path());
       console.log('state:' + vm.state);
