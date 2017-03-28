@@ -30,7 +30,7 @@
 
 	
 </head>
-<body breakpoint-watcher>
+<body onload="$('#myCarousel').carousel()">
 
 
 
@@ -42,7 +42,7 @@
 
 
     <div ui-view="header"></div>
-    <div ui-view="content"></div>
+    <div ui-view="content" breakpoint-watcher onload="$('#myCarousel').carousel()"></div>
     <div ui-view="footer"></div>
 
     </div>

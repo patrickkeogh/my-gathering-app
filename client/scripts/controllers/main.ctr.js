@@ -12,6 +12,7 @@
       	vm.gatherings = [];
 
       	vm.carouselChunks = [];
+      	vm.showCarousel = false;
 
       	vm.distance = 10000;
       	vm.itemsPerChunk = 1;
@@ -25,7 +26,7 @@
       	vm.details = '';
       	vm.address_text = '';
 
-      	vm.countries = localData.getCountries();    	
+      	//vm.countries = localData.getCountries();    	
 
       	function findWithAttr(array, attr, value) {
 		    for(var i = 0; i < array.length; i += 1) {
@@ -83,12 +84,12 @@
         	console.log("init called in Main Controller");
 
      		geocode.getCurrentLocation().then(function(result){
-     			//console.log("We have a result:");
+     			console.log("We have a result:" + JSON.stringify(result));
      			vm.search_address = result;
 
-     			var id = findWithAttr(vm.countries, 'code', vm.search_address.country_short); // returns 0
+     			// var id = findWithAttr(vm.countries, 'code', vm.search_address.country_short); // returns 0
 
-		      	vm.selected = vm.countries[id];
+		      // 	vm.selected = vm.countries[id];
 
 		      	vm.selectedDistance = vm.distanceOptions[1];
 
@@ -105,17 +106,19 @@
 		      		vm.address_text += vm.search_address.state_prov;
 		      	}
 
-		      	console.log('text:' + vm.address_text);
+		      	//console.log('text:' + vm.address_text);
 
-		      	vm.options = {};
+		      	// vm.options = {};
 
-		      	vm.options.country = vm.selected.code;
+		      	// vm.options.country = vm.selected.code;
 
      			// use the location data to get gatherings in the area
 
      			var query = {};
 
-     			console.log('distance:' + vm.selectedDistance.value);
+     			//var queryCoords = [vm.search_address.location.coordinates[1], vm.search_address.location.coordinates[0]];
+
+     			//console.log('distance:' + vm.selectedDistance.value);
 
      			// create a query object
      			query['location.location'] = {
@@ -136,11 +139,14 @@
 		function getNewChunks() {
 
 			var tempArray = [];
+
+			vm.showCarousel = false;
 	          
 			for (var i = 0, j = vm.gatherings.length; i < j; i += vm.itemsPerChunk) {
 		    	tempArray = vm.gatherings.slice(i, i + vm.itemsPerChunk);	
 
 		    	vm.carouselChunks.push(tempArray);
+		    	vm.showCarousel = true;
 			}
 
 			console.log('Chuinks in Array:' + vm.carouselChunks.length);
@@ -148,7 +154,7 @@
 		}
 
 		function getGatherings(query) {
-			console.log("Query Used:" + JSON.stringify(query));
+			//console.log("Query Used:" + JSON.stringify(query));
 	        gatheringAPI.getGatherings(1, 10, query)
 	        .then(function(data) {
 	          	console.log(data);
@@ -196,25 +202,26 @@
 
 	    };
 
-	    vm.updateCountry = function() {
-	    	console.log('Country changed');
-		    //console.log($scope.item.code, $scope.item.name)
+	 //    vm.updateCountry = function() {
+	 //    	console.log('Country changed');
+		//     //console.log($scope.item.code, $scope.item.name)
 
-		    vm.options = {};
+		//     vm.options = {};
 
-      		vm.options.country = vm.selected.code;
+  //     		vm.options.country = vm.selected.code;
 
-      		console.log('Country changed to:' + vm.selected.code);
+  //     		console.log('Country changed to:' + vm.selected.code);
 
-      		vm.address_text = '';
+  //     		vm.address_text = '';
 
-      		vm.gatherings = [];
-      		vm.carouselChunks = [];
-		};
+  //     		vm.gatherings = [];
+  //     		vm.carouselChunks = [];
+  //     		vm.showCarousel = false;
+		// };
 
 		$scope.$on('windowResize', function(event, currentBreakpoint, previousBreakpoint) {
 
-          	//console.log(currentBreakpoint, previousBreakpoint);
+          	console.log(currentBreakpoint, previousBreakpoint);
 
           	var tmpItemsPerChunk = 1;
 
@@ -252,6 +259,8 @@
       	});
 
 
+
+
 		$scope.$watch('vm.address_details', function(newValue, oldValue) {
 
 	      	if (newValue !== oldValue) {
@@ -264,11 +273,8 @@
 					console.log("We have a result:");
 					vm.search_address = result;
 
+
 					console.log('Result:' + JSON.stringify(result));
-
-					// use the location data to get gatherings in the area
-
-
 
 					var query = {};
 

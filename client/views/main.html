@@ -1,23 +1,10 @@
-<script type="text/javascript">
-  // Carousel Auto-Cycle
-    $(document).ready(function() {
-      $('.carousel').carousel({
-        interval: 6000
-      })
-    });
-  </script>
+
 
 <div class="container-fluid container-main">
   <div class="search-bar-main">
     <div class="col-lg-1 visible-lg">
     </div>
     
-    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 no-padding">
-      <select id="countries" class="main-control"
-        ng-options="country.name for country in vm.countries track by country.code"
-        ng-model="vm.selected" ng-change="vm.updateCountry()">
-      </select>
-    </div>
 
     <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 no-padding">
 
@@ -84,9 +71,11 @@
 
 
   <div class="gathering-panel-main">
+
+    <div ng-show="!vm.showCarousel"><h1>Select a city</h1></div>
     
 
-    <div id="myCarousel" class="row carousel slide" data-ride="carousel">
+    <div id="myCarousel" ng-showhide="vm.showCarousel" class="row carousel slide" data-ride="false">
 
       <!-- Wrapper for slides -->
       <div class="carousel-inner">

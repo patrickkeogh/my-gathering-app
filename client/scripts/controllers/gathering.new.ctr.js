@@ -47,7 +47,7 @@
     		vm.gatheringAddress = {
 		      	location: {
 		        	"type": "Point",
-		        	"coordinates": [-79.3790818,43.64352050000001]
+		        	"coordinates": [-79.3790818, 43.64352050000001] //long, lat for mongo
 		      	},
 		      	country: '',
             country_short: '',

@@ -33,7 +33,7 @@ function breakpointWatcher($window, $rootScope, $timeout) {
 
                 // Broadcast inital value, so other directives can get themselves setup
                 $timeout(function() {
-                    console.log('Broadcast inital value, so other directives can get themselves setup');
+                    //console.log('Broadcast inital value, so other directives can get themselves setup');
                     $rootScope.$broadcast('windowResize', currentBreakpoint, previousBreakpoint);
                 }); 
 

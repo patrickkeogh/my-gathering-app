@@ -11,7 +11,7 @@
       // Get locations stored  in local storage to reduce trips to the server
       var locations = $window.localStorage[Constants.LOCATION_ID] ? JSON.parse($window.localStorage[Constants.LOCATION_ID]) : {};
 
-      var default_lat = 43.761539;
+      var default_lat = 53.761539;
       var default_lng = -79.411079;
 
       var address = {};
@@ -69,7 +69,7 @@
       
 
       var saveLocations = function (locations) {
-        console.log('Save location called');
+        console.log('Save location called:' + JSON.stringify(locations));
         $window.localStorage[Constants.LOCATION_ID] = locations;
       };
 
@@ -79,7 +79,7 @@
 
         var location_obj = address;
 
-        location_obj.location.coordinates = [location.geometry.location.lng(), location.geometry.location.lat()];
+        location_obj.location.coordinates = [location.geometry.location.lat(), location.geometry.location.lng()];
         location_obj.formatted_address = location.formatted_address;
 
         var components = location.address_components;
@@ -137,7 +137,7 @@
             }
             defer.resolve(latlng);
           }, function(error) {
-            //console.log('The navigator is turned off, create latlng from default coords');
+            console.log('The navigator is turned off, create latlng from default coords');
             latlng = new google.maps.LatLng(default_lat, default_lng);
             defer.resolve(latlng);
           });
@@ -177,7 +177,7 @@
 
               var parsedAddress = parseLocation(results[1]);         
 
-              locations[coords] = parsedAddress;
+              locations[parsedAddress.location.coordinates] = parsedAddress;
 
               saveLocations(JSON.stringify(locations));  
 
