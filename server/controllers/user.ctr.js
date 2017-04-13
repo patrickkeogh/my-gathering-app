@@ -27,6 +27,7 @@ module.exports.register = function(req, res) {
       return res.status(HTTPStatus.BAD_REQUEST).json({success: false, status: 'The supplied email address has already be used to register!'});
 
     }else{
+      console.log("Register a new user:");
 
       User.register(new User({ username : req.body.username }),
         req.body.password, function(err, user) {
