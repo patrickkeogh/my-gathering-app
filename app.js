@@ -14,9 +14,9 @@ var authenticate = require('./server/config/authenticate');
 //var flash    = require('connect-flash');
 
 //var routes = require('./routes/index');
-var users = require('./server/routes/route-users');
-var admin = require('./server/routes/route-admin');
-var gatherings = require('./server/routes/route-gatherings');
+//var users = require('./server/routes/route-users');
+//var admin = require('./server/routes/route-admin');
+//var gatherings = require('./server/routes/route-gatherings');
 
 // Bring in the routes for the API (delete the default routes)
 var routesApi = require('./server/routes/index');

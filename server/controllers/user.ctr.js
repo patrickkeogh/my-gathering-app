@@ -51,7 +51,7 @@ module.exports.register = function(req, res) {
           user.save(function(err,user) {
             passport.authenticate('local')(req, res, function () {
 
-            return res.status(200).json({status: 'Registration Successful!'});
+            return res.status(200).json({success: true, status: 'Registration Successfull!'});
                         
           });
         });
