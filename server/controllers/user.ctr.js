@@ -22,7 +22,7 @@ module.exports.register = function(req, res) {
 
     if(user) {
       console.log("we have a user with this username");
-      return res.status(HTTPStatus.BAD_REQUEST).json({err: 'The supplied email address has already be used to register!'});
+      return res.status(HTTPStatus.BAD_REQUEST).json({success: false, status: 'The supplied email address has already be used to register!'});
 
     }else{
 
@@ -51,7 +51,7 @@ module.exports.register = function(req, res) {
           user.save(function(err,user) {
             passport.authenticate('local')(req, res, function () {
 
-            return res.status(200).json({success: true, status: 'Registration Successfull!'});
+            return res.status(HTTPStatus.OK).json({success: true, status: 'Registration Successfull!'});
                         
           });
         });
@@ -76,8 +76,9 @@ module.exports.login = function(req, res, next) {
     }
     req.logIn(user, function(err) {
       if (err) {
-        return res.status(500).json({
-          err: 'Could not log in user'
+        return res.status(HTTPStatus.INTERNAL_SERVER_ERROR).json({
+          status: 'Could not log in user',
+          success: true
         });
       }
         
@@ -85,7 +86,7 @@ module.exports.login = function(req, res, next) {
 
       console.log("UserInfo from loggedin User:" + user);
       
-      res.status(200).json({
+      res.status(HTTPStatus.OK).json({
         status: 'Login successful!',
         success: true,
         token: token,
@@ -99,7 +100,7 @@ module.exports.login = function(req, res, next) {
 
 module.exports.logout = function(req, res) {
   req.logout();
-  res.status(200).json({
+  res.status(HTTPStatus.OK).json({
     status: 'Bye!'
   });
 };
