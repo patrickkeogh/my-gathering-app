@@ -79,7 +79,7 @@
 
         var location_obj = address;
 
-        location_obj.location.coordinates = [location.geometry.location.lat(), location.geometry.location.lng()];
+        location_obj.location.coordinates = [location.geometry.location.lng(), location.geometry.location.lat()];
         location_obj.formatted_address = location.formatted_address;
 
         var components = location.address_components;
@@ -153,6 +153,8 @@
 
       this.getLocation = function (lat, lng) {
 
+        console.log('GetLocation call in Service');
+
         var defer = $q.defer();
 
         coords = new google.maps.LatLng(lat, lng);
@@ -177,9 +179,9 @@
 
               var parsedAddress = parseLocation(results[1]);         
 
-              locations[parsedAddress.location.coordinates] = parsedAddress;
+              //locations[coords] = parsedAddress;
 
-              saveLocations(JSON.stringify(locations));  
+              //saveLocations(JSON.stringify(locations));  
 
               defer.resolve(parsedAddress);
 
@@ -234,9 +236,9 @@
 
                   var parsedAddress = parseLocation(results[1]);         
 
-                  locations[coords] = parsedAddress;
+                  //locations[coords] = parsedAddress;
 
-                  saveLocations(JSON.stringify(locations));  
+                  //saveLocations(JSON.stringify(locations));  
 
                   defer.resolve(parsedAddress);
 

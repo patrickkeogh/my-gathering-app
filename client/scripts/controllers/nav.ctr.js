@@ -15,6 +15,7 @@
     NavigationController.$inject = ['$state', '$stateParams', '$location', 'Authentication'];
        
     function NavigationController($state, $stateParams, $location, Authentication) {
+      
       var vm = this;
 
       vm.isLoggedIn = Authentication.isLoggedIn();
