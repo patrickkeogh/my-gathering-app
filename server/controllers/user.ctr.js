@@ -14,9 +14,11 @@ var validationError = function(res, err) {
 
 module.exports.register = function(req, res) {
 
+  console.log("REGISTER HAS BEEN CALLED:" + req.body.username);
+
   User.findOne({username: req.body.username}, function (err, user) {
 
-    console.log("REGISTER HAS BEEN CALLED");
+    console.log("findOne HAS BEEN CALLED:");
 
     if (err) return validationError(res, err);
 
