@@ -959,7 +959,7 @@ table.table-no-margin {
   padding-left: 10px;
 }
 
-/*.slide1, .slide2, .slide3 {
+.slide1, .slide2, .slide3 {
     min-height: 350px;
     background-size: cover;
     background-position: center center;
@@ -1008,7 +1008,7 @@ table.table-no-margin {
     margin-top: 175px;
     margin: 0 auto;
     width: 80%;
-}*/
+}
 
 
 

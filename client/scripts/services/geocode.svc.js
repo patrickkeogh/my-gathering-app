@@ -11,12 +11,12 @@
       // Get locations stored  in local storage to reduce trips to the server
       var locations = $window.localStorage[Constants.LOCATION_ID] ? JSON.parse($window.localStorage[Constants.LOCATION_ID]) : {};
 
-      var default_lat = 53.761539;
+      var default_lat = 43.761539;
       var default_lng = -79.411079;
 
       var address = {};
 
-      address = {
+      var address = {
           location: {
             "type": "Point",
             "coordinates": []

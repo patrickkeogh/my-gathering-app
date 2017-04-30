@@ -109,7 +109,7 @@
         }
 
         vm.createGathering = function() {
-			console.log("createGathering called");
+			   console.log("createGathering called");
 
 	     	vm.newGathering.gathering_start_date_time = vm.start_date;
 	       	vm.newGathering.gathering_end_date_time = vm.end_date;

@@ -3,6 +3,14 @@ var User = require('../models/users');
 var Verify = require('../config/verify');
 var HTTPStatus = require('http-status');
 
+var path = require('path');
+var templatesDir = path.resolve(__dirname, '..', 'views/templates');
+
+var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
+
+
+
 var sendJSONresponse = function(res, status, content) {
   res.status(status);
   res.json(content);
@@ -33,30 +41,57 @@ module.exports.register = function(req, res) {
         req.body.password, function(err, user) {
 
 
-          if (err) return validationError(res, err);
+        if (err) return validationError(res, err);
 
-          if(req.body.name) {
-              user.name = req.body.name;
-          }
-          
-          if(req.body.firstname) {
-              user.firstname = req.body.firstname;
-          }
+        if(req.body.name) {
+            user.name = req.body.name;
+        }
+        
+        if(req.body.firstname) {
+            user.firstname = req.body.firstname;
+        }
 
-          if(req.body.lastname) {
-              user.lastname = req.body.lastname;
-          }
+        if(req.body.lastname) {
+            user.lastname = req.body.lastname;
+        }
 
-          if(req.body.admin) {
-            user.admin = req.body.admin;
-          }
-          
-          user.save(function(err,user) {
-            passport.authenticate('local')(req, res, function () {
+        if(req.body.admin) {
+          user.admin = req.body.admin;
+        }
+        
+        user.save(function(err,user) {
+          passport.authenticate('local')(req, res, function () {
+
+            var locals = {name:req.body.name, password:req.body.password};
+            var html   = Jade.renderFile('./views/templates/register.jade', locals);
+
+            var mailOptions = {
+              from: 'info@kantechprogramming.com',
+              to: req.body.username,
+              subject: 'MyGathering.com Registration Confirmation',
+              html: html
+            };
+
+            transporter.sendMail(mailOptions, function(error, info) {
+              if(error){
+                console.log(error);
+                //res.json({yo: 'error'});
+              }else{
+                console.log('message sent:' + info.response);
+                //res.json({yo: info.response});
+              }
+
+
+            });
+
+
 
             return res.status(HTTPStatus.OK).json({success: true, status: 'Registration Successfull!'});
-                        
+                      
           });
+
+          
+
         });
       });
 

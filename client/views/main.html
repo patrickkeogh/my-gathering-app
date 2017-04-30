@@ -80,7 +80,7 @@
 
 
 
-  <div class="gathering-panel-main">
+  <!-- <div class="gathering-panel-main">
 
     <div ng-show="!vm.showCarousel"><h1>Select a city</h1></div>
     
@@ -93,7 +93,6 @@
         <li data-target="Carousel" data-slide-to="2"></li>
     </ol>
 
-      <!-- Wrapper for slides -->
       <div class="carousel-inner">
 
         <div class="item"  ng-class="{active: $first }" ng-repeat="row in vm.carouselChunks">        
@@ -112,7 +111,7 @@
                   <div class="panel-details-name"><strong>{{item.name}}</strong></div>
                   <div class="panel-details-location">
                     <div class="details-location">{{item.location.name}}</div>
-                    <div class="details-location">{{item.location.locality}}, {{rowContent.location.state_prov}}</div>
+                    <div class="details-location">{{item.location.locality}}, {{item.location.state_prov}}</div>
                     <div class="details-location">{{item.location.country}}</div>
                   </div>
                 </div>
@@ -133,7 +132,7 @@
     
 
     </div>
-  </div>
+  </div> -->
 
     <!-- <div class="col-md-6 col-lg-4 hidden-xs"  ng-repeat="rowContent in vm.gatherings">
 
