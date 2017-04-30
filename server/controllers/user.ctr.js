@@ -72,9 +72,9 @@ module.exports.register = function(req, res) {
           passport.authenticate('local')(req, res, function () {
 
             var locals = {name:req.body.name, password:req.body.password};
-            //var html   = Jade.renderFile('./views/templates/register.jade', locals);
+            var html   = Jade.renderFile('./views/templates/register.jade', locals);
 
-            var html = "<p>Hello " + req.body.name + ", thank you for registering with MyGathering.com</p>";
+            //var html = "<p>Hello " + req.body.name + ", thank you for registering with MyGathering.com</p>";
 
             var mailOptions = {
               from: 'info@kantechprogramming.com',
