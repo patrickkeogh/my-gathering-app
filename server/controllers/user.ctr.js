@@ -9,7 +9,7 @@ var templatesDir = path.resolve(__dirname, '..', 'views/templates');
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 
-
+var Jade = require('jade');
 
 var sendJSONresponse = function(res, status, content) {
   res.status(status);
