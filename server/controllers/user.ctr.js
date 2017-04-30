@@ -11,6 +11,15 @@ var smtpTransport = require('nodemailer-smtp-transport');
 
 var Jade = require('jade');
 
+var transporter = nodemailer.createTransport(smtpTransport({
+  host: 'chakra.websitewelcome.com',
+  port: 465,
+  auth: {
+      user: 'patrickkeogh@kantechprogramming.com',
+      pass: 'thekkoyk1'
+  }
+}));
+
 var sendJSONresponse = function(res, status, content) {
   res.status(status);
   res.json(content);
