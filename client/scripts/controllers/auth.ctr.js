@@ -83,14 +83,14 @@
             $state.go('login');
           } else if(data.status === 400) {
             vm.showError = true;
-            console.log("Error:" + data.data.err);
+            console.log("Error:" + data.data.status);
 
-            if(data.data.err.message === 'No username was given') {
+            if(data.data.status === 'No username was given') {
               vm.errorMessage = 'Error: No email was given';
-            }else if(data.data.err === 'The supplied email address has already be used to register!') {
-              vm.errorMessage = 'Error: ' + data.data.err;
+            }else if(data.data.status === 'The supplied email address has already be used to register!') {
+              vm.errorMessage = 'Error: ' + data.data.status;
             }else {
-              vm.errorMessage = data.data.err;
+              vm.errorMessage = data.data.status;
             }            
 
           }else{
