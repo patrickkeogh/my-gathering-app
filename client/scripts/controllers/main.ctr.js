@@ -4,17 +4,23 @@
     .module('myGathering')
     .controller('MainController', MainController);
         
-    MainController.$inject = ['$scope', 'geocode', 'gatheringAPI', 'localData', 'Utils'];
+    MainController.$inject = ['$scope', '$state', 'geocode', 'gatheringAPI', 'localData', 'Utils'];
        
-    function MainController($scope, geocode, gatheringAPI, localData, Utils) {
+    function MainController($scope, $state, geocode, gatheringAPI, localData, Utils) {
       	var vm = this;
 
       	vm.gatherings = [];
 
+      	vm.search_message = "New Gatherings";
+
+      	vm.numToShow = 6;
+    	vm.numShowing = 0;
+    	vm.showMoreButton = false;
+
       	vm.carouselChunks = [];
       	vm.showCarousel = false;
 
-      	vm.distance = 10000;
+      	vm.distance = 100000000;
       	vm.itemsPerChunk = 1;
 
       	vm.selected_address = '';
@@ -113,7 +119,7 @@
 		          	$near: {
 		            	$geometry: { type: "Point",  coordinates: vm.search_address.location.coordinates },
 		            	$minDistance: 0.01,
-		            	$maxDistance: vm.selectedDistance.value
+		            	$maxDistance: vm.distance
 
 		          	}
         		};
@@ -123,6 +129,41 @@
 		    });
 
 		});
+
+		vm.showMoreRecs = function() {
+			console.log('Show More Recs Called');
+
+			if (vm.gatherings.length > vm.numToShow) {
+
+				vm.numToShow += 6; // load 6 more 
+				console.log('Show 6 More Recs');
+			}
+			constructFooterTag();
+		};
+
+		function constructFooterTag() {
+      
+	      	var ttlGatherings = 0;
+	      	var myGatherings = vm.gatherings;
+
+	      	if(myGatherings === undefined) {        
+	      	} else {
+	        	ttlGatherings = myGatherings.length;
+	      	}
+
+	      	if(vm.numToShow >= ttlGatherings){
+	        	vm.numShowing = ttlGatherings;
+	        	vm.showMoreButton = false;
+	      	} else {
+	        	vm.numShowing = vm.numToShow;
+	        	vm.showMoreButton = true;
+	     	}
+	     	console.log('numShowing:' + vm.numShowing);
+
+	      	vm.showing_msg = "Showing " + vm.numShowing + " of " + ttlGatherings;
+	      	
+
+	    }
 
 		function getNewChunks() {
 
@@ -148,6 +189,8 @@
 	          	console.log(data);
 
 	          	vm.gatherings = data.data;
+
+	          	constructFooterTag();
 
 	          	//getNewChunks();
 	         	
@@ -176,7 +219,7 @@
 	          	$near: {
 	            	$geometry: { type: "Point",  coordinates: vm.search_address.location.coordinates },
 	            	$minDistance: 0.01,
-	            	$maxDistance: vm.selectedDistance.value
+	            	$maxDistance: vm.distance
 
 	          	}
     		};
@@ -189,6 +232,12 @@
 
 
 	    };
+
+	    vm.goToDetails = function(gathering) {
+	    	$state.go('gathering-dashboard', {id: gathering._id});
+	    };
+
+	    
 
 	 //    vm.updateCountry = function() {
 	 //    	console.log('Country changed');

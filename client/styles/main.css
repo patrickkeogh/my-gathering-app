@@ -9,6 +9,10 @@ body {
   background-color: #e8e8e8;
 }
 
+.clickable {
+     cursor: pointer
+}
+
 .jumbo-lead {
   color: black;
 }
@@ -534,12 +538,8 @@ h3.modal-title {
   
 }
 
-.center-cut {
-
-}
-
 .container-main {
-  min-height: calc(100vh);
+  /*min-height: calc(80vh);*/
   
   /*//background-color: #443434;*/
 
@@ -801,7 +801,6 @@ table.table-no-margin {
 
 .panel-bottom-status {
   border-top: 1px solid #000000;
-  border-right: 1px solid #000000;
   float: left;
   color: #ffffff;
   height: 30px;
@@ -809,7 +808,7 @@ table.table-no-margin {
   vertical-align: middle;
   padding-left: 10px;
   font-size: 10px;
-  width:calc(100% - 60px);
+  width: 100%;
 }
 
 /*.panel-bottom-stars {
