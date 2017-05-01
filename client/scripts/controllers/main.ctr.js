@@ -4,9 +4,9 @@
     .module('myGathering')
     .controller('MainController', MainController);
         
-    MainController.$inject = ['$scope', 'geocode', 'gatheringAPI', 'localData'];
+    MainController.$inject = ['$scope', 'geocode', 'gatheringAPI', 'localData', 'Utils'];
        
-    function MainController($scope, geocode, gatheringAPI, localData) {
+    function MainController($scope, geocode, gatheringAPI, localData, Utils) {
       	var vm = this;
 
       	vm.gatherings = [];
@@ -37,19 +37,7 @@
 		    return -1;
 		}
 
-      	vm.search_address = {
-	      	location: {
-	        	"type": "Point",
-	        	"coordinates": [-79.3790818,43.64352050000001]
-	      	},
-	      	country: '',
-	      	formatted_address: '',
-	      	locality: '',
-	      	postal_code: '',
-	      	state_prov: '',
-	      	name: '',
-	      	notes: ''
-	    };
+      	vm.search_address = Utils.getNewLocationTemplate();
 
 	    vm.distanceOptions = [
 	    	{
@@ -155,13 +143,13 @@
 
 		function getGatherings(query) {
 			//console.log("Query Used:" + JSON.stringify(query));
-	        gatheringAPI.getGatherings(1, 10, query)
+	        gatheringAPI.getGatherings(1, 6, query)
 	        .then(function(data) {
 	          	console.log(data);
 
 	          	vm.gatherings = data.data;
 
-	          	getNewChunks();
+	          	//getNewChunks();
 	         	
 
 		    })
@@ -221,38 +209,38 @@
 
 		$scope.$on('windowResize', function(event, currentBreakpoint, previousBreakpoint) {
 
-          	console.log(currentBreakpoint, previousBreakpoint);
+         //  	console.log(currentBreakpoint, previousBreakpoint);
 
-          	var tmpItemsPerChunk = 1;
+         //  	var tmpItemsPerChunk = 1;
 
-          	switch(currentBreakpoint) {
-          		case 'extra small':
-          			tmpItemsPerChunk = 1;
-          			break;
-          		case 'small':
-          			tmpItemsPerChunk = 2;
-          			break;
-      			case 'medium':
-	      			tmpItemsPerChunk = 3;
-	      			break;
-      			case 'large':
-	      			tmpItemsPerChunk = 3;
-	      			break;
-	      		default:
-          			tmpItemsPerChunk = 3;
-          			break;
+         //  	switch(currentBreakpoint) {
+         //  		case 'extra small':
+         //  			tmpItemsPerChunk = 1;
+         //  			break;
+         //  		case 'small':
+         //  			tmpItemsPerChunk = 2;
+         //  			break;
+      			// case 'medium':
+	      		// 	tmpItemsPerChunk = 3;
+	      		// 	break;
+      			// case 'large':
+	      		// 	tmpItemsPerChunk = 3;
+	      		// 	break;
+	      		// default:
+         //  			tmpItemsPerChunk = 3;
+         //  			break;
 
-          	}
+         //  	}
 
-          	if(tmpItemsPerChunk !== vm.itemsPerChunk) {
+         //  	if(tmpItemsPerChunk !== vm.itemsPerChunk) {
 
-          		console.log('change items per chunk too:' + tmpItemsPerChunk);
-          		vm.itemsPerChunk = tmpItemsPerChunk;
-          		vm.carouselChunks = [];
+         //  		console.log('change items per chunk too:' + tmpItemsPerChunk);
+         //  		vm.itemsPerChunk = tmpItemsPerChunk;
+         //  		vm.carouselChunks = [];
 
-          		getNewChunks();
-          		$scope.$apply();
-          	}
+         //  		getNewChunks();
+         //  		$scope.$apply();
+         //  	}
 
 
 

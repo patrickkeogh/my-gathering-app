@@ -15,9 +15,7 @@
       vm.maxSize = 5;
       vm.gatherings = [];
 
-      vm.message = "Hello";
-
-      
+      vm.message = "Hello";      
 
       function getGatherings(query) {
         gatheringAPI.getGatherings(vm.currentPage, vm.recsPerPage, query)

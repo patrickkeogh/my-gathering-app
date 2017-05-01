@@ -2,8 +2,6 @@
 	background-color: #454545;;
 	height: 40px;
 	width: 100%;
-
-
 }
 
 .my-padding {
@@ -26,7 +24,7 @@
 }
 
 .gathering-panel-main {
-	height: 200px;
+	min-height: 200px;
 	width: 100%;
 	margin-top: 10px;
 }

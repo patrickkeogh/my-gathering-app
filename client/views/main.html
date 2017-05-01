@@ -1,20 +1,7 @@
-
-<script type="text/javascript">
-    $(document).ready(function() { 
-        $('.carousel').carousel({
-            interval: 3000
-        });
-
-        $('.carousel').carousel('cycle');
-    }); 
-  </script>
-
-
 <div class="container-fluid container-main">
   <div class="search-bar-main">
-    <div class="col-lg-1 visible-lg">
-    </div>
-    
+    <!-- <div class="col-lg-1 visible-lg">
+    </div>    
 
     <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 no-padding">
 
@@ -35,106 +22,12 @@
             options="vm.options" 
             placeholder="Select a location by address, city, or state ..."/>
 
-    </div>
-
-  </div> 
-
-
-
-    <!-- <custom-carousel action="vm.clicked()" data="vm.gatherings"></custom-carousel> -->
-
-   <!--  <div class="col-xs-12">
-<div class="carousel slide" id="myCarousel">
-  <div class="carousel-inner">
-
-    <div class="item active">
-      <div class="col-xs-3">
-        <div class="list-panel">Default
-        </div>
-      </div>
-    </div>
-
-    <div class="item" ng-repeat="rowContent in vm.gatherings">
-      <div class="col-xs-3">
-        <div class="list-panel">{{rowContent.name}}
-        </div>
-      </div>
-    </div>
-
-   
-
-    
-  </div>
-  <a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-  <a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-</div>
-    
+    </div>     -->
 
   </div>
+  <div class="container-fluid gathering-panel-main">
 
-</div> -->
-
-
-
-
-
-
-
-  <!-- <div class="gathering-panel-main">
-
-    <div ng-show="!vm.showCarousel"><h1>Select a city</h1></div>
-    
-
-    <div id="myCarousel" ng-show="vm.showCarousel" class="row carousel slide" data-ride="carousel">
-
-      <ol class="carousel-indicators">
-        <li data-target="Carousel" data-slide-to="0" class="active"></li>
-        <li data-target="Carousel" data-slide-to="1"></li>
-        <li data-target="Carousel" data-slide-to="2"></li>
-    </ol>
-
-      <div class="carousel-inner">
-
-        <div class="item"  ng-class="{active: $first }" ng-repeat="row in vm.carouselChunks">        
-          <ul class="thumbnails" >
-
-            <li class="col-xs-12 col-sm-6 col-md-4" ng-repeat="item in row">      
-              <div class="list-panel-mobile">
-                <div class="panel-banner-wrapper-mobile">
-                  <div class="panel-banner-mobile">
-                    <img class="img-mobile img-responsive" ng-src="{{item.banner.url}}">                  
-                  </div>
-                  <div class="panel-cost-mobile">FREE</div>                                    
-                </div>
-                <div class="panel-details-wrapper-mobile">
-                  <div class="panel-details-date">{{item.gathering_start_date_time | date:'MMM d, y, h:mm a'}}</div>
-                  <div class="panel-details-name"><strong>{{item.name}}</strong></div>
-                  <div class="panel-details-location">
-                    <div class="details-location">{{item.location.name}}</div>
-                    <div class="details-location">{{item.location.locality}}, {{item.location.state_prov}}</div>
-                    <div class="details-location">{{item.location.country}}</div>
-                  </div>
-                </div>
-                <div class="list-panel-bottom">
-                  <div class="panel-bottom-status">{{item.type[0]._id}} - {{item.topic[0]._id}}</div>
-                  <div class="panel-bottom-options pull-right">
-                      <a class="bottom-options" href="#" 
-                          ui-sref="gathering-dashboard({id: item._id})"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-                
-              </div>
-            </li>            
-          </ul>
-
-        </div>
-      </div>
-    
-
-    </div>
-  </div> -->
-
-    <!-- <div class="col-md-6 col-lg-4 hidden-xs"  ng-repeat="rowContent in vm.gatherings">
+    <div class="col-md-6 col-lg-4"  ng-repeat="rowContent in vm.gatherings | limitTo:6">
 
       <div class="list-panel">
         <div class="list-panel-top">
@@ -170,8 +63,11 @@
        
         </div>
       </div>
-    </div> -->
+    </div>
+
   </div>   
+
+
       
 </div>
 
@@ -358,6 +254,61 @@
       </div>
 
     </div> -->
+
+
+
+    <!-- <div class="gathering-panel-main">
+
+    <div ng-show="!vm.showCarousel"><h1>Select a city</h1></div>
+    
+
+    <div id="myCarousel" ng-show="vm.showCarousel" class="row carousel slide" data-ride="carousel">
+
+      <ol class="carousel-indicators">
+        <li data-target="Carousel" data-slide-to="0" class="active"></li>
+        <li data-target="Carousel" data-slide-to="1"></li>
+        <li data-target="Carousel" data-slide-to="2"></li>
+    </ol>
+
+      <div class="carousel-inner">
+
+        <div class="item"  ng-class="{active: $first }" ng-repeat="row in vm.carouselChunks">        
+          <ul class="thumbnails" >
+            <li class="col-xs-12 col-sm-6 col-md-4" ng-repeat="item in row">      
+              <div class="list-panel-mobile">
+                <div class="panel-banner-wrapper-mobile">
+                  <div class="panel-banner-mobile">
+                    <img class="img-mobile img-responsive" ng-src="{{item.banner.url}}">                  
+                  </div>
+                  <div class="panel-cost-mobile">FREE</div>                                    
+                </div>
+                <div class="panel-details-wrapper-mobile">
+                  <div class="panel-details-date">{{item.gathering_start_date_time | date:'MMM d, y, h:mm a'}}</div>
+                  <div class="panel-details-name"><strong>{{item.name}}</strong></div>
+                  <div class="panel-details-location">
+                    <div class="details-location">{{item.location.name}}</div>
+                    <div class="details-location">{{item.location.locality}}, {{item.location.state_prov}}</div>
+                    <div class="details-location">{{item.location.country}}</div>
+                  </div>
+                </div>
+                <div class="list-panel-bottom">
+                  <div class="panel-bottom-status">{{item.type[0]._id}} - {{item.topic[0]._id}}</div>
+                  <div class="panel-bottom-options pull-right">
+                      <a class="bottom-options" href="#" 
+                          ui-sref="gathering-dashboard({id: item._id})"><i class="fa fa-info-circle" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                
+              </div>
+            </li>            
+          </ul>
+
+        </div>
+      </div>
+    
+
+    </div>
+  </div> -->
 
 
     
