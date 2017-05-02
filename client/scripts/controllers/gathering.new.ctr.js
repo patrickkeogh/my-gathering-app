@@ -172,7 +172,8 @@
 			    .then(function(data) {
 			    	console.log("Gathering Added");
 			    	//console.log("data=" + JSON.stringify(data));
-			    	$state.go('gathering-dashboard', {id: data.data.id});		        	
+            //$state.go('gathering-dashboard', {id: gathering._id});
+			    	$state.go('gathering-dashboard', {id: data.data._id});		        	
 		      	})
 		      	.catch(function(err) {
 		        	console.log('failed to create gathering ' + err);

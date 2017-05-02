@@ -4,27 +4,30 @@
 
       
   </div>
+  <div class="container-fluid search-options-panel">
+    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding">
 
-  <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding">
+        <select id="distance" class="main-control"
+        ng-options="distance.name for distance in vm.distanceOptions track by distance.value"
+        ng-model="vm.selectedDistance"  ng-change="vm.updateDistance()"> 
+        </select> 
 
-    <select id="distance" class="main-control"
-    ng-options="distance.name for distance in vm.distanceOptions track by distance.value"
-    ng-model="vm.selectedDistance"  ng-change="vm.updateDistance()"> 
-    </select> 
+      </div>
 
+      <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding">
+
+          <input type="text" id="Autocomplete" class="main-control" 
+                name="location"
+                ng-autocomplete
+                details="vm.address_details" 
+                ng-model="vm.address_text" 
+                options="vm.options" 
+                placeholder="Select a location by address, city, or state ..."/>
+
+      </div>  
   </div>
 
-  <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding">
-
-      <input type="text" id="Autocomplete" class="main-control" 
-            name="location"
-            ng-autocomplete
-            details="vm.address_details" 
-            ng-model="vm.address_text" 
-            options="vm.options" 
-            placeholder="Select a location by address, city, or state ..."/>
-
-    </div>  
+  
 
 <!--   <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding">
     <div class="input-group input-group-sm">
@@ -51,6 +54,49 @@
   <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding">
     <button class="btn btn-primary btn-footer" ng-click="vm.doSearch()"><span class="fa fa-search"></span> Search</button>
   </div> -->
+
+  <div class="container-fluid gathering-panel-main">
+
+        <div class="col-md-6 col-lg-4 clickable"  ng-repeat="row in vm.gatherings | limitTo:vm.numToShow" ng-click="vm.goToDetails(row)">
+
+            <div class="list-panel-mobile visible-xs">
+                <div class="panel-banner-wrapper-mobile">
+                  <div class="panel-banner-mobile">
+                    <img class="img-mobile img-responsive" ng-src="{{row.banner.url}}">                  
+                  </div>
+                  <div class="panel-cost-mobile">FREE</div>                                    
+                </div>
+                <div class="panel-details-wrapper-mobile">
+                  <div class="panel-details-date">{{row.gathering_start_date_time | date:'MMM d, y, h:mm a'}}</div>
+                  <div class="panel-details-name"><strong>{{row.name}}</strong></div>
+                  <div class="panel-details-location">
+                    <div class="details-location">{{row.location.name}}</div>
+                    <div class="details-location">{{row.location.locality}}, {{row.location.state_prov}}</div>
+                    <div class="details-location">{{row.location.country}}</div>
+                  </div>
+                </div>
+                <div class="list-panel-bottom">
+                  <div class="panel-bottom-status">{{row.type[0]._id}} - {{row.topic[0]._id}}</div>                  
+                </div>
+                
+            </div>
+
+
+            
+        </div>
+
+        <div>
+            <div class="col-xs-12 text-center showing-msg">                
+                {{vm.showing_msg}}
+            </div>
+            <div class="col-xs-12 text-center show-more" ng-show="vm.showMoreButton">
+                <i class="fa fa-arrow-down clickable" aria-hidden="true" ng-click="vm.showMoreRecs()"></i></button>
+
+            </div>
+        </div>
+    </div>   
+
+
 
 
   

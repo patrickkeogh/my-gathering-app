@@ -406,6 +406,7 @@ a[ng-click]  { cursor:pointer; }
   margin-top: 10px;
   border-bottom: 1px solid #eee;
   font-weight: bold;
+  width: 100%;
 }
 
 .text-primary {
