@@ -9,6 +9,11 @@ body {
   background-color: #e8e8e8;
 }
 
+.container-gathering-details {
+  margin-top: 20px;
+
+}
+
 .clickable {
      cursor: pointer
 }
@@ -422,8 +427,8 @@ a[ng-click]  { cursor:pointer; }
 }
 
 .no-padding{
-  padding-right: 0px;
-  padding-left: 0px;
+  padding-right: 0px !important;
+  padding-left: 0px !important;
 }
 
 .panel-body.no-padding {
@@ -538,8 +543,8 @@ h3.modal-title {
   
 }
 
-.container-main {
-  /*min-height: calc(80vh);*/
+.container-search {
+  min-height: calc(80vh);
   
   /*//background-color: #443434;*/
 
@@ -794,21 +799,41 @@ table.table-no-margin {
 }
 
 .list-panel-bottom {
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
   height: 30px;
   width: 100%;
   background-color: #987654;
+  font-size: 16px;
+}
+
+.panel-gathering-title {
+  height: 40px;
+  border-bottom: 1px solid #000000;
+  line-height: 40px;
+  vertical-align: middle;
+  font-size: 22px;
+  color: #ffffff;
+  padding-left: 10px;
+  background-color: #673AB7;
+
 }
 
 .panel-bottom-status {
-  border-top: 1px solid #000000;
+
+  
   float: left;
   color: #ffffff;
   height: 30px;
   line-height: 30px;
   vertical-align: middle;
   padding-left: 10px;
-  font-size: 10px;
+  font-size: 16px;
   width: 100%;
+}
+
+.add-border-right {
+  border-right: 1px solid #000000;
 }
 
 /*.panel-bottom-stars {
@@ -919,10 +944,10 @@ table.table-no-margin {
 
 
 .panel-details-date {
-  font-size: 12px;
-  color: #757575;
-  line-height: 20px;
-  height: 20px;
+  font-size: 16px;
+  color: #000000;
+  line-height: 30px;
+  height: 30px;
   text-overflow: ellipsis;
   overflow: hidden;
   display: block;
@@ -948,7 +973,7 @@ table.table-no-margin {
 .panel-details-location {
   font-size: 14px;
   background-color: #DDDDDD;
-  height: 70px;
+  height: 90px;
   overflow: hidden;
   display: block;
   padding-top: 5px;
@@ -956,6 +981,11 @@ table.table-no-margin {
 
 .details-location {
   padding-left: 10px;
+}
+
+.details-view-map {
+  padding-left: 10px;
+  font-size: 12px;
 }
 
 .slide1, .slide2, .slide3 {

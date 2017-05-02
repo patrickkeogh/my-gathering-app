@@ -1,0 +1,61 @@
+<div class="container-fluid container-search">
+  
+  <div class="search-bar-search">
+
+      
+  </div>
+
+  <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding">
+
+    <select id="distance" class="main-control"
+    ng-options="distance.name for distance in vm.distanceOptions track by distance.value"
+    ng-model="vm.selectedDistance"  ng-change="vm.updateDistance()"> 
+    </select> 
+
+  </div>
+
+  <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding">
+
+      <input type="text" id="Autocomplete" class="main-control" 
+            name="location"
+            ng-autocomplete
+            details="vm.address_details" 
+            ng-model="vm.address_text" 
+            options="vm.options" 
+            placeholder="Select a location by address, city, or state ..."/>
+
+    </div>  
+
+<!--   <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding">
+    <div class="input-group input-group-sm">
+      <div class="input-group-btn">
+          <button class="btn btn-default" type="button" ng-click="vm.open1()">
+              <i class="glyphicon glyphicon-calendar"></i>
+          </button>
+      </div> 
+      <input  type="text" 
+          name="startDate"
+          id="startDate"
+          class="form-control main-control" 
+          ng-model="vm.start_date"
+          uib-datepicker-popup="{{ vm.format }}"
+          datepicker-options="vm.dateOptions"
+          is-open="vm.popup1.opened"               
+          close-text="Close"
+          ng-required="true" 
+          readonly="true" />
+
+    </div> 
+
+  </div>
+  <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding">
+    <button class="btn btn-primary btn-footer" ng-click="vm.doSearch()"><span class="fa fa-search"></span> Search</button>
+  </div> -->
+
+
+  
+
+        
+</div>
+
+

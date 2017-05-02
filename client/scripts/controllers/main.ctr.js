@@ -165,22 +165,22 @@
 
 	    }
 
-		function getNewChunks() {
+		// function getNewChunks() {
 
-			var tempArray = [];
+		// 	var tempArray = [];
 
-			vm.showCarousel = false;
+		// 	vm.showCarousel = false;
 	          
-			for (var i = 0, j = vm.gatherings.length; i < j; i += vm.itemsPerChunk) {
-		    	tempArray = vm.gatherings.slice(i, i + vm.itemsPerChunk);	
+		// 	for (var i = 0, j = vm.gatherings.length; i < j; i += vm.itemsPerChunk) {
+		//     	tempArray = vm.gatherings.slice(i, i + vm.itemsPerChunk);	
 
-		    	vm.carouselChunks.push(tempArray);
-		    	vm.showCarousel = true;
-			}
+		//     	vm.carouselChunks.push(tempArray);
+		//     	vm.showCarousel = true;
+		// 	}
 
-			console.log('Chuinks in Array:' + vm.carouselChunks.length);
+		// 	console.log('Chuinks in Array:' + vm.carouselChunks.length);
 
-		}
+		// }
 
 		function getGatherings(query) {
 			//console.log("Query Used:" + JSON.stringify(query));
@@ -206,38 +206,12 @@
 
 	    };
 
-	    vm.updateDistance = function () {
-
-	    	console.log('Distance changed');
-
-      		var query = {};
-
- 			console.log('new distance:' + vm.selectedDistance.value);
-
- 			// create a query object
- 			query['location.location'] = {
-	          	$near: {
-	            	$geometry: { type: "Point",  coordinates: vm.search_address.location.coordinates },
-	            	$minDistance: 0.01,
-	            	$maxDistance: vm.distance
-
-	          	}
-    		};
-
-    		vm.gatherings = [];
-      		vm.carouselChunks = [];
-
-     		getGatherings(query);
-
-
-
-	    };
 
 	    vm.goToDetails = function(gathering) {
 	    	$state.go('gathering-dashboard', {id: gathering._id});
 	    };
 
-	    
+
 
 	 //    vm.updateCountry = function() {
 	 //    	console.log('Country changed');

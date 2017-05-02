@@ -10,6 +10,10 @@
 /* Custom, iPhone Retina */ 
 @media only screen and (min-width : 100px) {
 
+	.container-fluid {
+		padding: 0px !important;
+	}
+
 	.navbar-brand {
 
   		font: 400 28px/0.8 'Cookie', Helvetica, sans-serif;
@@ -79,11 +83,15 @@
 	  font-size: 18px;
 	}
 
-	.container-fluid {
-		padding: 0px !important;
-	}
+
 	.my-brand {
 	  	padding-left: 15px !important;
+	}
+
+	.panel-bottom-status {
+
+	  	font-size: 10px;
+
 	}
 }
 
@@ -134,6 +142,11 @@
 	  font-size: 34px;
 	  font-family: 'abel', serif;
 	  text-align: center;
+
+	}
+	.panel-bottom-status {
+
+	  	font-size: 12px;
 
 	}
 
@@ -187,6 +200,11 @@
 	}
 	.my-brand {
 	  padding-left: 15px !important;
+
+	}
+	.panel-bottom-status {
+
+	  	font-size: 16px;
 
 	}
 

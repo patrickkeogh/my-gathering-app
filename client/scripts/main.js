@@ -56,6 +56,27 @@
                 }
             },
             authenticate: false
+        })
+        // route for gathering search
+        .state('search', {
+            url: '/search',
+            views: {
+                'header': {
+                    templateUrl: './views/nav.header.html',
+                    controller: 'NavigationController as vm'
+                },
+                'content': {
+                    templateUrl: './views/search.html',
+                    controller: 'SearchController as vm'
+                },
+                'footer': {
+                    templateUrl: 'views/footer.html'
+                }
+            },
+            data: {
+                requireLogin: true
+            }
+
         });
     }
 
