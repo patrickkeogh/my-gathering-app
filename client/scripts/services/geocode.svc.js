@@ -4,9 +4,9 @@
     .module('myGathering')
     .service('geocode', geocode);
 
-    geocode.$inject = ['$window', '$q', '_', 'Constants'];
+    geocode.$inject = ['$window', '$q', '_', 'Constants', 'Utils'];
 
-    function geocode ($window, $q, _, Constants) {
+    function geocode ($window, $q, _, Constants, Utils) {
 
       // Get locations stored  in local storage to reduce trips to the server
       var locations = $window.localStorage[Constants.LOCATION_ID] ? JSON.parse($window.localStorage[Constants.LOCATION_ID]) : {};
@@ -14,21 +14,7 @@
       var default_lat = 43.761539;
       var default_lng = -79.411079;
 
-      var address = {};
-
-      var address = {
-          location: {
-            "type": "Point",
-            "coordinates": []
-          },
-          country: '',
-          country_short: '',
-          formatted_address: '',
-          locality: '',
-          postal_code: '',
-          state_prov: '',
-          name: ''
-      };
+      var address = Utils.getNewLocationTemplate();      
 
       var test_coords = [{
         coords: {
@@ -173,7 +159,7 @@
           geocoder.geocode({ 'latLng': coords }, function (results, status) {
 
             console.log('Status:' + status);
-            console.log('Result in Sevice:' + JSON.stringify(results[1]));
+            //console.log('Result in Sevice:' + JSON.stringify(results[1]));
 
             if (status === google.maps.GeocoderStatus.OK) {
 

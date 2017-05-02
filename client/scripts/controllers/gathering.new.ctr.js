@@ -171,9 +171,14 @@
 	        	gatheringAPI.createGathering(vm.newGathering)
 			    .then(function(data) {
 			    	console.log("Gathering Added");
-			    	//console.log("data=" + JSON.stringify(data));
+			    	console.log("data=" + JSON.stringify(data));
+
+            var id = data.data._id;
+
+            console.log("id=" + id);
+
             //$state.go('gathering-dashboard', {id: gathering._id});
-			    	$state.go('gathering-dashboard', {id: data.data._id});		        	
+			    	$state.go('gathering-dashboard', {id: id});		        	
 		      	})
 		      	.catch(function(err) {
 		        	console.log('failed to create gathering ' + err);

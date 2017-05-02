@@ -14,6 +14,10 @@
 		padding: 0px !important;
 	}*/
 
+	.padding-dashboard-panels {
+		padding: 0px;
+	}
+
 	.navbar-brand {
 
   		font: 400 28px/0.8 'Cookie', Helvetica, sans-serif;

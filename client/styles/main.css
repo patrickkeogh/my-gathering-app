@@ -9,6 +9,20 @@ body {
   background-color: #e8e8e8;
 }
 
+.btn-option-cancel {
+  line-height: 28px;
+  vertical-align: middle;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  border: 1px solid #454545;
+
+}
+
+.add-padding-left-2 {
+  padding-left: 9px !important;
+}
+
 .container-gathering-details {
   margin-top: 20px;
 
@@ -42,7 +56,7 @@ body {
     
     background-image: url(../images/waterfall2.jpg);
     background-color: #454545;
-    margin-top: 50px;
+    margin-top: 80px;
     padding: 0px !important;
     z-index: 200;
     border-radius: 0px !important;
@@ -544,8 +558,12 @@ h3.modal-title {
   
 }
 
+.container-jumbo {
+
+}
+
 .container-search {
-  min-height: calc(80vh);
+  min-height: 120px;
   
   /*//background-color: #443434;*/
 

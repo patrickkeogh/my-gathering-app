@@ -1,36 +1,11 @@
-<div class="container-fluid container-main">
-    <div class="search-bar-main">
-
-
+<div class="container-fluid no-padding container-main">
+    <div class="title-bar-main ">
         <div class="col-xs-12 text-center">
-        {{vm.search_message}}
+            <i class="fa fa-plus fa-fw"></i> {{vm.search_message}}
         </div>
-    <!-- <div class="col-lg-1 visible-lg">
-    </div>    
-
-    <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2 no-padding">
-
-      <select id="distance" class="main-control"
-              ng-options="distance.name for distance in vm.distanceOptions track by distance.value"
-              ng-model="vm.selectedDistance"  ng-change="vm.updateDistance()"> 
-              </select> 
-
     </div>
 
-    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding">
-
-      <input type="text" id="Autocomplete" class="main-control" 
-            name="location"
-            ng-autocomplete
-            details="vm.address_details" 
-            ng-model="vm.address_text" 
-            options="vm.options" 
-            placeholder="Select a location by address, city, or state ..."/>
-
-    </div>     -->
-
-    </div>
-    <div class="container-fluid gathering-panel-main">
+    <div class="container-fluid no-padding gathering-panel-main">
 
         <div class="col-md-6 col-lg-4 clickable"  ng-repeat="row in vm.gatherings | limitTo:vm.numToShow" ng-click="vm.goToDetails(row)">
 

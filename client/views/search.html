@@ -1,10 +1,16 @@
-<div class="container-fluid container-search">
+<div class="container-fluid no-padding container-search">
   
   <div class="search-bar-search">
-
+    <div class="col-xs-12 text-center visible-xs">
+                    <i class="fa fa-search fa-fw"></i> {{vm.showing_msg}}
+                </div>
+                <div class="col-xs-12 hidden-xs">
+                    <i class="fa fa-search fa-fw"></i> {{vm.showing_msg}}
+                </div>
       
   </div>
-  <div class="container-fluid search-options-panel">
+
+  <div class="container-fluid no-padding search-options-panel">
     <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding">
 
         <select id="distance" class="main-control"
@@ -16,16 +22,46 @@
 
       <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding">
 
-          <input type="text" id="Autocomplete" class="main-control" 
-                name="location"
-                ng-autocomplete
-                details="vm.address_details" 
-                ng-model="vm.address_text" 
-                options="vm.options" 
-                placeholder="Select a location by address, city, or state ..."/>
+        <input type="text" id="Autocomplete" class="main-control add-padding-left-2" 
+          name="location"
+          ng-autocomplete
+          details="vm.address_details" 
+          ng-model="vm.address_text" 
+          options="vm.options" 
+          placeholder="Select a location by address, city, or state ..."/>
 
       </div>  
+
+      <div class="col-xs-12 no-padding">
+        <div class="col-xs-11 no-padding">
+        <select class="main-control"
+                ng-options="option._id for option in vm.types track by option._id"
+                ng-model="vm.search_type" ng-change="vm.updateQuery()">
+                <option  class="select-margin-fix" style="display:none" value="">Select A Gathering Type</option>
+          </select> 
+        </div>
+        <div class="col-xs-1 no-padding">
+          <button class="btn btn-sm btn-option-cancel" ng-click="vm.resetType()"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
+      <div class="col-xs-12 no-padding">
+        <div class="col-xs-11 no-padding">
+        <select class="main-control"
+                ng-options="option._id for option in vm.topics track by option._id"
+                ng-model="vm.search_topic" ng-change="vm.updateQuery()">
+                <option  class="select-margin-fix" style="display:none" value="">Select A Topic</option>
+          </select> 
+        </div>
+        <div class="col-xs-1 no-padding">
+          <button class="btn btn-sm btn-option-cancel" ng-click="vm.resetTopic()"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div>
+      </div>
+
   </div>
+
+    
+</div>
 
   
 
@@ -55,7 +91,7 @@
     <button class="btn btn-primary btn-footer" ng-click="vm.doSearch()"><span class="fa fa-search"></span> Search</button>
   </div> -->
 
-  <div class="container-fluid gathering-panel-main">
+  <div class="container-fluid no-padding gathering-panel-main">
 
         <div class="col-md-6 col-lg-4 clickable"  ng-repeat="row in vm.gatherings | limitTo:vm.numToShow" ng-click="vm.goToDetails(row)">
 

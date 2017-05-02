@@ -39,6 +39,34 @@
       notes: ''
     };
 
+    var distanceOptions = [
+      {
+        name: 'No distance limit',
+        value: 1000000000
+      },
+      {
+        name: 'Within 5 km of',
+        value: 5000
+
+      },
+      {
+        name: 'Within 10 km of',
+        value: 10000
+      },
+      {
+        name: 'Within 25 km of',
+        value: 25000
+      },
+      {
+        name: 'Within 50 km of',
+        value: 50000
+      },
+      {
+        name: 'Within 100 km of',
+        value: 100000
+      }
+    ];
+
     var query = null;
 
     var getSearchQuery = function() {
@@ -60,12 +88,17 @@
       return blankLocation;
     };
 
+    var getDistanceSearchOptions = function() {
+      return distanceOptions;
+    };
+
 
     return {
       getNewGatheringTemplate: getNewGatheringTemplate,
       getNewLocationTemplate: getNewLocationTemplate,
       getSearchQuery: getSearchQuery,
-      setSearchQuery: setSearchQuery
+      setSearchQuery: setSearchQuery,
+      getDistanceSearchOptions: getDistanceSearchOptions
     };
 
 
