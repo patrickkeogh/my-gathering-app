@@ -45,8 +45,7 @@
 	    angular.element(document).ready(function() {
         	console.log("init called in Search Controller");
 
-        	vm.selectedDistance = vm.distanceOptions[1];
-
+        	vm.selectedDistance = vm.distanceOptions[2];
 
         	geocode.getCurrentLocation().then(function(result){
 
@@ -54,7 +53,7 @@
      			vm.search_address = result;
 
      			// Set the default value for the distance select box
-		      	vm.selectedDistance = vm.distanceOptions[3];
+		      	//vm.selectedDistance = vm.distanceOptions[3];
 
 		      	//console.log('Selected:' + JSON.stringify(vm.search_address));
 
@@ -226,7 +225,7 @@ query['location.location'] = {
 	          $near: {
 	            $geometry: { type: "Point",  coordinates: vm.search_address.location.coordinates },
 	            $minDistance: 0.01,
-	            $maxDistance: vm.distance
+	            $maxDistance: vm.selectedDistance.value
 
 	          }
 	        };
