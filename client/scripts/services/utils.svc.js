@@ -39,6 +39,30 @@
       notes: ''
     };
 
+    var dateSearchOptions = [
+      {
+        name: 'Today',
+        value: 1
+      },
+      {
+        name: 'Tomorrow',
+        value: 2
+      },
+      {
+        name: 'Next week',
+        value: 3
+      },
+      {
+        name: 'Next month',
+        value: 4
+      },
+      {
+        name: 'Next Year',
+        value: 5
+      }
+
+    ];
+
     var distanceOptions = [
       {
         name: 'No distance limit',
@@ -92,13 +116,18 @@
       return distanceOptions;
     };
 
+    var getDateSearchOptions = function() {
+      return dateSearchOptions;
+    };
+
 
     return {
       getNewGatheringTemplate: getNewGatheringTemplate,
       getNewLocationTemplate: getNewLocationTemplate,
       getSearchQuery: getSearchQuery,
       setSearchQuery: setSearchQuery,
-      getDistanceSearchOptions: getDistanceSearchOptions
+      getDistanceSearchOptions: getDistanceSearchOptions,
+      getDateSearchOptions: getDateSearchOptions
     };
 
 

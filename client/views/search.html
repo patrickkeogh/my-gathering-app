@@ -13,12 +13,21 @@
   <div class="container-fluid no-padding search-options-panel">
     <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding">
 
-        <select id="distance" class="main-control"
-        ng-options="distance.name for distance in vm.distanceOptions track by distance.value"
-        ng-model="vm.selectedDistance"  ng-change="vm.updateDistance()"> 
-        </select> 
+      <select id="searchDate" class="main-control"
+      ng-options="distance.name for distance in vm.dateSearchOptions track by distance.value"
+      ng-model="vm.selectedDate"  ng-change="vm.updateDate()"> 
+      </select> 
 
-      </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding">
+
+      <select id="distance" class="main-control"
+      ng-options="distance.name for distance in vm.distanceOptions track by distance.value"
+      ng-model="vm.selectedDistance"  ng-change="vm.updateDistance()"> 
+      </select> 
+
+    </div>
 
       <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 no-padding">
 
@@ -37,7 +46,7 @@
         <select class="main-control"
                 ng-options="option._id for option in vm.types track by option._id"
                 ng-model="vm.search_type" ng-change="vm.updateQuery()">
-                <option  class="select-margin-fix" style="display:none" value="">Select A Gathering Type</option>
+                <option  class="select-margin-fix" style="display:none" value="">Filter by type</option>
           </select> 
         </div>
         <div class="col-xs-1 no-padding">
@@ -50,7 +59,7 @@
         <select class="main-control"
                 ng-options="option._id for option in vm.topics track by option._id"
                 ng-model="vm.search_topic" ng-change="vm.updateQuery()">
-                <option  class="select-margin-fix" style="display:none" value="">Select A Topic</option>
+                <option  class="select-margin-fix" style="display:none" value="">Filter by topic</option>
           </select> 
         </div>
         <div class="col-xs-1 no-padding">

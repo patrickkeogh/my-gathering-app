@@ -22,6 +22,7 @@
     	vm.search_message = "New Gatherings";
 
       	vm.distanceOptions = Utils.getDistanceSearchOptions();
+      	vm.dateSearchOptions = Utils.getDateSearchOptions();
 
       	gatheringAPI.getTypes()
 		    .then(function(data) {
@@ -46,6 +47,7 @@
         	console.log("init called in Search Controller");
 
         	vm.selectedDistance = vm.distanceOptions[2];
+        	vm.selectedDate = vm.dateSearchOptions[3];
 
         	geocode.getCurrentLocation().then(function(result){
 
