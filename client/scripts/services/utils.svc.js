@@ -41,6 +41,10 @@
 
     var dateSearchOptions = [
       {
+        name: 'No Date Filter',
+        value: 0
+      },
+      {
         name: 'Today',
         value: 1
       },

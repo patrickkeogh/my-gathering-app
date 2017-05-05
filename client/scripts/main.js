@@ -6,13 +6,13 @@
       'ui.router',
       'ngCookies',
       'ngAutocomplete',
-      'angular-momentjs',
       'ui.bootstrap',
       'uiGmapgoogle-maps',
       'angular-filepicker',
       'angular-img-cropper',
       'underscore',
-      'angucomplete-alt'
+      'angucomplete-alt',
+      'angular-moment'
 
     ])
     .config(config)

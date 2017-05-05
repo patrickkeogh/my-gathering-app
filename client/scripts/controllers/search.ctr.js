@@ -4,9 +4,9 @@
     .module('myGathering')
     .controller('SearchController', SearchController);
         
-    SearchController.$inject = ['$scope', 'geocode', 'gatheringAPI', 'Utils'];
+    SearchController.$inject = ['$scope', '$moment', 'geocode', 'gatheringAPI', 'Utils'];
        
-    function SearchController($scope, geocode, gatheringAPI, Utils) {
+    function SearchController($scope, $moment, geocode, gatheringAPI, Utils) {
       	var vm = this;
 
       	vm.gatherings = [];
@@ -54,14 +54,6 @@
      			//console.log("We have a result:" + JSON.stringify(result));
      			vm.search_address = result;
 
-     			// Set the default value for the distance select box
-		      	//vm.selectedDistance = vm.distanceOptions[3];
-
-		      	//console.log('Selected:' + JSON.stringify(vm.search_address));
-
-
-		      	//vm.address_text = vm.search_address.locality + ', ' + vm.search_address.country;
-
 		      	if(vm.search_address.locality !== '') {
 		      		vm.address_text += vm.search_address.locality + ', ';
 		      	}
@@ -71,18 +63,6 @@
 		      	}
 
      			var query = constructQuery();
-
-
-
-    			// create a query object
-     			// query['location.location'] = {
-		      //     	$near: {
-		      //       	$geometry: { type: "Point",  coordinates: vm.search_address.location.coordinates },
-		      //       	$minDistance: 0.01,
-		      //       	$maxDistance: vm.selectedDistance.value
-
-		      //     	}
-        // 		};
 
          		getGatherings(query);
 
@@ -131,7 +111,84 @@
 	    function constructQuery() {
 
       		var query = {};
-      		var startDate, endDate;
+      		var startDate;
+      		var endDate;
+      		var futureDate;
+
+      		//startDate.setSeconds(0);
+	      	//startDate.setHours(0);
+	      	//startDate.setMinutes(0);
+
+	      	console.log("Date Filter Used:" + vm.selectedDate.value);
+
+	      	if(vm.selectedDate.value !== 0 ) {
+
+
+	      		switch(vm.selectedDate.value) {
+		      		case 1: // Today
+		      			
+		      			startDate = new Date($moment().hour(0).minute(0).second(0));
+		      			endDate = new Date($moment().hour(23).minute(59).second(59));
+		      			console.log('Today Start:' + startDate);
+		      			console.log('Today End:' + endDate);
+		      			break;
+		      		case 2: // Tomorrow	      			
+
+		      			futureDate = $moment().add(1, 'd');
+		      			startDate = new Date($moment(futureDate).hour(0).minute(0).second(0));
+		      			endDate = new Date($moment(futureDate).hour(23).minute(59).second(59));
+
+		      			console.log('Tomorrow Start:' + startDate);
+		      			console.log('Tomorrow End:' + endDate);
+
+		      			break;
+		      		case 3: // Next Week
+		      			startDate = new Date($moment().hour(0).minute(0).second(0));
+		      			futureDate = $moment().add(1, 'w');
+		      			endDate = new Date($moment(futureDate).hour(23).minute(59).second(59));
+
+		      			console.log('Tomorrow Start:' + startDate);
+		      			console.log('Tomorrow End:' + endDate);
+		      			break;
+		      		case 4: // Next Month
+		      			startDate = new Date($moment().hour(0).minute(0).second(0));
+		      			futureDate = $moment().add(1, 'M');
+		      			endDate = new Date($moment(futureDate).hour(23).minute(59).second(59));
+
+		      			console.log('Tomorrow Start:' + startDate);
+		      			console.log('Tomorrow End:' + endDate);
+		      			break;
+		      		case 5: // Next Year
+		      			startDate = new Date($moment().hour(0).minute(0).second(0));
+		      			futureDate = $moment().add(1, 'y');
+		      			endDate = new Date($moment(futureDate).hour(23).minute(59).second(59));
+
+		      			console.log('Tomorrow Start:' + startDate);
+		      			console.log('Tomorrow End:' + endDate);
+		      			break;
+
+		      	}
+
+		      	query.gathering_start_date_time = {
+		          	$gt:startDate,
+		            $lt:endDate
+		        };
+	      	}
+
+	      	
+
+	      	
+
+	      	// query = {
+	       //      gathering_start_date_time: {
+	       //        $gt:startDate,
+	       //        $lt:endDate
+	       //      }
+	       //    };
+
+	        
+
+
 
       		//startDate = $moment(vm.search_date_start).toDate();
 
@@ -141,7 +198,7 @@
 	      // startDate.setHours(0);
 	      // startDate.setMinutes(0);
 
-	      // console.log("Date Filter:" + vm.date_filter);
+	     
 
 	      // // create date query
 	      // switch(vm.date_filter) {
@@ -223,13 +280,13 @@
       // };
 
 
-query['location.location'] = {
-	          $near: {
-	            $geometry: { type: "Point",  coordinates: vm.search_address.location.coordinates },
-	            $minDistance: 0.01,
-	            $maxDistance: vm.selectedDistance.value
+			query['location.location'] = {
+	          	$near: {
+	            	$geometry: { type: "Point",  coordinates: vm.search_address.location.coordinates },
+	            	$minDistance: 0.01,
+	            	$maxDistance: vm.selectedDistance.value
 
-	          }
+	          	}
 	        };
       	
 
@@ -291,28 +348,28 @@ query['location.location'] = {
 			constructFooterTag();
 		};
 
-		vm.updateDistance = function () {
+		// vm.updateDistance = function () {
 
-	    	console.log('Distance changed');
+	 //    	console.log('Distance changed');
 
-      		var query = {};
+  //     		var query = {};
 
- 			console.log('new distance:' + vm.selectedDistance.value);
+ 	// 		console.log('new distance:' + vm.selectedDistance.value);
 
- 			// create a query object
- 			query['location.location'] = {
-	          	$near: {
-	            	$geometry: { type: "Point",  coordinates: vm.search_address.location.coordinates },
-	            	$minDistance: 0.01,
-	            	$maxDistance: vm.selectedDistance.value
+ 	// 		// create a query object
+ 	// 		query['location.location'] = {
+	 //          	$near: {
+	 //            	$geometry: { type: "Point",  coordinates: vm.search_address.location.coordinates },
+	 //            	$minDistance: 0.01,
+	 //            	$maxDistance: vm.selectedDistance.value
 
-	          	}
-    		};
+	 //          	}
+  //   		};
 
-    		vm.gatherings = [];
-     		getGatherings(query);
+  //   		vm.gatherings = [];
+  //    		getGatherings(query);
 
-	    };
+	 //    };
 
 
 	    $scope.$watch('vm.search_type', function(newValue, oldValue) {
