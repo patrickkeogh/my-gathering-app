@@ -1,0 +1,64 @@
+<div class="modal-header">
+    <h2 class="modal-title text-center" id="modal-title">Search Filter Options</h2>
+</div>
+<div class="modal-body" id="modal-body">
+
+    <div class="container-fluid search-options-panel">
+        <div class="col-xs-12 col-sm-6 add-padding-5">
+
+            <select id="searchDate" class="main-control"
+                ng-options="data.name for data in vm.dateSearchOptions track by data.value"
+                ng-model="vm.selectedDate"  ng-change="vm.updateQuery()"> 
+            </select> 
+
+        </div>
+
+        <div class="col-xs-12 col-sm-6 add-padding-5 ">
+
+            <select id="distance" class="main-control"
+                ng-options="distance.name for distance in vm.distanceOptions track by distance.value"
+                ng-model="vm.selectedDistance"  ng-change="vm.updateQuery()"> 
+            </select> 
+
+        </div>
+
+        <div class="col-xs-12 col-sm-6 add-padding-5 ">
+            <input type="text" id="Autocomplete" class="main-control add-padding-left-2" 
+            name="location"
+            ng-autocomplete
+            details="vm.address_details" 
+            ng-model="vm.address_text" 
+            options="vm.options" 
+            placeholder="Select a location by address, city, or state ..."/>
+        </div>
+        <div class="col-xs-12 col-sm-6 add-padding-5 ">
+            <select class="main-control"
+                ng-options="option._id for option in vm.types track by option._id"
+                ng-model="vm.search_type" ng-change="vm.updateQuery()">
+                <option  class="select-margin-fix" style="display:none" value="">Filter by type</option>
+            </select>
+
+        </div>
+        <div class="col-xs-12 col-sm-6 add-padding-5 ">
+            <select class="main-control"
+                ng-options="option._id for option in vm.topics track by option._id"
+                ng-model="vm.search_topic" ng-change="vm.updateQuery()">
+                <option  class="select-margin-fix" style="display:none" value="">Filter by topic</option>
+            </select>
+
+        </div>
+        <div class="col-xs-12 add-padding-5">
+            Matches using these filters: {{vm.gatherings.length}}
+        </div>
+
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success pull-left" type="button" ng-click="vm.resetForm()">Reset Filters</button>
+    <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
+    <button class="btn btn-danger" type="button" ng-click="vm.cancel()">Cancel</button>
+</div>
+
+<!-- <div class="col-xs-1 no-padding">
+          <button class="btn btn-sm btn-option-cancel" ng-click="vm.resetTopic()"><i class="fa fa-times" aria-hidden="true"></i></button>
+        </div> -->

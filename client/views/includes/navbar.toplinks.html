@@ -5,7 +5,7 @@
         </a>
     </li>  
 
-    <li class="dropdown">
+<!--     <li class="dropdown">
         <a class="dropdown-toggle top-nav-links" data-toggle="dropdown">
             <i class="fa fa-cubes fa-fw"></i><span class="hidden-xs"> Gatherings </span><i class="fa fa-caret-down"></i>
         </a>
@@ -13,6 +13,19 @@
             <li><a href="#" ui-sref="search"><i class="fa fa-search fa-fw"></i> Search Gatherings</a></li>
             <li><a href="#" ui-sref="gathering-created"><i class="fa fa-cubes fa-fw"></i> Manage Gatherings</a></li>                   
         </ul>
+    </li> -->
+
+    <li ui-sref-active="active">
+        <a href="#" class="top-nav-links" ui-sref="gathering-created">
+            <i class="fa fa-cubes fa-fw"></i><span class="hidden-xs"> My Gatherings </span>
+        </a>
+    </li>
+
+
+    <li ui-sref-active="active">
+        <a href="#" class="top-nav-links" ui-sref="search">
+            <i class="fa fa-search fa-fw"></i><span class="hidden-xs"> Search </span>
+        </a>
     </li>
 
     <li ng-show="vm.isLoggedIn">
@@ -23,11 +36,17 @@
             
     <li ng-show="!vm.isLoggedIn">
         <a href="#" class="top-nav-links" ui-sref="login">
-            <i class="fa fa-user fa-fw"></i><span class="hidden-xs"> Sign In </span>
+            <i class="fa fa-sign-in fa-fw"></i><span class="hidden-xs"> Sign In </span>
         </a>
-    </li> 
+    </li>
 
-    <li class="dropdown" ng-show="vm.isLoggedIn">
+    <li ng-show="vm.isLoggedIn">
+        <a href="#" class="top-nav-links" ng-click="vm.logout()">
+            <i class="fa fa-sign-out fa-fw"></i><span class="hidden-xs"> Sign Out </span>
+        </a>
+    </li>  
+
+    <!-- <li class="dropdown" ng-show="vm.isLoggedIn">
         <a class="dropdown-toggle top-nav-links" data-toggle="dropdown">
             <i class="fa fa-user fa-fw"></i><span class="hidden-xs"> Options </span><i class="fa fa-caret-down"></i>
         </a>
@@ -38,6 +57,6 @@
             <li><a href="#" ng-click="vm.logout()"><i class="fa fa-sign-out fa-fw"></i> Sign Out</a></li>
             
         </ul>
-    </li>
+    </li> -->
 </ul>
 <!-- /.navbar-top-links -->

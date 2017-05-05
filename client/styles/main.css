@@ -9,6 +9,10 @@ body {
   background-color: #e8e8e8;
 }
 
+.pac-container { z-index: 100000; }
+
+.top-nav-links 
+
 .btn-option-cancel {
   line-height: 28px;
   vertical-align: middle;
@@ -70,6 +74,10 @@ body {
   background-position: center center;
   background-attachment: fixed;
   background-size: cover;*/
+}
+
+.add-padding-5 {
+  padding: 5px;
 }
 
 
@@ -519,7 +527,7 @@ a[ng-click]  { cursor:pointer; }
   color: #FFFFFF;
   background-color: #673AB7;
   border-color: #443434;
-  font-size: 22px;
+/*  font-size: 22px;*/
 }
 
 .btn-primary:hover {
@@ -726,14 +734,13 @@ table.table-no-margin {
 }
 
 
-
 .btn-footer {
   width: 100%;
 }
 
 .top-nav-links {
   color: #FFFFFF;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 .row-spacer {
@@ -847,6 +854,7 @@ table.table-no-margin {
   line-height: 30px;
   vertical-align: middle;
   padding-left: 10px;
+  padding-right: 10px;
   font-size: 16px;
   width: 100%;
 }
