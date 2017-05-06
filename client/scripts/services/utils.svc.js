@@ -53,15 +53,15 @@
         value: 2
       },
       {
-        name: 'Next week',
+        name: 'One week from',
         value: 3
       },
       {
-        name: 'Next month',
+        name: 'One month from',
         value: 4
       },
       {
-        name: 'Next Year',
+        name: 'One year from',
         value: 5
       }
 

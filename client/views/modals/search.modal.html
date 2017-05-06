@@ -4,6 +4,7 @@
 <div class="modal-body" id="modal-body">
 
     <div class="container-fluid search-options-panel">
+
         <div class="col-xs-12 col-sm-6 add-padding-5">
 
             <select id="searchDate" class="main-control"
@@ -12,6 +13,33 @@
             </select> 
 
         </div>
+        
+        <div class="col-xs-12 col-sm-6 add-padding-5">
+            <div class="input-group input-group-sm">
+                <div class="input-group-btn ">
+                    <button class="btn btn-default main-control-input" type="button" ng-click="vm.open1()" ng-disabled="vm.isDateDisabled">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                    </button>
+                </div> 
+
+                <!--This produces a popup date picker when you click in the input-->
+                <input  type="text" 
+                    name="startDate"
+                    id="startDate"
+                    class="main-control" 
+                    on-change="vm.updateQuery()"
+                    ng-model="vm.start_date"
+                    uib-datepicker-popup="{{ vm.format }}"
+                    datepicker-options="vm.dateOptions"
+                    is-open="vm.popup1.opened"               
+                    close-text="Close"
+                    ng-required="true" 
+                    readonly="true" />
+
+            </div> 
+        </div>       
+
+        
 
         <div class="col-xs-12 col-sm-6 add-padding-5 ">
 
@@ -22,7 +50,7 @@
 
         </div>
 
-        <div class="col-xs-12 col-sm-6 add-padding-5 ">
+        <div class="col-xs-12 add-padding-5 ">
             <input type="text" id="Autocomplete" class="main-control add-padding-left-2" 
             name="location"
             ng-autocomplete
@@ -48,7 +76,7 @@
 
         </div>
         <div class="col-xs-12 add-padding-5">
-            Matches using these filters: {{vm.gatherings.length}}
+            <span class="main-control">Matches using these filters: {{vm.gatherings.length}}</span>
         </div>
 
     </div>

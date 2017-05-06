@@ -40,6 +40,13 @@
 	border: 2px dashed #000000;
 }
 
+.main-control-input {
+  height: 40px !important;
+
+
+
+}
+
 .main-control {
   font-size: 12px;
   height: 40px;
@@ -102,5 +109,7 @@ h3 {
   font-size: 18px;
   color: #454545;
 }
+
+
 
 

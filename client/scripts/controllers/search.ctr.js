@@ -23,6 +23,8 @@
       	vm.selected_address = '';
       	vm.options = null;
       	vm.address_details = null;
+      	vm.start_date = new Date();
+      	vm.isDateDisabled = true;
 
     	vm.distanceOptions = Utils.getDistanceSearchOptions();
       	vm.dateSearchOptions = Utils.getDateSearchOptions();
@@ -129,6 +131,15 @@
 
 	    }, true);
 
+	    $scope.$watch("vm.start_date", function(date) {
+	    	vm.gatherings = [];
+					var query = constructQuery();					
+					getGatherings(query);
+        
+	      	
+
+	    }, true);
+
 		function getGatherings(query) {
 			console.log("Query Used:" + JSON.stringify(query));
 	        gatheringAPI.getGatherings(1, 6, query)
@@ -164,45 +175,60 @@
 		      			
 		      			startDate = new Date($moment().hour(0).minute(0).second(0));
 		      			endDate = new Date($moment().hour(23).minute(59).second(59));
-		      			//console.log('Today Start:' + startDate);
-		      			//console.log('Today End:' + endDate);
+		      			vm.start_date = new Date(startDate);
+
+		      			vm.isDateDisabled = true;
+
+		      			
+		      			console.log('Today Start:' + startDate);
+		      			console.log('Today End:' + endDate);
 		      			break;
 		      		case 2: // Tomorrow	      			
 
 		      			futureDate = $moment().add(1, 'd');
 		      			startDate = new Date($moment(futureDate).hour(0).minute(0).second(0));
 		      			endDate = new Date($moment(futureDate).hour(23).minute(59).second(59));
+		      			vm.start_date = new Date(startDate);
 
-		      			//console.log('Tomorrow Start:' + startDate);
-		      			//console.log('Tomorrow End:' + endDate);
+		      			vm.isDateDisabled = true;
+
+		      			console.log('Tomorrow Start:' + startDate);
+		      			console.log('Tomorrow End:' + endDate);
 
 		      			break;
 		      		case 3: // Next Week
-		      			startDate = new Date($moment().hour(0).minute(0).second(0));
-		      			futureDate = $moment().add(1, 'w');
+		      			startDate = new Date($moment(vm.start_date).hour(0).minute(0).second(0));
+		      			futureDate = $moment(vm.start_date).add(1, 'w');
 		      			endDate = new Date($moment(futureDate).hour(23).minute(59).second(59));
 
-		      			//console.log('Tomorrow Start:' + startDate);
-		      			//console.log('Tomorrow End:' + endDate);
+		      			vm.isDateDisabled = false;
+
+		      			console.log('Tomorrow Start:' + startDate);
+		      			console.log('Tomorrow End:' + endDate);
 		      			break;
 		      		case 4: // Next Month
-		      			startDate = new Date($moment().hour(0).minute(0).second(0));
-		      			futureDate = $moment().add(1, 'M');
+		      			startDate = new Date($moment(vm.start_date).hour(0).minute(0).second(0));
+		      			futureDate = $moment(vm.start_date).add(1, 'M');
 		      			endDate = new Date($moment(futureDate).hour(23).minute(59).second(59));
 
-		      			//console.log('Tomorrow Start:' + startDate);
-		      			//console.log('Tomorrow End:' + endDate);
+		      			vm.isDateDisabled = false;
+
+		      			console.log('Tomorrow Start:' + startDate);
+		      			console.log('Tomorrow End:' + endDate);
 		      			break;
 		      		case 5: // Next Year
-		      			startDate = new Date($moment().hour(0).minute(0).second(0));
-		      			futureDate = $moment().add(1, 'y');
+		      			startDate = new Date($moment(vm.start_date).hour(0).minute(0).second(0));
+		      			futureDate = $moment(vm.start_date).add(1, 'y');
 		      			endDate = new Date($moment(futureDate).hour(23).minute(59).second(59));
 
-		      			//console.log('Tomorrow Start:' + startDate);
-		      			//console.log('Tomorrow End:' + endDate);
+		      			vm.isDateDisabled = false;
+		      			console.log('Tomorrow Start:' + startDate);
+		      			console.log('Tomorrow End:' + endDate);
 		      			break;
 
 		      	}
+
+		      	
 
 		      	query.gathering_start_date_time = {
 		          	$gt:startDate,
@@ -238,6 +264,111 @@
 		    return query;
 
 	    }
+
+	    // ===============================================================================================
+
+	  // Date related functions
+    // ======================================================================================================
+    function getDayClass(data) {
+        var date = data.date,
+        mode = data.mode;
+
+        if (mode === 'day') {
+          var dayToCheck = new Date(date).setHours(0,0,0,0);
+
+          for (var i = 0; i < vm.events.length; i++) {
+              var currentDay = new Date(vm.events[i].date).setHours(0,0,0,0);
+
+              if (dayToCheck === currentDay) {
+                return vm.events[i].status;
+              }
+          }
+        }
+
+        return '';
+    }
+
+    vm.today = function() {
+      vm.start_date = new Date();
+    };
+        
+    vm.today();
+
+    vm.clearDate = function() {
+      vm.start_date = null;
+    };
+
+    vm.inlineOptions = {
+        customClass: getDayClass,
+        minDate: new Date(),
+        showWeeks: true
+    };
+
+    vm.dateOptions = {
+        formatYear: 'yy',
+        maxDate: new Date(2020, 5, 22),
+        minDate: new Date(),
+        startingDay: 1
+    };
+
+    // Disable weekend selection
+    function disabled(data) {
+        var date = data.date,
+        mode = data.mode;
+        return mode === 'day' && (date.getDay() === 0 || date.getDay() === 6);
+    }
+
+    vm.toggleMin = function() {
+        vm.inlineOptions.minDate = vm.inlineOptions.minDate ? null : new Date();
+        vm.dateOptions.minDate = vm.inlineOptions.minDate;
+    };
+
+    vm.toggleMin();
+
+    vm.open1 = function() {
+        console.log('Open 1 calledss');
+        vm.popup1.opened = true;
+    };
+
+    vm.open2 = function() {
+        console.log('Open 1 calledss');
+        vm.popup2.opened = true;
+    };
+
+    vm.setDate = function(year, month, day) {
+        vm.dt = new Date(year, month, day);
+    };
+
+    vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    vm.format = vm.formats[0];
+    vm.altInputFormats = ['M!/d!/yyyy'];
+
+    vm.popup1 = {
+        opened: false,
+        maxDate: new Date('10/04/2016')
+    };
+
+    vm.popup2 = {
+        opened: false,
+        maxDate: new Date('10/04/2016')
+    };
+
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+  
+    var afterTomorrow = new Date();
+    afterTomorrow.setDate(tomorrow.getDate() + 1);
+      
+    vm.events = [
+      {
+          date: tomorrow,
+          status: 'full'
+      },
+    {
+          date: afterTomorrow,
+          status: 'partially'
+      }
+    ];
 
 
 
