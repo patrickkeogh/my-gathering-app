@@ -100,16 +100,20 @@ module.exports.removeBanner = function(req, res) {
 };
 
 module.exports.addBanner = function(req, res) {
+  var banner = {
+        banner: req.body
+    };
     
-  var id = req.params.id;
+    var id = req.params.id;
 
-  Gatherings.findByIdAndUpdate(id, banner, function(err, gathering) {
+    Gatherings.findByIdAndUpdate(id, banner, function(err, gathering) {
 
-      if (err) throw err;
-     sendJSONresponse(res, HTTPStatus.OK, gathering);
+        if (err) throw err;
+       sendJSONresponse(res, HTTPStatus.OK, gathering);
 
 
-  });
+    });
+
 
 };
 
