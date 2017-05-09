@@ -1,4 +1,94 @@
 <div id="page-wrapper">
+    <div class="container-fluid no-padding">
+        <div class="content-spacer">
+            <div class="title-bar-main ">
+                <div class="col-xs-12">
+                    <i class="fa fa-camera-retro fa-fw"></i> Manage Promotional Banner
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row row-spacer">
+                    <div></div>                                               
+                </div>
+
+                <div class="col-xs-12 no-padding">
+
+                    <div class="col-xs-12 col-sm-6 no-padding-left" ng-show="vm.gathering.banner">
+                        <label>Current Banner</label>
+                        <img class=" img-responsive" ng-src="{{vm.gathering.banner.url}}"> 
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 no-padding-left" ng-show="!vm.gathering.banner">
+                        <label>Current Banner</label>
+                        <img class="img-responsive" src="/images/blank.png"> 
+                    </div>
+
+
+
+                    <div class="col-xs-12 col-sm-6 no-padding" ng-show="!vm.uploadedPicture">
+                        <label>New Banner</label>
+                        <a class="image_upload_link" ng-click="vm.upload()">
+                            <div class="image-holder-blank">
+                                <div class="text-center"><i class="fa fa-camera-retro fa-fw"></i></div>
+                                <h4 class="text-center">Add Promotional Banner</h4>
+                                <h6 class="text-center">Bring your Gathering to life.</h6>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-6 no-padding" ng-show="vm.uploadedPicture">
+                        <label>New Banner</label>
+                                 <img class=" img-responsive" ng-src="{{vm.uploadedPicture.url | fpConvert: {filter:'sharpen'} }}">
+                            </div> 
+
+                </div>
+
+                <div class="col-xs-12 col-sm-4 no-padding-left no-padding-right btn-group-banner">
+                    <div class="col-xs-12 no-padding-left no-padding-right btn-group-banner-button">
+           
+                            <button class="btn btn-block btn-success" ng-show="vm.uploadedPicture"
+                                ng-click="vm.saveBanner()" 
+                                ng-disabled="!vm.uploadedPicture">Save New Banner</button>
+            
+                    </div> 
+
+                    <div class="col-xs-12 no-padding-left no-padding-right btn-group-banner-button">
+             
+                        <button class="btn btn-block btn-primary" ng-click="vm.openConfirmModal()" ng-show="!vm.uploadedPicture">Remove Banner</button>
+      
+                    </div>  
+
+                    <div class="col-xs-12 no-padding-left no-padding-right btn-group-banner-button">
+              
+                            <button class="btn btn-block btn-danger" ng-click="vm.cancel()" ng-show="vm.uploadedPicture">Cancel</button>
+      
+                    </div>  
+
+                </div>
+
+                <div class="row row-spacer">
+                    <div></div>                                               
+                </div>
+
+                
+
+
+
+
+                
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- <div id="page-wrapper">
     <div class="container-fluid">
         <div class="content-spacer">
             <div class="col-xs-12">
@@ -71,7 +161,7 @@
                             <button class="btn btn-block btn-primary" ng-click="vm.removeBanner()"><i class="fa fa-trash" aria-hidden="true"></i></button>
                         </div>
                     </div>                        
-                </div>
+                </div> -->
 
                 
 
@@ -87,7 +177,3 @@
 
                 </div>      -->          
                 
-            </div>
-                    </div>
-    </div>
-</div>

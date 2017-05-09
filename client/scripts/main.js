@@ -29,7 +29,7 @@
     
     function config($stateProvider, $urlRouterProvider, $locationProvider, uiGmapGoogleMapApiProvider, filepickerProvider) {
         $urlRouterProvider.otherwise('/');
-        //$locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(true);
         //$httpProvider.interceptors.push('authInterceptor');
         filepickerProvider.setKey('ANNrSlVqZSbCvpZVLcwspz');
 
@@ -73,10 +73,7 @@
                     templateUrl: 'views/footer.html'
                 }
             },
-            data: {
-                requireLogin: true
-            }
-
+            authenticate: false
         });
     }
 
@@ -86,9 +83,9 @@
             //console.log("We have a state change");
           
             if (next.authenticate) {
-                //console.log("Authentication is required");
+                console.log("Authentication is required");
                 if(!Authentication.isLoggedIn()) {
-                    //console.log("User is not Authenticated");
+                    console.log("User is not Authenticated");
                     $location.path('/login');
                 }
             }

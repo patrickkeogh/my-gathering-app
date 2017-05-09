@@ -51,13 +51,22 @@
       });
     };
 
+    var removeBanner = function(id) {
+      return $http.post(url + '/' + id + '/banner/remove', {
+        headers: {
+            'x-access-token': Authentication.getToken
+        }
+      });
+    };
+
     return {
       getTypes: getTypes,
       getTopics: getTopics,
       getGathering: getGathering,
       getGatherings: getGatherings,
       createGathering: createGathering,
-      saveBanner: saveBanner
+      saveBanner: saveBanner,
+      removeBanner: removeBanner
     };
   }
 

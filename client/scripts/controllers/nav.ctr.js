@@ -58,6 +58,7 @@
           case 'gathering-dashboard':  
           case 'gathering-info': 
           case 'gathering-chat': 
+          case 'gathering-pics':
           case 'gathering-manage-banner':           
             vm.showSidebar = true;
             vm.src = 'views/includes/sidebar.dashboard.html';

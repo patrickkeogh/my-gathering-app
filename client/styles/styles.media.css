@@ -15,7 +15,7 @@
 	}*/
 
 	.padding-dashboard-panels {
-		padding: 0px;
+		padding: 5px;
 	}
 
 	.navbar-brand {
@@ -226,7 +226,7 @@
 	}
 
 	.top-nav-links {
-	  font-size: 12px;
+	  font-size: 10px;
 	}
 
 }
@@ -288,6 +288,12 @@
 	}*/
 	.table {
 	  font-size: 16px;
+	}
+
+	.padding-dashboard-panels {
+		padding-top: 0px;
+		padding-left: 10px;
+		padding-right: 10px;
 	}
 
 }

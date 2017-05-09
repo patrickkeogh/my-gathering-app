@@ -28,6 +28,7 @@ router.get('/gathering/:id', ctrlGatherings.getGathering);
 router.post('/gathering', ctrlGatherings.createGathering);
 
 router.post('/gathering/:id/banner', ctrlGatherings.addBanner);
+router.post('/gathering/:id/banner/remove', ctrlGatherings.removeBanner);
 
 
 

@@ -86,21 +86,30 @@ module.exports.getGathering = function(req, res) {
 
 };
 
+module.exports.removeBanner = function(req, res) {
+
+  var id = req.params.id;
+
+  Gatherings.findByIdAndUpdate(id, {$unset: {"banner": ""}}, function(err, gathering) {
+
+    if (err) throw err;
+    sendJSONresponse(res, HTTPStatus.OK, gathering);
+
+  });
+
+};
+
 module.exports.addBanner = function(req, res) {
-  var banner = {
-        banner: req.body
-    };
     
-    var id = req.params.id;
+  var id = req.params.id;
 
-    Gatherings.findByIdAndUpdate(id, banner, function(err, gathering) {
+  Gatherings.findByIdAndUpdate(id, banners, function(err, gathering) {
 
-        if (err) throw err;
-       sendJSONresponse(res, HTTPStatus.OK, gathering);
+      if (err) throw err;
+     sendJSONresponse(res, HTTPStatus.OK, gathering);
 
 
-    });
-
+  });
 
 };
 

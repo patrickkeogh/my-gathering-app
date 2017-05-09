@@ -2,11 +2,32 @@
   'use strict';
   angular
     .module('myGathering')
-    .controller('ManageGatheringController', Controller);
-        
-    Controller.$inject = ['$scope','$stateParams', 'filepickerService', 'gatheringAPI'];
+    .controller('ManageGatheringController', controller);
        
-    function Controller($scope, $stateParams, filepickerService, gatheringAPI) {
+    controller.$inject = ['$scope','$stateParams', 'filepickerService', 'gatheringAPI', '$uibModal'];
+
+    angular
+    .module('myGathering')
+    .controller('ModalCtrl', modalCtr);
+
+    modalCtr.$inject = ['$scope', '$uibModalInstance'];
+
+    function modalCtr($scope, $uibModalInstance) {
+
+    	var vm = this;
+
+    	vm.ok = function () {
+		    $uibModalInstance.close(vm.gatherings);
+		};
+
+		vm.cancel = function () {
+		    $uibModalInstance.dismiss('cancel');
+		};
+
+    }
+       
+    function controller($scope, $stateParams, filepickerService, gatheringAPI, $uibModal) {
+
       	var vm = this;
 
       	vm.id = $stateParams.id;
@@ -28,6 +49,39 @@
 
 	       
 	    }); 	
+
+	    vm.openConfirmModal = function() {
+
+      		var modalInstance = $uibModal.open({
+      			animation: true,
+      			ariaLabelledBy: 'modal-title',
+      			ariaDescribedBy: 'modal-body',
+      			backdrop: 'static',
+      			size: 'sm',
+      			templateUrl: '../views/modals/manage.banner.confirm.modal.html',
+      			controller: 'ModalCtrl',
+      			controllerAs: 'vm'
+      		});
+
+      		modalInstance.result.then(function (gatherings_in) {
+      			console.log('Confirmation Received');
+
+      			// Remove Banner
+      			gatheringAPI.removeBanner(vm.id)
+      			.then(function(data) {
+      				console.log('data returned from remove banner call');
+      				console.log(data);
+
+
+      			})
+      			.catch(function(err) {
+      				console.log('failed to remove banner ' + err);
+      			});
+ 
+      		}, function() {
+      			console.log('Modal dismissed at: ' + new Date());
+      		});
+	    };
 
       	vm.saveBanner = function() {
       		console.log('Save Banner called');
@@ -72,6 +126,12 @@
 
 	    	vm.uploadedPicture = null;
 	    	//$scope.$apply();
+
+	    };
+
+	    vm.cancel = function() {
+
+	    	vm.uploadedPicture = null;
 
 	    };
 

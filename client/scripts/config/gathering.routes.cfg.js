@@ -99,6 +99,25 @@
             authenticate: true
 
         })
+        .state('gathering-pics', {
+            url: '/gathering/pics/:id',
+            views: {
+                'header': {
+                    templateUrl: 'views/nav.header.sidebar.html',
+                    controller: 'NavigationController as vm'
+                },
+                'content': {
+                    templateUrl: 'views/gathering.pictures.html',
+                    controller: 'GatheringChatController as vm'
+                },
+                'footer': {
+                    templateUrl: 'views/footer.html'
+                }
+            },
+            authenticate: true
+
+        })
+
         .state('gathering-chat', {
             url: '/gathering/chat/:id',
             views: {

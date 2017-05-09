@@ -53,15 +53,15 @@
         value: 2
       },
       {
-        name: 'One week from',
+        name: 'One week starting',
         value: 3
       },
       {
-        name: 'One month from',
+        name: 'One month starting',
         value: 4
       },
       {
-        name: 'One year from',
+        name: 'One year starting',
         value: 5
       }
 

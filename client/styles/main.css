@@ -9,6 +9,14 @@ body {
   background-color: #e8e8e8;
 }
 
+.btn-group-banner {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.btn-group-banner-button {
+  padding-bottom: 10px;
+}
+
 .pac-container { z-index: 100000; }
 
 .top-nav-links 
@@ -112,7 +120,8 @@ body {
 
 .image-holder-blank {
   background-color: #EEEEEE;
-  height: 150px;
+  width: 100%;
+
   color: #673AB7;
   padding-top: 10px;
   border: 2px dashed #000000;
@@ -120,7 +129,8 @@ body {
 
 .image-holder-blank:hover {
   background-color: #E0E0E0;
-  height: 150px;
+  width: 100%;
+
   color: #673AB7;
   padding-top: 10px;
   border: 2px dashed #000000;
@@ -451,6 +461,12 @@ a[ng-click]  { cursor:pointer; }
 
 .no-padding{
   padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+.no-padding-right {
+  padding-right: 0px !important;
+}
+.no-padding-left {
   padding-left: 0px !important;
 }
 
