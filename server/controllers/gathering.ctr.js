@@ -90,7 +90,7 @@ module.exports.removeBanner = function(req, res) {
 
   var id = req.params.id;
 
-  Gatherings.findByIdAndUpdate(id, {$unset: "banner"}, function(err, gathering) {
+  Gatherings.findByIdAndUpdate(id, {"$unset": {"banner": 1}}, function(err, gathering) {
 
     if (err) throw err;
     sendJSONresponse(res, HTTPStatus.OK, gathering);
