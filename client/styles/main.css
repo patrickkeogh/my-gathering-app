@@ -111,10 +111,27 @@ body {
   }
 }
 
+.form-spacer {
+  height: 300px;
+}
+
 .my-brand {
   font: 400 32px/0.8 'Cookie', Helvetica, sans-serif;
   color: #fff;
   padding-top: 8px;
+}
+
+.create-submit-area {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.image-holder-blank-create {
+  background-color: #EEEEEE;
+  color: #673AB7;
+  padding-top: 10px;
+  border: 2px dashed #000000;
+
 }
 
 
@@ -760,7 +777,7 @@ table.table-no-margin {
 }
 
 .row-spacer {
-  height: 10px;
+  height: 30px;
 }
 
 

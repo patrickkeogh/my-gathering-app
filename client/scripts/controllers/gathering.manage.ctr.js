@@ -38,6 +38,22 @@
 
 	        console.log("init called in Gathering Info");
 
+	        // Get the height of the current banner if there is on
+
+	     //    var width = document.getElementById('currentBanner').offsetWidth;
+
+		    // var height = angular.element(document.getElementById('currentBanner')).prop('offsetHeight');
+
+		    // var height2 = angular.element(document.getElementById('imageHolder')).prop('offsetHeight');
+
+		    // angular.element(document.getElementById('imageHolder').height)
+
+
+
+		    //console.log('Height of element is:' + height);
+		    //console.log('Height2 of element is:' + height2);
+
+
 	        gatheringAPI.getGathering(vm.id)
 	        .then(function(data) {
 	          console.log(data.data);

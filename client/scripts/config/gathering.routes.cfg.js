@@ -11,6 +11,7 @@
         $stateProvider
         .state('gathering-new', {
             url: '/gathering/new',
+            cache: false,
             views: {
                 'header': {
                     templateUrl: 'views/nav.header.sidebar.html',

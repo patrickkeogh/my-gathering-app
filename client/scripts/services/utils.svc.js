@@ -18,6 +18,7 @@
       gathering_start_date_time: "",
       gathering_end_date_time: "",
       directions: "",
+      //banner: {},
       access: "Public",
       notes: "",
       status: "Not Published",

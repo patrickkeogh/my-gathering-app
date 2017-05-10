@@ -2,16 +2,18 @@
   'use strict';
   angular
     .module('myGathering')
-    .controller('NewGatheringController', CreateGatheringController);
+    .controller('NewGatheringController', controller);
         
-    CreateGatheringController.$inject = ['$state','$scope', '$moment', 'Authentication', 'gatheringAPI'];
+    controller.$inject = ['$state','$scope', '$moment', 'filepickerService', 'Authentication', 'gatheringAPI', 'Utils'];
        
-    function CreateGatheringController($state, $scope, $moment, Authentication, gatheringAPI) {
+    function controller($state, $scope, $moment, filepickerService, Authentication, gatheringAPI, Utils) {
 
       var vm = this;
 
       var width, height;
-      
+
+
+      vm.imageUrl = '';
       vm.options1 = null;
     	vm.address_details = '';
 
@@ -20,44 +22,19 @@
     	vm.invalid_start_date = false;
     	vm.invalid_end_date = false;
 
+      vm.uploadedPicture = null;
+
       	vm.formErrors = {
       		invalidDate: "The End Date cannot be before the Start Date"
     	};
 
-      vm.newGathering = {
-    		//id: 1,
-	    	name:"", 
-	    	description: "",
-	    	location: {}, 
-	      type: "",    
-	      topic: "", 
-	    	gathering_start_date_time: "",
-	      gathering_end_date_time: "",
-	    	directions: "",
-	    	access: "Public",
-	    	notes: "",
-	    	status: "Not Published",
-        owner: {}
-	   	};
+      vm.newGathering = Utils.getNewGatheringTemplate();
 
-      	angular.element(document).ready(function() {
+      vm.gatheringAddress = Utils.getNewLocationTemplate();
+
+      angular.element(document).ready(function() {
 
     		console.log("init called in Gathering");
-
-    		vm.gatheringAddress = {
-		      	location: {
-		        	"type": "Point",
-		        	"coordinates": [-79.3790818, 43.64352050000001] //long, lat for mongo
-		      	},
-		      	country: '',
-            country_short: '',
-		      	formatted_address: '',
-		      	locality: '',
-		      	postal_code: '',
-		      	state_prov: '',
-		      	name: '',
-		      	notes: ''
-		    };
 
 		    width = angular.element(document.getElementById('map-container-width')).prop('offsetWidth');
 		    height = angular.element(document.getElementById('map-container-height')).prop('offsetHeight') - 120;
@@ -96,22 +73,48 @@
         
   		});
 
+      //Single file upload, you can take a look at the options
+      vm.upload = function(){
+        filepickerService.pick(
+          {
+              mimetype: 'image/*',
+              language: 'en',
+              services: ['CONVERT', 'COMPUTER','DROPBOX','GOOGLE_DRIVE','IMAGE_SEARCH', 'FACEBOOK', 'INSTAGRAM'],
+              conversions: ['crop'],
+              cropRatio: 2/1,
+              cropMin: [300, 150],
+              // cropDim: [300, 150],
+              cropMax: [2160, 1080],
+              cropForce: true,
+              openTo: 'COMPUTER'
+          },
+          function(Blob){
+              console.log(JSON.stringify(Blob));
+              vm.uploadedPicture = Blob;
+              vm.newGathering.banner = Blob;
+              $scope.$apply();
+          }
+        );
+      };
+
   		function constructImageUrl(width, height){
-      		var urlbase = "https://maps.googleapis.com/maps/api/staticmap?size=" + width + "x" + height + "&sensor=false&maptype=roadmap";
 
-      		vm.imgurl = urlbase;
+        console.log('constructUrl called:' + 'height:' + height + 'width:' + width);
+    		var urlbase = "https://maps.googleapis.com/maps/api/staticmap?size=" + width + "x" + height + "&zoom=14&sensor=false&maptype=roadmap";
 
-			vm.imgurl += "&markers=color:red|" +  vm.gatheringAddress.location.coordinates[1] + "," + vm.gatheringAddress.location.coordinates[0];
-      		
-      		vm.imgurl += "&key=AIzaSyAf7uV3v7upRbATDfluOmSaoHMgsgXRkDM";
+    		vm.imgurl = urlbase;
 
-      		//console.log("IMG URL:" + vm.imgurl);
-        }
+		     vm.imgurl += "&markers=color:red|" +  vm.gatheringAddress.location.coordinates[1] + "," + vm.gatheringAddress.location.coordinates[0];
+    		
+    		vm.imgurl += "&key=AIzaSyAf7uV3v7upRbATDfluOmSaoHMgsgXRkDM";
 
-        vm.createGathering = function() {
-			   console.log("createGathering called");
+    		//console.log("IMG URL:" + vm.imgurl);
+      }
 
-	     	vm.newGathering.gathering_start_date_time = vm.start_date;
+      vm.createGathering = function(status) {
+			 console.log("createGathering called");
+
+	     	 vm.newGathering.gathering_start_date_time = vm.start_date;
 	       	vm.newGathering.gathering_end_date_time = vm.end_date;
 
 	      	if(!$scope.createGatheringForm.name.$valid) {
@@ -161,6 +164,8 @@
         		vm.isFormValid = false;
       		}
 
+          vm.newGathering.status = status;
+
 
       		vm.newGathering.location = vm.gatheringAddress;
 
@@ -169,21 +174,24 @@
 	        	console.log("Post the form to the server");
 
 	        	gatheringAPI.createGathering(vm.newGathering)
-			    .then(function(data) {
-			    	console.log("Gathering Added");
-			    	console.log("data=" + JSON.stringify(data));
+  			    .then(function(data) {
+  			    	console.log("Gathering Added");
+  			    	console.log("data=" + JSON.stringify(data));
 
-            var id = data.data._id;
+              var id = data.data._id;
 
-            console.log("id=" + id);
+              console.log("id=" + id);
 
-            //$state.go('gathering-dashboard', {id: gathering._id});
-			    	$state.go('gathering-dashboard', {id: id});		        	
-		      	})
-		      	.catch(function(err) {
-		        	console.log('failed to create gathering ' + err);
-		      	});
-	      	}
+              //$state.go('gathering-dashboard', {id: gathering._id});
+  			    	$state.go('gathering-dashboard', {id: id});		        	
+  		      	})
+  		      .catch(function(err) {
+  		        console.log('failed to create gathering ' + err);
+  		      });
+	      	} else {
+            console.log("Form is not valid");
+
+          }
   		};
 
   		$scope.$watch("vm.address_details", function(data) {
