@@ -1,6 +1,6 @@
 <div class="container-fluid no-padding container-main">
     <div class="title-bar-main ">
-        <div class="col-xs-12 text-center">
+        <div class="col-xs-12">
             <i class="fa fa-plus fa-fw"></i> {{vm.search_message}}
         </div>
     </div>
@@ -38,7 +38,8 @@
                         <div class="panel-banner">
                             <img class="no-resize img-responsive" ng-src="{{row.banner.url}}">
                         </div>
-                        <div class="panel-cost">FREE</div>                                    
+                        <div class="panel-cost">FREE</div>
+                        <div class="panel-status bg-info">{{row.status}}</div>                                    
                     </div>
           
                     <div class="panel-details-wrapper">

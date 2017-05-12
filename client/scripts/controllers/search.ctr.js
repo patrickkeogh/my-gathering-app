@@ -4,7 +4,7 @@
     .module('myGathering')
     .controller('SearchController', SearchController);
         
-    SearchController.$inject = ['$scope', '$document', '$uibModal', '$moment', 'geocode', 'gatheringAPI', 'Utils'];
+    SearchController.$inject = ['$scope', '$state', '$document', '$uibModal', '$moment', 'geocode', 'gatheringAPI', 'Utils'];
 
     angular
     .module('myGathering')
@@ -57,7 +57,7 @@
 
         	geocode.getCurrentLocation().then(function(result){
 
-     			//console.log("We have a result:" + JSON.stringify(result));
+     			console.log("We have a result:" + JSON.stringify(result));
      			vm.search_address = result;
 
 		      	if(vm.search_address.locality !== '') {
@@ -124,7 +124,6 @@
 					var query = constructQuery();					
 					getGatherings(query);
 
-
 			    });
 
 	      	}
@@ -156,6 +155,8 @@
 
 		function constructQuery() {
 
+			console.log('Construct Query has been enetered');
+
       		var query = {};
       		var startDate;
       		var endDate;
@@ -180,8 +181,8 @@
 		      			vm.isDateDisabled = true;
 
 		      			
-		      			console.log('Today Start:' + startDate);
-		      			console.log('Today End:' + endDate);
+		      			//console.log('Today Start:' + startDate);
+		      			//console.log('Today End:' + endDate);
 		      			break;
 		      		case 2: // Tomorrow	      			
 
@@ -192,8 +193,8 @@
 
 		      			vm.isDateDisabled = true;
 
-		      			console.log('Tomorrow Start:' + startDate);
-		      			console.log('Tomorrow End:' + endDate);
+		      			//console.log('Tomorrow Start:' + startDate);
+		      			//console.log('Tomorrow End:' + endDate);
 
 		      			break;
 		      		case 3: // Next Week
@@ -203,8 +204,8 @@
 
 		      			vm.isDateDisabled = false;
 
-		      			console.log('Tomorrow Start:' + startDate);
-		      			console.log('Tomorrow End:' + endDate);
+		      			//console.log('Tomorrow Start:' + startDate);
+		      			//console.log('Tomorrow End:' + endDate);
 		      			break;
 		      		case 4: // Next Month
 		      			startDate = new Date($moment(vm.start_date).hour(0).minute(0).second(0));
@@ -213,8 +214,8 @@
 
 		      			vm.isDateDisabled = false;
 
-		      			console.log('Tomorrow Start:' + startDate);
-		      			console.log('Tomorrow End:' + endDate);
+		      			//console.log('Tomorrow Start:' + startDate);
+		      			//console.log('Tomorrow End:' + endDate);
 		      			break;
 		      		case 5: // Next Year
 		      			startDate = new Date($moment(vm.start_date).hour(0).minute(0).second(0));
@@ -222,13 +223,10 @@
 		      			endDate = new Date($moment(futureDate).hour(23).minute(59).second(59));
 
 		      			vm.isDateDisabled = false;
-		      			console.log('Tomorrow Start:' + startDate);
-		      			console.log('Tomorrow End:' + endDate);
+		      			//console.log('Tomorrow Start:' + startDate);
+		      			//console.log('Tomorrow End:' + endDate);
 		      			break;
-
-		      	}
-
-		      	
+		      	}		      	
 
 		      	query.gathering_start_date_time = {
 		          	$gt:startDate,
@@ -236,7 +234,7 @@
 		        };
 	      	}
 
-	      console.log("TYPE:" + vm.search_type );
+	      	console.log("TYPE:" + vm.search_type );
 
 
 	      	if (typeof vm.search_type === 'undefined') {
@@ -251,15 +249,23 @@
 	        	query['topic.0._id'] = vm.search_topic._id;
 	      	}
 
+	      	console.log('address:' + vm.search_address);
 
-			query['location.location'] = {
-	          	$near: {
-	            	$geometry: { type: "Point",  coordinates: vm.search_address.location.coordinates },
-	            	$minDistance: 0.01,
-	            	$maxDistance: vm.selectedDistance.value
+	      	
+			if(typeof vm.search_address === 'undefined') {
+	      		// Dont include address in the search
+	      	} else {
 
-	          	}
-	        };	
+				query['location.location'] = {
+		          	$near: {
+		            	$geometry: { type: "Point",  coordinates: vm.search_address.location.coordinates },
+		            	$minDistance: 0.01,
+		            	$maxDistance: vm.selectedDistance.value
+
+		          	}
+		        };
+	      	}	
+	  			
 
 		    return query;
 
@@ -375,7 +381,7 @@
 
     }
        
-    function SearchController($scope, $document, $uibModal, $moment, geocode, gatheringAPI, Utils) {
+    function SearchController($scope, $state, $document, $uibModal, $moment, geocode, gatheringAPI, Utils) {
       	var vm = this;
 
       	vm.gatherings = [];      	
@@ -450,6 +456,10 @@
 			}
 			constructFooterTag();
 		};
+
+		vm.goToDetails = function(gathering) {
+	    	$state.go('gathering-dashboard', {id: gathering._id});
+	    };
 
 	    $scope.$watch('vm.address_details', function(newValue, oldValue) {
 

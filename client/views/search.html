@@ -41,7 +41,9 @@
                         <div class="panel-banner">
                             <img class="no-resize img-responsive" ng-src="{{row.banner.url}}">
                         </div>
-                        <div class="panel-cost">FREE</div>                                    
+                        <div class="panel-cost">FREE</div>   
+                        <div class="panel-status bg-info">{{row.status}}</div>
+
                     </div>
           
                     <div class="panel-details-wrapper">
@@ -49,7 +51,7 @@
                         <div class="panel-details-name"><strong>{{row.name}}</strong></div>
                         <div class="panel-details-location">
                             <div class="details-location">{{row.location.name}}</div>
-                            <div class="details-location">{{row.location.locality}}, {{row.location.state_prov}}</div>
+                            <div class="details-location">{{row.location.locality}}, {{row.location.state_prov}}, </div>
                             <div class="details-location">{{row.location.country}}</div>
                         </div>
                     </div>

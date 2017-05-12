@@ -79,7 +79,7 @@
                     templateUrl: 'views/footer.html'
                 }
             },
-            authenticate: true
+            authenticate: false
 
         })
         .state('gathering-info', {
@@ -97,7 +97,7 @@
                     templateUrl: 'views/footer.html'
                 }
             },
-            authenticate: true
+            authenticate: false
 
         })
         .state('gathering-pics', {
@@ -115,7 +115,7 @@
                     templateUrl: 'views/footer.html'
                 }
             },
-            authenticate: true
+            authenticate: false
 
         })
 
@@ -134,7 +134,7 @@
                     templateUrl: 'views/footer.html'
                 }
             },
-            authenticate: true
+            authenticate: false
 
         });
     }

@@ -1,5 +1,6 @@
 <ul class="nav navbar-top-links navbar-right">
-    <li ui-sref-active="active">
+
+    <li>
         <a href="#" class="top-nav-links" ui-sref="main"><i class="fa fa-home fa-fw"></i>
             <span class="hidden-xs"> Home </span>
         </a>
@@ -15,14 +16,14 @@
         </ul>
     </li> -->
 
-    <li ui-sref-active="active">
+    <li ng-show="vm.isLoggedIn">
         <a href="#" class="top-nav-links" ui-sref="gathering-created">
             <i class="fa fa-cubes fa-fw"></i><span class="hidden-xs"> My Gatherings </span>
         </a>
     </li>
 
 
-    <li ui-sref-active="active">
+    <li>
         <a href="#" class="top-nav-links" ui-sref="search">
             <i class="fa fa-search fa-fw"></i><span class="hidden-xs"> Search </span>
         </a>

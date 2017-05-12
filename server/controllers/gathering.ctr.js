@@ -53,7 +53,7 @@ module.exports.getGatherings = function(req, res) {
 
   var recsToSkip = ((page - 1) * recsPerPage);
 
-  Gatherings.find(queryObj).sort({_id:1}).exec(function(err, gatherings) {
+  Gatherings.find(queryObj).sort({gathering_start_date_time:1}).exec(function(err, gatherings) {
 
       if (err) throw err;
       sendJSONresponse(res, HTTPStatus.OK, gatherings);

@@ -7,7 +7,7 @@
 <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
-            <li ui-sref-active="active">
+            <li>
                 <a ui-sref-active="active" ui-sref="gathering-dashboard({id:vm.selectedGatheringId})"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
 
@@ -19,7 +19,7 @@
                 <a ui-sref-active="active" ui-sref="gathering-pics({id:vm.selectedGatheringId})"><i class="fa fa-photo fa-fw"></i> Pictures</a>
             </li>
 
-            <li>
+            <li ng-show="vm.isLoggedIn">
                 <a href="#"><i class="fa fa-wrench fa-fw"></i> Manage Options<span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
