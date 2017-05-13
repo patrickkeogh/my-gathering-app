@@ -11,18 +11,9 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var authenticate = require('./server/config/authenticate');
-//var flash    = require('connect-flash');
-
-//var routes = require('./routes/index');
-//var users = require('./server/routes/route-users');
-//var admin = require('./server/routes/route-admin');
-//var gatherings = require('./server/routes/route-gatherings');
 
 // Bring in the routes for the API (delete the default routes)
 var routesApi = require('./server/routes/index');
-
-//var gatherings = require('./routes/route-gathering');
-//var categories = require('./routes/route-category');
 
 // Add the config file 
 var config = require('./server/config/config');
@@ -79,21 +70,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Set the app_client folder to serve static resources
 app.use(express.static(path.join(__dirname, 'client')));
 
-//app.use('/', routes);
-app.use('/api', routesApi);
-//app.use('/admin', admin);
-//app.use('/gathering', gatherings);
 
-//app.use('/gathering', gatherings);
-//app.use('/category', categories);
+app.use('/api', routesApi);
 
 // Otherwise render the index.html page for the Angular SPA
 // This means we don't have to map all of the SPA routes in Express
 app.use(function(req, res) {
   res.sendFile(path.join(__dirname, 'client', 'index.html'));
 });
-
-
 
 app.use(bodyParser.json({ reviver: function(key, value) {
   if ( typeof value === 'string' && value.length === 24) {
