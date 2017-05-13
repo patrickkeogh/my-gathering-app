@@ -10,6 +10,12 @@
       </div>
     </div> 
     <div class="container-fluid no-padding gathering-panel-main">
+      <div class="col-xs-12" ng-show="vm.gatherings.length === 0">
+        <h2 class="text-center">NO GATHERINGS FOUND</h3>
+        <h4 class="text-center">Click the search icon to select search filters.</h4>
+      </div>
+
+
       <div class="col-md-6 col-lg-4 clickable" ng-repeat="row in vm.gatherings | limitTo:vm.numToShow" ng-click="vm.goToDetails(row)">
         <div class="list-panel-mobile visible-xs">          
           <div class="panel-banner-wrapper-mobile">

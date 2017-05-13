@@ -1,35 +1,41 @@
 <div id="page-wrapper">
-    <div class="container-fluid">
-        <div class="col-xs-12">
-            <div class="content-spacer">
-            	<div class="row">
-      
-                        <h1 class="page-header page-header-primary"><i class="fa fa-search" aria-hidden="true"></i> Created</h1>
-                          
+    <div class="container-fluid no-padding">
+            <div class="content-spacer has-side-menu">
+                <div class="title-bar-main ">
+                    <div class="col-xs-12">
+                        <i class="fa fa-plus fa-fw"></i> Gatherings Created By You
+                    </div>
                 </div>
-                <div class="row" ng-repeat="rowContent in vm.gatherings" >
-                    <table width="100%" class="table table-bordered table-responsive table-condensed" id="dataTables-example">
-                        <tbody class="row-border"ng-class-odd="'odd'" ng-class-even="'even'">
-                            <tr>
-                                <td colspan=4 class="created-table-title">{{rowContent.name}}</td>
-                            </tr>
-                            <tr>
-                                <td class="created-table-details" width="100px">
-                                    <i class="glyphicon glyphicon-calendar"></i> {{rowContent.gathering_start_date_time | date:'mediumDate'}}
-                                </td>
-                                <td colspan=2  class="created-table-details">{{rowContent.location.name}}</td>
-                                <td class="created-table-details">{{rowContent.owner.username}}</td>
-                            </tr>
-                            <tr>
-                                <td class="created-table-details"><i class="glyphicon glyphicon-time"></i> {{rowContent.gathering_start_date_time | date:'shortTime'}}</td>
-                                <td class="created-table-details">{{rowContent.location.locality}}</td>
-                                <td class="created-table-details">{{rowContent.location.country}}</td>
-                                <td class="created-table-details" width="100px"><a href="#" ui-sref="gathering-dashboard({id: rowContent._id})">Manage Gathering</a></td>
-                            </tr>
-                        </tbody>                        
-                    </table>
+
+                <div class="container-fluid container-gatherings">
+                    <div class="row" ng-repeat="rowContent in vm.gatherings" >
+                        <table width="100%" class="table table-bordered table-responsive table-condensed" id="dataTables-example">
+                            <tbody class="row-border"ng-class-odd="'odd'" ng-class-even="'even'">
+                                <tr>
+                                    <td colspan=4 class="created-table-title">{{rowContent.name}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="created-table-details" width="100px">
+                                        <i class="glyphicon glyphicon-calendar"></i> {{rowContent.gathering_start_date_time | date:'mediumDate'}}
+                                    </td>
+                                    <td colspan=2  class="created-table-details">{{rowContent.location.name}}</td>
+                                    <td class="created-table-details">{{rowContent.owner.username}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="created-table-details"><i class="glyphicon glyphicon-time"></i> {{rowContent.gathering_start_date_time | date:'shortTime'}}</td>
+                                    <td class="created-table-details">{{rowContent.location.locality}}</td>
+                                    <td class="created-table-details">{{rowContent.location.country}}</td>
+                                    <td class="created-table-details" width="100px"><a href="#" ui-sref="gathering-dashboard({id: rowContent._id})">Manage Gathering</a></td>
+                                </tr>
+                            </tbody>                        
+                        </table>
+                    </div>
+
                 </div>
+
+
+                
             </div>
-        </div>
+
     </div>
 </div>
