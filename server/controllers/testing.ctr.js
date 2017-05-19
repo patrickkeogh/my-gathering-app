@@ -18,7 +18,7 @@ var validationError = function(res, err) {
 module.exports.getGatheringPojo = function(req, res) {
   console.log('entered getGatheringPojo:');
 
-  Gatherings.find({}, {_id:1, name: 1}).exec(function(err, gatherings) {
+  Gatherings.find({}, {_id:1, name:1, description:1, }).exec(function(err, gatherings) {
 
       if (err) throw err;
       sendJSONresponse(res, HTTPStatus.OK, gatherings);
