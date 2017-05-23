@@ -11,14 +11,14 @@ var smtpTransport = require('nodemailer-smtp-transport');
 
 var Jade = require('jade');
 
-// var transporter = nodemailer.createTransport(smtpTransport({
-//   host: 'chakra.websitewelcome.com',
-//   port: 465,
-//   auth: {
-//       user: 'xxxxxxxxx',
-//       pass: 'xxxxxxx'
-//   }
-// }));
+var transporter = nodemailer.createTransport(smtpTransport({
+  host: 'chakra.websitewelcome.com',
+  port: 465,
+  auth: {
+      user: 'patrickkeogh@kantechprogramming.com',
+      pass: 'thekkoyk1'
+  }
+}));
 
 var sendJSONresponse = function(res, status, content) {
   res.status(status);
@@ -80,24 +80,24 @@ module.exports.register = function(req, res) {
             html += "<p>This password should be changed the first time you sign in.</p>";
 
 
-            // var mailOptions = {
-            //   from: 'info@kantechprogramming.com',
-            //   to: req.body.username,
-            //   subject: 'MyGathering.com Registration Confirmation',
-            //   html: html
-            // };
+            var mailOptions = {
+              from: 'info@kantechprogramming.com',
+              to: req.body.username,
+              subject: 'MyGathering.com Registration Confirmation',
+              html: html
+            };
 
-            // transporter.sendMail(mailOptions, function(error, info) {
-            //   if(error){
-            //     console.log(error);
-            //     //res.json({yo: 'error'});
-            //   }else{
-            //     console.log('message sent:' + info.response);
-            //     //res.json({yo: info.response});
-            //   }
+            transporter.sendMail(mailOptions, function(error, info) {
+              if(error){
+                console.log(error);
+                //res.json({yo: 'error'});
+              }else{
+                console.log('message sent:' + info.response);
+                //res.json({yo: info.response});
+              }
 
 
-            // });
+            });
 
 
 
