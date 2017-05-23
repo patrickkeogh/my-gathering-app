@@ -123,15 +123,16 @@ module.exports.login = function(req, res, next) {
       return next(err);
     }
     if (!user) {
-      return res.status(401).json({
-        err: info
+      return res.status(HTTPStatus.UNAUTHORIZED).json({
+        status: err.message,
+        success: false
       });
     }
     req.logIn(user, function(err) {
       if (err) {
         return res.status(HTTPStatus.INTERNAL_SERVER_ERROR).json({
           status: 'Could not log in user',
-          success: true
+          success: false
         });
       }
         
@@ -154,6 +155,6 @@ module.exports.login = function(req, res, next) {
 module.exports.logout = function(req, res) {
   req.logout();
   res.status(HTTPStatus.OK).json({
-    status: 'Bye!'
+    status: 'You have signed out. Bye!'
   });
 };
