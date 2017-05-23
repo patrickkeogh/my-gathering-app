@@ -123,7 +123,7 @@ module.exports.login = function(req, res, next) {
       return next(err);
     }
     if (!user) {
-      return res.status(HTTPStatus.BAD_REQUEST).json({
+      return res.status(HTTPStatus.OK).json({
         status: info.message,
         success: false,
         token: null,
