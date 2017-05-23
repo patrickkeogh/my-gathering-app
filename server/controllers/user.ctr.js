@@ -123,12 +123,9 @@ module.exports.login = function(req, res, next) {
       return next(err);
     }
     if (!user) {
-      return res.status(HTTPStatus.OK).json({
+      return res.status(HTTPStatus.UNAUTHORIZED).json({
         status: info.message,
-        success: false,
-        token: null,
-        _id: null,
-        name: null
+        success: false
       });
     }
     req.logIn(user, function(err) {
