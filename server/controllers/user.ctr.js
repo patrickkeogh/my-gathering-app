@@ -124,7 +124,7 @@ module.exports.login = function(req, res, next) {
     }
     if (!user) {
       return res.status(HTTPStatus.UNAUTHORIZED).json({
-        status: err.message,
+        status: info.message,
         success: false
       });
     }
