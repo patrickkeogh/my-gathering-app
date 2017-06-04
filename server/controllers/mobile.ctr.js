@@ -15,7 +15,7 @@ var validationError = function(res, err) {
   return res.json(422, err);
 };
 
-module.exports.getGatheringPojo = function(req, res) {
+module.exports.getGatherings = function(req, res) {
   console.log('entered getGatheringPojo:');
 
   Gatherings.find().exec(function(err, gatherings) {
@@ -25,7 +25,24 @@ module.exports.getGatheringPojo = function(req, res) {
 
   });
 
+};
 
+module.exports.getGathering = function(req, res) {
+
+  console.log('Route Found');
+  var id = req.params.id;
+
+  Gatherings.find({_id:id}, function(err, gathering) {
+
+    if (err) {
+        console.log('Error:' + err);
+        throw err;
+    } 
+
+    sendJSONresponse(res, HTTPStatus.OK, gathering);
+
+
+  });
 
 };
 
