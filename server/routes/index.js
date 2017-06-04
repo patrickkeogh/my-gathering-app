@@ -7,7 +7,7 @@ var Verify = require('../config/verify');
 var ctrlAuth = require('../controllers/user.ctr');
 var ctrlAdmin = require('../controllers/admin.ctr');
 var ctrlGatherings = require('../controllers/gathering.ctr');
-var ctrlTesting = require('../controllers/testing.ctr');
+var ctrlGatheringsMobile = require('../controllers/mobile.ctr');
 
 
 // authentication routes
@@ -32,7 +32,7 @@ router.post('/gathering/:id/banner', ctrlGatherings.addBanner);
 router.post('/gathering/:id/banner/remove', ctrlGatherings.removeBanner);
 
 
-router.get('/testing/android/gatherings', ctrlTesting.getGatheringPojo);
+router.get('/mobile/android/gatherings', ctrlTesting.getGatheringPojo);
 
 
 
