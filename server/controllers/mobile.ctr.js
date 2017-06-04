@@ -47,11 +47,15 @@ module.exports.getGatherings = function(req, res) {
 
   }
 
-  console.log('QueryFieldsMobile:' + JSON.stringify(query));
+  var queryObj = JSON.parse(query);
 
-  Gatherings.find(query).limit(100).exec(function(err, gatherings) {
+  console.log('QueryFieldsMobile:' + queryObj);
+
+
+  Gatherings.find(queryObj).limit(100).exec(function(err, gatherings) {
 
       if (err) throw err;
+
       sendJSONresponse(res, HTTPStatus.OK, gatherings);
 
   });
