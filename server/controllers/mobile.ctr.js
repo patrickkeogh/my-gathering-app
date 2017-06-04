@@ -20,6 +20,16 @@ module.exports.getGatherings = function(req, res) {
 
   var queryFields = req.body;
 
+  var query = {};
+
+  if(req.body.distance) {
+    console.log('WE HAVE A DISTANCE:' + req.body.distance);
+
+  }else{
+    console.log('WRONG NO DISTANCE:' + req.body.distance);
+
+  }
+
   console.log('QueryFieldsMobile:' + JSON.stringify(queryFields));
 
   Gatherings.find().limit(100).exec(function(err, gatherings) {
