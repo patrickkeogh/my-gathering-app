@@ -32,8 +32,8 @@ router.post('/gathering/:id/banner', ctrlGatherings.addBanner);
 router.post('/gathering/:id/banner/remove', ctrlGatherings.removeBanner);
 
 
-router.get('/mobile/android/gathering', ctrlTesting.getGatherings);
-router.get('/mobile/android/gathering/:id', ctrlTesting.getGathering);
+router.get('/mobile/android/gathering', ctrlGatheringsMobile.getGatherings);
+router.get('/mobile/android/gathering/:id', ctrlGatheringsMobile.getGathering);
 
 
 
