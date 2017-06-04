@@ -24,15 +24,32 @@ module.exports.getGatherings = function(req, res) {
 
   if(req.body.distance) {
     console.log('WE HAVE A DISTANCE:' + req.body.distance);
+  }
+
+
+
+  if(req.body.coordinates !== null){
+
+    query['location.location'] = {
+      $near: {
+        $geometry: { type: "Point",  coordinates: req.body.coordinates },
+        $minDistance: 0.01,
+        $maxDistance: req.body.distance
+      }
+    };
+  }
+
+  if(req.body.distance) {
+    console.log('WE HAVE A DISTANCE:' + req.body.distance);
 
   }else{
     console.log('WRONG NO DISTANCE:' + req.body.distance);
 
   }
 
-  console.log('QueryFieldsMobile:' + JSON.stringify(queryFields));
+  console.log('QueryFieldsMobile:' + JSON.stringify(query));
 
-  Gatherings.find().limit(100).exec(function(err, gatherings) {
+  Gatherings.find(query).limit(100).exec(function(err, gatherings) {
 
       if (err) throw err;
       sendJSONresponse(res, HTTPStatus.OK, gatherings);
