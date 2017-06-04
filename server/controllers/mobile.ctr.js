@@ -37,6 +37,9 @@ module.exports.getGatherings = function(req, res) {
         $maxDistance: req.body.distance
       }
     };
+
+
+
   }
 
   if(req.body.distance) {
@@ -47,15 +50,11 @@ module.exports.getGatherings = function(req, res) {
 
   }
 
-  var queryObj = JSON.parse(query);
+  console.log('QueryFieldsMobile:' + JSON.stringify(queryFields));
 
-  console.log('QueryFieldsMobile:' + JSON.stringify(query));
-
-
-  Gatherings.find(query).limit(100).exec(function(err, gatherings) {
+  Gatherings.find().limit(100).exec(function(err, gatherings) {
 
       if (err) throw err;
-
       sendJSONresponse(res, HTTPStatus.OK, gatherings);
 
   });
