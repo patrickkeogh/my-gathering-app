@@ -49,10 +49,10 @@ module.exports.getGatherings = function(req, res) {
 
   var queryObj = JSON.parse(query);
 
-  console.log('QueryFieldsMobile:' + queryObj);
+  console.log('QueryFieldsMobile:' + JSON.stringify(query));
 
 
-  Gatherings.find(queryObj).limit(100).exec(function(err, gatherings) {
+  Gatherings.find(query).limit(100).exec(function(err, gatherings) {
 
       if (err) throw err;
 
