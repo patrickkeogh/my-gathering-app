@@ -16,9 +16,13 @@ var validationError = function(res, err) {
 };
 
 module.exports.getGatherings = function(req, res) {
-  console.log('entered getGatheringPojo:');
+  console.log('entered getGatherings() Mobile:');
 
-  Gatherings.find().exec(function(err, gatherings) {
+  var queryFields = req.body;
+
+  console.log('QueryFieldsMobile:' + queryFields);
+
+  Gatherings.find().limit(100).exec(function(err, gatherings) {
 
       if (err) throw err;
       sendJSONresponse(res, HTTPStatus.OK, gatherings);
