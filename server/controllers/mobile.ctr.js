@@ -20,7 +20,7 @@ module.exports.getGatherings = function(req, res) {
 
   var queryFields = req.body;
 
-  console.log('QueryFieldsMobile:' + queryFields);
+  console.log('QueryFieldsMobile:' + JSON.stringify(queryFields));
 
   Gatherings.find().limit(100).exec(function(err, gatherings) {
 
