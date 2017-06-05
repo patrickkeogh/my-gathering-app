@@ -15,7 +15,58 @@ var validationError = function(res, err) {
   return res.json(422, err);
 };
 
+module.exports.getNewGatherings = function(req, res) {
+  
+  console.log('entered getGatherings() Mobile:');
+
+  var queryFields = req.body;
+
+  var query = {};
+
+  if(req.body.start_date) {
+
+    var date = new Date(req.body.start_date);
+
+    query.createdAt = {
+      $gt:date
+    };
+  }
+
+
+
+  if(req.body.coordinates !== null){
+
+    query['location.location'] = {
+      $near: {
+        $geometry: { type: "Point",  coordinates: req.body.coordinates },
+        $minDistance: 0.01,
+        $maxDistance: req.body.distance
+      }
+    };
+  }
+
+  if(req.body.distance) {
+    console.log('WE HAVE A DISTANCE:' + req.body.distance);
+
+  }else{
+    console.log('WRONG NO DISTANCE:' + req.body.distance);
+
+  }
+
+  console.log('QueryFieldsMobile:' + JSON.stringify(query));
+
+  Gatherings.find(query).limit(100).exec(function(err, gatherings) {
+
+      if (err) throw err;
+      sendJSONresponse(res, HTTPStatus.OK, gatherings);
+
+  });
+
+};
+
+
 module.exports.getGatherings = function(req, res) {
+
   console.log('entered getGatherings() Mobile:');
 
   var queryFields = req.body;
@@ -37,9 +88,6 @@ module.exports.getGatherings = function(req, res) {
         $maxDistance: req.body.distance
       }
     };
-
-
-
   }
 
   if(req.body.distance) {
