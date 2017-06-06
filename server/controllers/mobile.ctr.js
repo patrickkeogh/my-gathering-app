@@ -33,6 +33,15 @@ module.exports.getNewGatherings = function(req, res) {
   }
 
 
+  if(req.body.topic !== null) {
+
+    query['topic.0._id'] = req.body.topic;
+  }
+
+  if(req.body.type !== null) {
+
+    query['type.0._id'] = req.body.type;
+  }
 
   if(req.body.coordinates !== null){
 
@@ -43,14 +52,6 @@ module.exports.getNewGatherings = function(req, res) {
         $maxDistance: req.body.distance
       }
     };
-  }
-
-  if(req.body.distance) {
-    console.log('WE HAVE A DISTANCE:' + req.body.distance);
-
-  }else{
-    console.log('WRONG NO DISTANCE:' + req.body.distance);
-
   }
 
   console.log('QueryFieldsMobile:' + JSON.stringify(query));
@@ -78,22 +79,21 @@ module.exports.getGatherings = function(req, res) {
     query['topic.0._id'] = req.body.topic;
   }
 
-  // if(req.body.distance) {
-  //   console.log('WE HAVE A DISTANCE:' + req.body.distance);
-  // }
+  if(req.body.type !== null) {
 
+    query['type.0._id'] = req.body.type;
+  }
 
+  if(req.body.coordinates !== null){
 
-  // if(req.body.coordinates !== null){
-
-  //   query['location.location'] = {
-  //     $near: {
-  //       $geometry: { type: "Point",  coordinates: req.body.coordinates },
-  //       $minDistance: 0.01,
-  //       $maxDistance: req.body.distance
-  //     }
-  //   };
-  // }
+    query['location.location'] = {
+      $near: {
+        $geometry: { type: "Point",  coordinates: req.body.coordinates },
+        $minDistance: 0.01,
+        $maxDistance: req.body.distance
+      }
+    };
+  }
 
   // if(req.body.distance) {
   //   console.log('WE HAVE A DISTANCE:' + req.body.distance);
