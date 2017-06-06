@@ -23,7 +23,7 @@ module.exports.getNewGatherings = function(req, res) {
 
   var query = {};
 
-  if(req.body.start_date) {
+  if(req.body.start_date !== null) {
 
     var date = new Date(req.body.start_date);
 
@@ -73,30 +73,35 @@ module.exports.getGatherings = function(req, res) {
 
   var query = {};
 
-  if(req.body.distance) {
-    console.log('WE HAVE A DISTANCE:' + req.body.distance);
+  if(req.body.topic !== null) {
+
+    query['topic.0._id'] = req.body.topic;
   }
 
+  // if(req.body.distance) {
+  //   console.log('WE HAVE A DISTANCE:' + req.body.distance);
+  // }
 
 
-  if(req.body.coordinates !== null){
 
-    query['location.location'] = {
-      $near: {
-        $geometry: { type: "Point",  coordinates: req.body.coordinates },
-        $minDistance: 0.01,
-        $maxDistance: req.body.distance
-      }
-    };
-  }
+  // if(req.body.coordinates !== null){
 
-  if(req.body.distance) {
-    console.log('WE HAVE A DISTANCE:' + req.body.distance);
+  //   query['location.location'] = {
+  //     $near: {
+  //       $geometry: { type: "Point",  coordinates: req.body.coordinates },
+  //       $minDistance: 0.01,
+  //       $maxDistance: req.body.distance
+  //     }
+  //   };
+  // }
 
-  }else{
-    console.log('WRONG NO DISTANCE:' + req.body.distance);
+  // if(req.body.distance) {
+  //   console.log('WE HAVE A DISTANCE:' + req.body.distance);
 
-  }
+  // }else{
+  //   console.log('WRONG NO DISTANCE:' + req.body.distance);
+
+  // }
 
   console.log('QueryFieldsMobile:' + JSON.stringify(query));
 
